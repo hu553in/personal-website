@@ -27,7 +27,7 @@ I'm also interested in learning Go and Rust.
 - Journeys around Russia 🇷🇺 and the world 🌍
 - Psychology 🧠
 - My lovely family ❤️
-- My lovely fresh Toyota
+- My lovely fresh Toyota Yaris
 - Dota 2
 - Rap music 🎤
 - Fashion and style 💃
