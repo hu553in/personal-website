@@ -3,7 +3,7 @@ all: clean run
 
 .PHONY: clean
 clean:
-	rm -rf public
+	rm -rf ./public
 
 .PHONY: run
 run:
