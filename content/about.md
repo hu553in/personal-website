@@ -18,20 +18,21 @@ My current work place is [Noveo](https://noveogroup.com).
 
 I'm also interested in learning Go and Rust.
 
-## Inspiring things
+## Interests and inspiring things
 
 - IT and development 👨‍💻
 - Linux
 - Open-source software
 - Apple ecosystem
-- Journeys around Russia 🇷🇺 and the world 🌍
 - Psychology and self-development 🧠
+- Honesty and bravery 💪
 - My lovely family ❤️
+- My own Pembroke Welsh Corgi puppy called Boris 🐶
 - My lovely fresh Toyota Yaris
 - Dota 2
 - Rap music 🎤
 - Fashion and style 💃
-- My own Pembroke Welsh Corgi puppy called Boris 🐶
+- Journeys around Russia 🇷🇺 and the world 🌍
 - Billions of films and series (in love with Netflix!..) 📽
 
 ## Nickname
