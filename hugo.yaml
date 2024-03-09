@@ -55,12 +55,12 @@ params:
 
 menu:
   main:
-    - name: CV
+    - name: About me
       weight: 1
+      url: about/
+    - name: CV
+      weight: 2
       url: cv/
     - name: Portfolio
-      weight: 2
-      url: portfolio/
-    - name: About me
       weight: 3
-      url: about/
+      url: portfolio/
