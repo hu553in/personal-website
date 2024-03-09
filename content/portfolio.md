@@ -16,7 +16,7 @@ author = "Ruslan Khasanshin"
 
 ## Commercial projects 💸
 
-*TODO: details*
+*Click on a project title to see details.*
 
 - *Nov 2021 -- present*\
   **[Cloud contact center solution](4/)**\
