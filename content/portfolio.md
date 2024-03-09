@@ -19,19 +19,19 @@ author = "Ruslan Khasanshin"
 *TODO: details*
 
 - *Nov 2021 -- present*\
-  **Cloud contact center solution**\
+  **[Cloud contact center solution](4/)**\
   [Noveo](https://noveogroup.com)
 
 - *Sep 2021 -- Nov 2021*\
-  **Licensing management service**\
+  **[Licensing management service](3/)**\
   [7bits](https://7bits.it)
 
 - *Dec 2020 -- Jul 2021*\
-  **Admin panel for real-time dashboard**\
+  **[Admin panel for real-time dashboard](2/)**\
   [7bits](https://7bits.it)
 
 - *Dec 2019 -- Aug 2021*\
-  **Content filtering service**\
+  **[Content filtering service](1/)**\
   [7bits](https://7bits.it)
 
 ## Non-commercial projects 👨‍💻
