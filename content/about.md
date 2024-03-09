@@ -2,7 +2,7 @@
 title = "About me"
 description = "About Ruslan Khasanshin"
 date = "2024-03-08"
-aliases = ["about-me", "about"]
+aliases = ["about"]
 author = "Ruslan Khasanshin"
 +++
 
@@ -25,7 +25,7 @@ I'm also interested in learning Go and Rust.
 - Open-source software
 - Apple ecosystem
 - Journeys around Russia 🇷🇺 and the world 🌍
-- Psychology 🧠
+- Psychology and self-development 🧠
 - My lovely family ❤️
 - My lovely fresh Toyota Yaris
 - Dota 2
