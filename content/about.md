@@ -27,7 +27,7 @@ I'm also interested in learning Go and Rust.
 - Psychology and self-development 🧠
 - Honesty and bravery 💪
 - My lovely family ❤️
-- My own Pembroke Welsh Corgi puppy called Boris 🐶
+- My own Pembroke Welsh Corgi called Boris 🐶
 - My lovely fresh Toyota Yaris
 - Dota 2
 - Rap music 🎤

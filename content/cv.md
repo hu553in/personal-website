@@ -61,7 +61,7 @@ Go ➡️ [here](/portfolio).
   Summary:
   - two-month full-stack development internship
   - teamwork on a real project
-  - [certificate](/certificates/7bits-internship.pdf)
+  - [certificate](https://drive.google.com/file/d/1KyqLdlHFrag7zAbUZvgwgCcckZKdk_O0/view)
 
 - *Oct 2018 -- Jun 2019*\
   **Development (courses)**\
@@ -69,7 +69,7 @@ Go ➡️ [here](/portfolio).
   Summary:
   - two-semester full-stack development courses
   - subjects: frontend, backend, soft skills
-  - [certificate](/certificates/7bits-courses.pdf)
+  - [certificate](https://drive.google.com/file/d/1-zEE8Zy9r200uSdMm3cD4ih4FcASuihl/view)
 
 - *Jul 2018 -- Sep 2018*\
   **Coding Garden (formerly Summer School)**\
@@ -83,4 +83,4 @@ Go ➡️ [here](/portfolio).
   [Yandex Education](https://education.yandex.ru)\
   Summary:
   - introductory course in C++ programming
-  - [certificate](/certificates/yandex-intro.pdf)
+  - [certificate](https://drive.google.com/file/d/1QI4D7auBt7NFWnGPSnsSB6TYm0VLg-0y/view)
