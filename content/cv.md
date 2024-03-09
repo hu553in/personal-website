@@ -1,10 +1,16 @@
 +++
-title = "CV"
+title = "CV 📄"
 description = "Ruslan Khasanshin's CV"
 date = "2024-03-08"
 aliases = ["cv"]
 author = "Ruslan Khasanshin"
 +++
+
+## Profiles on job search sites
+
+- [LinkedIn](https://linkedin.com/in/ruslan-khasanshin)
+- [HeadHunter](https://omsk.hh.ru/resume/ece67ac0ff0b174b770039ed1f446d50437455)
+- [Habr Career](https://career.habr.com/hu553in)
 
 ## Summary
 
@@ -35,15 +41,13 @@ Moreover, I am:
 
 - *Nov 2021 -- present*\
   **Backend developer**\
-  [Noveo](https://noveogroup.com)\
-  Summary:
-  - three-month professional development with a mentor
+  [Noveo](https://noveogroup.com)
+  - three-month tech training with a mentor
   - development of cloud contact center solution (outsource)
 
 - *Sep 2019 -- Nov 2021*\
   **Full-stack developer**\
-  [7bits](https://7bits.it/)\
-  Summary:
+  [7bits](https://7bits.it/)
   - several long-term large-scale projects (product and outsource)
   - development of a distributed highloaded system (SaaS)
   - project management practice
@@ -57,30 +61,26 @@ Go ➡️ [here](/portfolio).
 
 - *Jul 2019 -- Sep 2019*\
   **Full-stack deveoper (internship)**\
-  [7bits](https://internship.itlft.ru)\
-  Summary:
+  [7bits](https://internship.itlft.ru)
   - two-month full-stack development internship
   - teamwork on a real project
   - [certificate](https://drive.google.com/file/d/1KyqLdlHFrag7zAbUZvgwgCcckZKdk_O0/view)
 
 - *Oct 2018 -- Jun 2019*\
   **Development (courses)**\
-  [7bits](https://courses.itlft.ru/development)\
-  Summary:
+  [7bits](https://courses.itlft.ru/development)
   - two-semester full-stack development courses
   - subjects: frontend, backend, soft skills
   - [certificate](https://drive.google.com/file/d/1-zEE8Zy9r200uSdMm3cD4ih4FcASuihl/view)
 
 - *Jul 2018 -- Sep 2018*\
   **Coding Garden (formerly Summer School)**\
-  [7bits](https://gardens.itlft.ru/development)\
-  Summary:
+  [7bits](https://gardens.itlft.ru/development)
   - two-month bootcamp for students
   - development of a C++ console roguelike game
 
 - *Jan 2018 -- Aug 2018*\
   **Introduction to programming (C++)**\
-  [Yandex Education](https://education.yandex.ru)\
-  Summary:
+  [Yandex Education](https://education.yandex.ru)
   - introductory course in C++ programming
   - [certificate](https://drive.google.com/file/d/1QI4D7auBt7NFWnGPSnsSB6TYm0VLg-0y/view)
