@@ -40,6 +40,7 @@ Moreover, I am:
   [Noveo](https://noveogroup.com)
   - three-month tech training with a mentor
   - development of cloud contact center solution (outsource)
+  - periodic fulfillment of tech lead duties
 
 - *Sep 2019 -- Nov 2021*\
   **Full-stack developer**\
