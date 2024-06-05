@@ -50,6 +50,12 @@ Moreover, I am:
   - project management practice
   - teaching development in courses for students
 
+## Tech stack
+
+|    Java    |  Kotlin  | Spring Boot | PostgreSQL | Spring Data JPA | Hibernate |
+|:----------:|:--------:|:-----------:|:----------:|:---------------:|:---------:|
+| ClickHouse | RabbitMQ |    Redis    |   Docker   |       Git       |   Linux   |
+
 ## Portfolio
 
 Go ➡️ [here](/portfolio).
