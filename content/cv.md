@@ -53,7 +53,7 @@ Moreover, I am:
 ## Tech stack
 
 |      Java      |    Kotlin    | Spring Boot | PostgreSQL | Spring Data JPA | Hibernate |
-|:----------:|:--------:|:-----------:|:----------:|:---------------:|:---------:|
+|:--------------:|:------------:|:-----------:|:----------:|:---------------:|:---------:|
 | **ClickHouse** | **RabbitMQ** |  **Redis**  | **Docker** |     **Git**     | **Linux** |
 
 ## Portfolio
