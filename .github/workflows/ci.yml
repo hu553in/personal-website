@@ -36,7 +36,11 @@ jobs:
           extended: true
 
       - name: Execute build
-        run: make clean build
+        run: |
+          hugo \
+            --gc \
+            --minify \
+            --baseURL "${{ steps.pages.outputs.base_url }}/"    
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
