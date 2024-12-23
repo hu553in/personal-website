@@ -39,8 +39,7 @@ jobs:
         run: |
           hugo \
             --gc \
-            --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"    
+            --minify
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
