@@ -87,9 +87,3 @@ Go ➡️ [here](/portfolio).
   [Yandex Education](https://education.yandex.ru)
   - introductory course in C++ programming
   - [certificate](https://drive.google.com/file/d/1QI4D7auBt7NFWnGPSnsSB6TYm0VLg-0y/view)
-
-## Profiles on job search sites
-
-- [LinkedIn](https://linkedin.com/in/ruslan-khasanshin)
-- [HeadHunter](https://omsk.hh.ru/resume/ece67ac0ff0b174b770039ed1f446d50437455)
-- [Habr Career](https://career.habr.com/hu553in)
