@@ -44,13 +44,9 @@ params:
       icon: fa-brands fa-github fa-2x
       weight: 4
       url: https://github.com/hu553in
-    - name: Twitter
-      icon: fa-brands fa-x-twitter fa-2x
-      weight: 5
-      url: https://x.com/hu553in___
     - name: Instagram
       icon: fa-brands fa-instagram fa-2x
-      weight: 6
+      weight: 5
       url: https://instagram.com/hu553in___
 
 menu:
