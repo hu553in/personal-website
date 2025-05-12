@@ -1,7 +1,7 @@
 +++
 title = "Curriculum vitae"
 description = "Ruslan Khasanshin's CV"
-date = "2024-03-08"
+date = "2025-05-13"
 aliases = ["cv"]
 author = "Ruslan Khasanshin"
 +++
@@ -36,31 +36,50 @@ Moreover, I am:
 ## Work experience
 
 - *Nov 2021 -- present*\
-  **Backend developer**\
+  **Backend software engineer**\
   [Noveo](https://noveogroup.com)
   - three-month tech training with a mentor
   - development of cloud contact center solution (outsource)
   - periodic fulfillment of tech lead duties
 
 - *Sep 2019 -- Nov 2021*\
-  **Full-stack developer**\
+  **Full-stack software engineer**\
   [7bits](https://7bits.it/)
   - several long-term large-scale projects (product and outsource)
   - development of a distributed highloaded system (SaaS)
   - project management practice
   - teaching development in courses for students
 
-## Tech stack
+## Tech skills
 
-|      Java      |    Kotlin    | Spring Boot | PostgreSQL | Spring Data JPA | Hibernate |
-|:--------------:|:------------:|:-----------:|:----------:|:---------------:|:---------:|
-| **ClickHouse** | **RabbitMQ** |  **Redis**  | **Docker** |     **Git**     | **Linux** |
+<div align="left">
+  <code><img width="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/java.png" alt="Java" title="Java"/></code>
+  <code><img width="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/kotlin.png" alt="Kotlin" title="Kotlin"/></code>
+  <code><img width="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/spring_boot.png" alt="Spring Boot" title="Spring Boot"/></code>
+  <code><img width="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/postgresql.png" alt="PostgreSQL" title="PostgreSQL"/></code>
+  <code><img width="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/rabbitmq.png" alt="RabbitMQ" title="RabbitMQ"/></code>
+  <code><img width="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/redis.png" alt="redis" title="redis"/></code>
+  <code><img width="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/docker.png" alt="Docker" title="Docker"/></code>
+  <code><img width="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/prometheus.png" alt="Prometheus" title="Prometheus"/></code>
+  <code><img width="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/grafana.png" alt="Grafana" title="Grafana"/></code>
+  <code><img width="40" src="https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/go.png" alt="Go" title="Go"/></code>
+</div>
+<br>
+
+|   Java    |   Kotlin   |  Spring Boot   | PostgreSQL  | **RabbitMQ** |
+|:---------:|:----------:|:--------------:|:-----------:|:------------:|
+| **Redis** | **Docker** | **Prometheus** | **Grafana** |    **Go**    |
 
 ## Portfolio
 
 Go ➡️ [here](/portfolio).
 
 ## Additional education
+
+- *Mar 2025 -- Apr 2025*\
+  **System design**\
+  [karpov.courses](https://karpov.courses/systemdesign)
+  - [certificate](https://drive.google.com/file/d/1ihS1ptb-Cnh_o4FjtVg2g3Mqhxd3Uy0Z/view)
 
 - *Jul 2019 -- Sep 2019*\
   **Full-stack deveoper (internship)**\
