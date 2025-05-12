@@ -1,7 +1,7 @@
 +++
 title = "Curriculum vitae"
 description = "Ruslan Khasanshin's CV"
-date = "2025-05-13"
+date = "2025-05-12"
 aliases = ["cv"]
 author = "Ruslan Khasanshin"
 +++
