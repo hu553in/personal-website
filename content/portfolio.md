@@ -19,11 +19,11 @@ author = "Ruslan Khasanshin"
 *Click on a project title to see details.*
 
 - *Nov 2021 -- present*\
-  **[Cloud contact center solution](4/)**\
+  **[Cloud Contact Center Solution](4/)**\
   [Noveo](https://noveogroup.com)
 
 - *Sep 2021 -- Nov 2021*\
-  **[Licensing management service](3/)**\
+  **[Licensing Management Service](3/)**\
   [7bits](https://7bits.it)
 
 - *Dec 2020 -- Jul 2021*\
@@ -31,7 +31,7 @@ author = "Ruslan Khasanshin"
   [7bits](https://7bits.it)
 
 - *Dec 2019 -- Aug 2021*\
-  **[Content filtering service](1/)**\
+  **[Content Filtering Service](1/)**\
   [7bits](https://7bits.it)
 
 ## Non-commercial projects
