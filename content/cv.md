@@ -33,7 +33,7 @@ Moreover, I am:
 **Bachelor of Software Engineering**\
 [Omsk State Technical University](https://omgtu.ru/english)
 
-## 💼 Work Experience
+## 👨‍💻 Work Experience
 
 - *Nov 2021 -- present*\
   **Backend software engineer**\
