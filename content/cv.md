@@ -38,23 +38,20 @@ Moreover, I am:
 - *Nov 2021 -- present*\
   **Backend software engineer**\
   [Noveo](https://noveogroup.com)
-  - three-month tech training with a mentor
-  - development of cloud contact center solution (outsource)
-  - periodic fulfillment of tech lead duties
 
 - *Sep 2019 -- Nov 2021*\
   **Full-stack software engineer**\
   [7bits](https://7bits.it/)
-  - several long-term large-scale projects (product and outsource)
-  - development of a distributed highloaded system (SaaS)
-  - project management practice
-  - teaching development in courses for students
 
 ## Tech skills
 
-|   Java    |   Kotlin   |  Spring Boot   | PostgreSQL  | **RabbitMQ** |
-|:---------:|:----------:|:--------------:|:-----------:|:------------:|
-| **Redis** | **Docker** | **Prometheus** | **Grafana** |    **Go**    |
+- **Programming languages:** Java, Kotlin, Go
+- **Frameworks:** Spring Boot
+- **Databases:** PostgreSQL, Redis
+- **Message queues:** RabbitMQ
+- **Containerization and orchestration:** Docker, Docker Compose
+- **Observability:** Prometheus, Grafana, Grafana Stack
+- **Development tools:** Git, GitHub / GitLab, CI/CD
 
 ## Portfolio
 
@@ -63,32 +60,21 @@ Go ➡️ [here](/portfolio).
 ## Additional education
 
 - *Mar 2025 -- Apr 2025*\
-  **System design**\
+  [**System Design course**](https://drive.google.com/file/d/1ihS1ptb-Cnh_o4FjtVg2g3Mqhxd3Uy0Z/view)\
   [karpov.courses](https://karpov.courses/systemdesign)
-  - [certificate](https://drive.google.com/file/d/1ihS1ptb-Cnh_o4FjtVg2g3Mqhxd3Uy0Z/view)
 
 - *Jul 2019 -- Sep 2019*\
-  **Full-stack deveoper (internship)**\
+  [**Full-stack Development Internship**](https://drive.google.com/file/d/1KyqLdlHFrag7zAbUZvgwgCcckZKdk_O0/view)\
   [7bits](https://internship.itlft.ru)
-  - two-month full-stack development internship
-  - teamwork on a real project
-  - [certificate](https://drive.google.com/file/d/1KyqLdlHFrag7zAbUZvgwgCcckZKdk_O0/view)
 
 - *Oct 2018 -- Jun 2019*\
-  **Development (courses)**\
+  [**Development Course**](https://drive.google.com/file/d/1-zEE8Zy9r200uSdMm3cD4ih4FcASuihl/view)\
   [7bits](https://courses.itlft.ru/development)
-  - two-semester full-stack development courses
-  - subjects: frontend, backend, soft skills
-  - [certificate](https://drive.google.com/file/d/1-zEE8Zy9r200uSdMm3cD4ih4FcASuihl/view)
 
 - *Jul 2018 -- Sep 2018*\
-  **Coding Garden (formerly Summer School)**\
+  **Summer Coding Bootcamp**\
   [7bits](https://gardens.itlft.ru/development)
-  - two-month bootcamp for students
-  - development of a C++ console roguelike game
 
 - *Jan 2018 -- Aug 2018*\
-  **Introduction to programming (C++)**\
+  [**Introduction to C++**](https://drive.google.com/file/d/1QI4D7auBt7NFWnGPSnsSB6TYm0VLg-0y/view)\
   [Yandex Education](https://education.yandex.ru)
-  - introductory course in C++ programming
-  - [certificate](https://drive.google.com/file/d/1QI4D7auBt7NFWnGPSnsSB6TYm0VLg-0y/view)
