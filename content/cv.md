@@ -8,7 +8,7 @@ author = "Ruslan Khasanshin"
 
 ![Photo](/images/photo.png)
 
-## Summary
+## 🎯 Overview
 
 My main specialization is backend development on Java and Kotlin (Spring Boot).\
 I've been working on it since 2019.
@@ -27,13 +27,13 @@ Moreover, I am:
 - trying to keep a good performance over the long haul
 - always talking about the issues that arise
 
-## Education
+## 🎓 Education
 
 *2021*\
 **Bachelor of Software Engineering**\
 [Omsk State Technical University](https://omgtu.ru/english)
 
-## Work experience
+## 💼 Work Experience
 
 - *Nov 2021 -- present*\
   **Backend software engineer**\
@@ -43,7 +43,7 @@ Moreover, I am:
   **Full-stack software engineer**\
   [7bits](https://7bits.it/)
 
-## Tech skills
+## 🛠️ Tech Skills
 
 - **Programming languages:** Java, Kotlin, Go
 - **Frameworks:** Spring Boot
@@ -53,11 +53,11 @@ Moreover, I am:
 - **Observability:** Prometheus, Grafana, Grafana Stack
 - **Development tools:** Git, GitHub / GitLab, CI/CD
 
-## Portfolio
+## 💼 Portfolio
 
 Go ➡️ [here](/portfolio).
 
-## Additional education
+## 🧑‍🎓 Additional Education
 
 - *Mar 2025 -- Apr 2025*\
   [**System Design course**](https://drive.google.com/file/d/1ihS1ptb-Cnh_o4FjtVg2g3Mqhxd3Uy0Z/view)\
