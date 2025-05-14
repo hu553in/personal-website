@@ -16,9 +16,9 @@ My main specialization is backend development on Java and Kotlin ☕️.\
 I've been working on it since 2019.\
 My current work place is [Noveo](https://noveogroup.com).
 
-I'm also interested in learning Go and Rust.
+I'm also interested in learning Go.
 
-## Interests and inspiring things
+## Interests & Inspirations
 
 - IT and development 👨‍💻
 - Linux
