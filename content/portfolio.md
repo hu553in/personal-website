@@ -6,7 +6,7 @@ aliases = ["portfolio"]
 author = "Ruslan Khasanshin"
 +++
 
-## Public speeches
+## 📢 Public Speeches
 
 - *Oct 2021*\
   **An example of a real highload with a complex architecture**\
@@ -14,7 +14,7 @@ author = "Ruslan Khasanshin"
   - [YouTube](https://www.youtube.com/watch?v=niqirgfKVLA)
   - [Local media article](https://tramplin.media/news/4/2197)
 
-## Commercial projects
+## 🤝 Commercial Projects
 
 *Click on a project title to see details.*
 
@@ -34,7 +34,7 @@ author = "Ruslan Khasanshin"
   **[Content Filtering Service](1/)**\
   [7bits](https://7bits.it)
 
-## Non-commercial projects
+## 🏹 Non-commercial Projects
 
 - **Omsk regional M. A. Vrubel museum of fine arts exhibitions**
   - [Description and source code](https://github.com/hu553in/vrubel-museum-exhibitions)
