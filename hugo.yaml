@@ -11,9 +11,9 @@ markup.highlight.style: github-dark
 
 params:
   author: Ruslan Khasanshin
-  info: Backend developer
+  info: Software Engineer
   description: Ruslan Khasanshin's personal website
-  keywords: blog,developer,personal
+  keywords: blog,personal,software,development,engineering,backend,personal
   gravatar: r.m.khasanshin@gmail.com
 
   since: 2024
