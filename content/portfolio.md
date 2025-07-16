@@ -36,6 +36,6 @@ author = "Ruslan Khasanshin"
 
 ## 🏹 Non-commercial Projects
 
-- **Omsk regional M. A. Vrubel museum of fine arts exhibitions**
+- **Exhibitions of Omsk Regional M. A. Vrubel Museum of Fine Arts**
   - [Description and source code](https://github.com/hu553in/vrubel-museum-exhibitions)
   - [Deployed app](https://vrubel-museum-exhibitions.netlify.app)
