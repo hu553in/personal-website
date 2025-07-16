@@ -36,7 +36,7 @@ Moreover, I am:
 ## 👨‍💻 Work Experience
 
 - *Nov 2021 -- present*\
-  **Backend Software Engineer**\
+  **Software Engineer**\
   [Noveo](https://noveogroup.com)
 
 - *Sep 2019 -- Nov 2021*\
