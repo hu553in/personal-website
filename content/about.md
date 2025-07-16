@@ -1,7 +1,7 @@
 +++
 title = "About Me"
 description = "About Ruslan Khasanshin"
-date = "2024-03-08"
+date = "2025-07-16"
 aliases = ["about"]
 author = "Ruslan Khasanshin"
 +++
@@ -12,11 +12,9 @@ I was born in 1995 in Omsk, Russia 🇷🇺.
 
 I've received my bachelor's degree in Software Engineering from [OmSTU](https://omgtu.ru/english) in 2021.
 
-My main specialization is backend development on Java and Kotlin ☕️.\
+My main specialization is backend development in Java, Kotlin, Python, Go.\
 I've been working on it since 2019.\
 My current work place is [Noveo](https://noveogroup.com).
-
-I'm also interested in learning Go.
 
 ## Interests & Inspirations
 
