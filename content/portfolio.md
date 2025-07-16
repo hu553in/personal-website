@@ -1,7 +1,7 @@
 +++
 title = "Portfolio"
 description = "Ruslan Khasanshin's portfolio"
-date = "2024-03-08"
+date = "2025-07-16"
 aliases = ["portfolio"]
 author = "Ruslan Khasanshin"
 +++
