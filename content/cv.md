@@ -1,7 +1,7 @@
 +++
-title = "Curriculum vitae"
+title = "Curriculum Vitae"
 description = "Ruslan Khasanshin's CV"
-date = "2025-05-12"
+date = "2025-07-16"
 aliases = ["cv"]
 author = "Ruslan Khasanshin"
 +++
@@ -10,7 +10,7 @@ author = "Ruslan Khasanshin"
 
 ## 🎯 Overview
 
-My main specialization is backend development on Java and Kotlin (Spring Boot).\
+My main specialization is backend development in Java, Kotlin, Python, Go.\
 I've been working on it since 2019.
 
 My English level is B2.
@@ -36,17 +36,17 @@ Moreover, I am:
 ## 👨‍💻 Work Experience
 
 - *Nov 2021 -- present*\
-  **Backend software engineer**\
+  **Backend Software Engineer**\
   [Noveo](https://noveogroup.com)
 
 - *Sep 2019 -- Nov 2021*\
-  **Full-stack software engineer**\
+  **Full-stack Software Engineer**\
   [7bits](https://7bits.it/)
 
 ## 🛠️ Tech Skills
 
-- **Programming languages:** Java, Kotlin, Go
-- **Frameworks:** Spring Boot
+- **Programming languages:** Java, Kotlin, Python, Go
+- **Frameworks:** Spring Boot, Django
 - **Databases:** PostgreSQL, Redis
 - **Message queues:** RabbitMQ
 - **Containerization and orchestration:** Docker, Docker Compose
@@ -60,7 +60,7 @@ Go ➡️ [here](/portfolio).
 ## 🧑‍🎓 Additional Education
 
 - *Mar 2025 -- Apr 2025*\
-  [**System Design course**](https://drive.google.com/file/d/1ihS1ptb-Cnh_o4FjtVg2g3Mqhxd3Uy0Z/view)\
+  [**System Design Course**](https://drive.google.com/file/d/1ihS1ptb-Cnh_o4FjtVg2g3Mqhxd3Uy0Z/view)\
   [karpov.courses](https://karpov.courses/systemdesign)
 
 - *Jul 2019 -- Sep 2019*\
