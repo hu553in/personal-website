@@ -6,4 +6,4 @@ aliases = ["cv-ru"]
 author = "Ruslan Khasanshin"
 +++
 
-Will be added later.
+Will be added later...
