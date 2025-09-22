@@ -57,9 +57,9 @@ menu:
     - name: About Me
       weight: 1
       url: about/
-    - name: CV
-      weight: 2
-      url: cv/
-    - name: CV (RU)
-      weight: 3
-      url: cv-ru/
+    # - name: CV
+    #   weight: 2
+    #   url: cv/
+    # - name: CV (RU)
+    #   weight: 3
+    #   url: cv-ru/

@@ -6,4 +6,7 @@ aliases = ["cv-ru"]
 author = "Ruslan Khasanshin"
 +++
 
-Will be added later...
+Unfortunately, embedded PDF links are not clickable.\
+To use any link, please get [the underlying PDF file](/Ruslan_Khasanshin_Backend_RU.pdf).
+
+{{< embed-pdf url="/Ruslan_Khasanshin_Backend_RU.pdf" >}}
