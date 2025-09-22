@@ -8,7 +8,9 @@ languageCode: en
 defaultContentLanguage: en
 enableEmoji: true
 
-markup.highlight.style: github-dark
+markup:
+  highlight.style: github-dark
+  goldmark.renderer.unsafe: true
 
 params:
   author: Ruslan Khasanshin
@@ -58,6 +60,6 @@ menu:
     - name: CV
       weight: 2
       url: cv/
-    - name: CV (Russian)
+    - name: CV in Russian
       weight: 3
       url: cv-ru/

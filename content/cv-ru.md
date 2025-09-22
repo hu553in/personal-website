@@ -1,5 +1,5 @@
 +++
-title = "CV (Russian)"
+title = "CV in Russian"
 description = "Ruslan Khasanshin's CV in Russian language"
 date = "2025-09-22"
 aliases = ["cv-ru"]
