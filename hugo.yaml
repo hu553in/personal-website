@@ -1,8 +1,7 @@
 baseURL: https://hu553in.su
 title: Ruslan Khasanshin
 
-theme: [hugo-embed-pdf-shortcode, hugo-coder]
-enableInlineShortcodes: true
+theme: [hugo-coder]
 
 languageCode: en
 defaultContentLanguage: en
