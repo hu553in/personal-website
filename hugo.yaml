@@ -9,7 +9,6 @@ enableEmoji: true
 
 markup:
   highlight.style: github-dark
-  goldmark.renderer.unsafe: true
 
 params:
   author: Ruslan Khasanshin
