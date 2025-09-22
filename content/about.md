@@ -9,12 +9,13 @@ author = "Ruslan Khasanshin"
 ![Photo](/images/photo.png)
 
 Hi folks! ✋\
-My name is Ruslan Khasanshin.\
+My name is Ruslan Khasanshin.
 
 I've graduated in Software Engineering from [OmSTU](https://omgtu.ru/english) in 2021.
 
 My main specialization is backend development in Java, Kotlin, Python, and Go,
 which I've been practicing since 2017 across both commercial and personal projects.
+
 My current work place is [Noveo](https://noveogroup.com).
 
 ## Interests & Inspirations

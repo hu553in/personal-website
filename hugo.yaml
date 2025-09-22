@@ -12,7 +12,7 @@ markup.highlight.style: github-dark
 
 params:
   author: Ruslan Khasanshin
-  info: Software Engineer
+  info: Backend Software Engineer
   description: Ruslan Khasanshin's personal website
   keywords: blog,personal,software,development,engineering,backend,personal
   gravatar: r.m.khasanshin@gmail.com
@@ -58,3 +58,6 @@ menu:
     - name: CV
       weight: 2
       url: cv/
+    - name: CV (Russian)
+      weight: 3
+      url: cv-ru/
