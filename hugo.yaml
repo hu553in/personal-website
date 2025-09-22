@@ -1,7 +1,8 @@
 baseURL: https://hu553in.su
 title: Ruslan Khasanshin
 
-theme: hugo-coder
+theme: [hugo-embed-pdf-shortcode, hugo-coder]
+enableInlineShortcodes: true
 
 languageCode: en
 defaultContentLanguage: en
@@ -57,6 +58,3 @@ menu:
     - name: CV
       weight: 2
       url: cv/
-    - name: Portfolio
-      weight: 3
-      url: portfolio/
