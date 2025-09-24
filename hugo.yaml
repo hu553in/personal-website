@@ -38,24 +38,29 @@ params:
       weight: 2
       url: https://bit.ly/rkhasanshin-cv
       target: _blank
+    - name: WhatsApp
+      icon: fa-brands fa-whatsapp fa-2x
+      weight: 3
+      url: https://wa.me/447414259900
+      target: _blank
     - name: Telegram
       icon: fa-brands fa-telegram fa-2x
-      weight: 3
+      weight: 4
       url: https://t.me/rkhasanshin
       target: _blank
     - name: LinkedIn
       icon: fa-brands fa-linkedin fa-2x
-      weight: 4
+      weight: 5
       url: https://linkedin.com/in/ruslan-khasanshin/
       target: _blank
     - name: Github
       icon: fa-brands fa-github fa-2x
-      weight: 5
+      weight: 6
       url: https://github.com/hu553in
       target: _blank
     - name: Instagram
       icon: fa-brands fa-instagram fa-2x
-      weight: 6
+      weight: 7
       url: https://instagram.com/hu553in___
       target: _blank
 
