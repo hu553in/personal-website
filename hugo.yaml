@@ -33,37 +33,44 @@ params:
       icon: fa-regular fa-envelope fa-2x
       weight: 1
       url: mailto:r.m.khasanshin@gmail.com
+    - name: CV
+      icon: fa-regular fa-file fa-2x
+      weight: 2
+      url: https://docs.google.com/document/d/1-FpPVCdUE2diojOZ1ybGcBgk2355XnNRPl_pD6QhY-4/edit?usp=sharing
+      target: _blank
+    - name: CV (PDF)
+      icon: fa-regular fa-file-pdf fa-2x
+      weight: 3
+      url: https://docs.google.com/document/d/1-FpPVCdUE2diojOZ1ybGcBgk2355XnNRPl_pD6QhY-4/export?format=pdf
+      target: _blank
     - name: Whatsapp
       icon: fa-brands fa-whatsapp fa-2x
-      weight: 2
+      weight: 4
       url: https://wa.me/447414259900
       target: _blank
     - name: Telegram
       icon: fa-brands fa-telegram fa-2x
-      weight: 3
+      weight: 5
       url: https://t.me/rkhasanshin
       target: _blank
     - name: LinkedIn
       icon: fa-brands fa-linkedin fa-2x
-      weight: 4
+      weight: 6
       url: https://linkedin.com/in/ruslan-khasanshin/
       target: _blank
     - name: Github
       icon: fa-brands fa-github fa-2x
-      weight: 5
+      weight: 7
       url: https://github.com/hu553in
       target: _blank
     - name: Instagram
       icon: fa-brands fa-instagram fa-2x
-      weight: 6
+      weight: 8
       url: https://instagram.com/hu553in___/
       target: _blank
 
 menu:
   main:
-    - name: About Me
+    - name: About
       weight: 1
       url: about/
-    - name: CV
-      weight: 2
-      url: https://docs.google.com/document/d/1-FpPVCdUE2diojOZ1ybGcBgk2355XnNRPl_pD6QhY-4/edit?usp=sharing
