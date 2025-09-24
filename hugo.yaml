@@ -42,7 +42,6 @@ params:
       icon: fa-regular fa-file-pdf fa-2x
       weight: 3
       url: https://docs.google.com/document/d/1-FpPVCdUE2diojOZ1ybGcBgk2355XnNRPl_pD6QhY-4/export?format=pdf
-      target: _blank
     - name: Whatsapp
       icon: fa-brands fa-whatsapp fa-2x
       weight: 4
@@ -62,11 +61,6 @@ params:
       icon: fa-brands fa-github fa-2x
       weight: 7
       url: https://github.com/hu553in
-      target: _blank
-    - name: Instagram
-      icon: fa-brands fa-instagram fa-2x
-      weight: 8
-      url: https://instagram.com/hu553in___/
       target: _blank
 
 menu:
