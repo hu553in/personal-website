@@ -15,14 +15,12 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -32,7 +30,7 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.126.3'
+          hugo-version: "0.150.1"
           extended: true
 
       - name: Execute build
@@ -47,7 +45,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './public'
+          path: "./public"
 
       - name: Deploy to GitHub Pages
         id: deployment
