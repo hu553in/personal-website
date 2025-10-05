@@ -24,7 +24,7 @@ which I've been practicing since 2017 across both commercial and personal projec
 - Psychology & self-development 🧠
 - Honesty & bravery 💪
 - My lovely family ❤️
-- My own Pembroke Welsh Corgi called Borya 🐶
+- [My own Pembroke Welsh Corgi called Borya](https://i.postimg.cc/QxJH6RfS/photo-2025-01-26-04-52-04.jpg) 🐶
 - My lovely fresh Toyota Yaris 🏎
 - Dota 2 🎮
 - Rap music 🎤
