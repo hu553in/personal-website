@@ -1,7 +1,7 @@
 +++
 title = "About"
 description = "About Ruslan Khasanshin"
-date = "2025-09-22"
+date = "2025-10-05"
 aliases = ["about"]
 author = "Ruslan Khasanshin"
 +++
@@ -13,25 +13,22 @@ My name is Ruslan Khasanshin.
 
 I've graduated in Software Engineering from [OmSTU](https://omgtu.ru/english) in 2021.
 
-My main specialization is backend development in Java, Kotlin, Python, and Go,
+My main specialization is the backend development in Java, Kotlin, Python, and Go,
 which I've been practicing since 2017 across both commercial and personal projects.
-
-My current work place is [Noveo](https://noveogroup.com).
 
 ## Interests & Inspirations
 
-- IT and development 👨‍💻
-- Linux
-- Open-source software
-- Apple ecosystem
-- Psychology and self-development 🧠
-- Honesty and bravery 💪
+- IT & development 👨‍💻
+- Linux & OSS 🐧
+- Apple 🍏
+- Psychology & self-development 🧠
+- Honesty & bravery 💪
 - My lovely family ❤️
 - My own Pembroke Welsh Corgi called Borya 🐶
-- My lovely fresh Toyota Yaris
-- Dota 2
+- My lovely fresh Toyota Yaris 🏎
+- Dota 2 🎮
 - Rap music 🎤
-- Fashion and style 💃
+- Fashion & style 💃
 - Journeys around the world 🌍
 - Billions of films and series (in love with Netflix!..) 📽
 
