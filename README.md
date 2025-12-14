@@ -1,3 +1,3 @@
 # Personal website
 
-https://hu553in.su
+[hu553in.su](https://hu553in.su)
