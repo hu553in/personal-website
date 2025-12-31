@@ -1,7 +1,7 @@
 +++
 title = "About"
 description = "About Ruslan Khasanshin"
-date = "2025-10-05"
+date = "2025-12-31"
 aliases = ["about"]
 author = "Ruslan Khasanshin"
 +++
@@ -19,7 +19,7 @@ which I've been practicing since 2017 across both commercial and personal projec
 ## Interests & Inspirations
 
 - IT & development 👨‍💻
-- Linux & OSS 🐧
+- OSS and self-hosted 🤘
 - Apple 🍏
 - Psychology & self-development 🧠
 - Honesty & bravery 💪
@@ -27,6 +27,7 @@ which I've been practicing since 2017 across both commercial and personal projec
 - [My own Pembroke Welsh Corgi called Borya](https://i.postimg.cc/QxJH6RfS/photo-2025-01-26-04-52-04.jpg) 🐶
 - My lovely fresh Toyota Yaris 🏎
 - Dota 2 🎮
+- Team Spirit 🐉
 - Rap music 🎤
 - Fashion & style 💃
 - Journeys around the world 🌍
