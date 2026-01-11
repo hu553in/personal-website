@@ -1,40 +1,40 @@
 +++
 title = "About"
 description = "About Ruslan Khasanshin"
-date = "2025-12-31"
+date = "2026-01-11"
 aliases = ["about"]
 author = "Ruslan Khasanshin"
 +++
 
 ![Photo](/images/photo.png)
 
-Hi folks! ✋\
+Hi folks! ✋<br>
 My name is Ruslan Khasanshin.
 
-I've graduated in Software Engineering from [OmSTU](https://omgtu.ru/english) in 2021.
+I graduated in Software Engineering from [OmSTU](https://omgtu.ru/english) in 2021.
 
-My main specialization is the backend development in Java, Kotlin, Python, and Go,
-which I've been practicing since 2017 across both commercial and personal projects.
+I specialize in backend development using **Java**, **Kotlin**, **Python**, and **Go**.<br>
+I've been working with these technologies since 2017 across both commercial and personal projects,
+with a strong focus on reliability, clarity, and long-term maintainability.
 
 ## Interests & Inspirations
 
-- IT & development 👨‍💻
-- OSS and self-hosted 🤘
-- Apple 🍏
+- IT & software development 👨‍💻
+- Open source and self-hosted solutions 🤘
+- Apple ecosystem 🍏
 - Psychology & self-development 🧠
 - Honesty & bravery 💪
 - My lovely family ❤️
-- [My own Pembroke Welsh Corgi called Borya](https://i.postimg.cc/QxJH6RfS/photo-2025-01-26-04-52-04.jpg) 🐶
-- My lovely fresh Toyota Yaris 🏎
+- [My Pembroke Welsh Corgi called Borya](https://i.postimg.cc/QxJH6RfS/photo-2025-01-26-04-52-04.jpg) 🐶
+- My fresh Toyota Yaris 🏎
 - Dota 2 🎮
 - Team Spirit 🐉
 - Rap music 🎤
-- Fashion & style 💃
-- Journeys around the world 🌍
-- Billions of films and series (in love with Netflix!..) 📽
+- Fashion & personal style 💃
+- Traveling around the world 🌍
+- An unreasonable amount of movies and TV series (Netflix fan 📽)
 
 ## Nickname
 
-You can also catch me being called *hu553in*.\
-In fact, it's just *hussein* (which is based on my school nickname 👶),
-but written in [leet](https://en.m.wikipedia.org/wiki/Leet).
+You might also know me as *hu553in*.<br>
+It's simply *hussein* — based on a school nickname — written in [leet](https://en.m.wikipedia.org/wiki/Leet).
