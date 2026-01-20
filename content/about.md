@@ -1,7 +1,7 @@
 +++
 title = "About"
 description = "About Ruslan Khasanshin"
-date = "2026-01-11"
+date = "2026-01-20"
 aliases = ["about"]
 author = "Ruslan Khasanshin"
 +++
@@ -25,7 +25,7 @@ with a strong focus on reliability, clarity, and long-term maintainability.
 - Psychology & self-development 🧠
 - Honesty & bravery 💪
 - My lovely family ❤️
-- [My Pembroke Welsh Corgi called Borya](https://i.postimg.cc/QxJH6RfS/photo-2025-01-26-04-52-04.jpg) 🐶
+- [My Welsh Corgi Pembroke called Borya](https://i.postimg.cc/QxJH6RfS/photo-2025-01-26-04-52-04.jpg) 🐶
 - My fresh Toyota Yaris 🏎
 - Dota 2 🎮
 - Team Spirit 🐉

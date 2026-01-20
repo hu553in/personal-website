@@ -8,6 +8,10 @@ enableEmoji = true
 [markup]
 "highlight.style" = "github-dark"
 
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
+
 [params]
 author = "Ruslan Khasanshin"
 info = "Backend Software Engineer"
@@ -57,7 +61,7 @@ url = "https://linkedin.com/in/ruslan-khasanshin/"
 target = "_blank"
 
 [[params.social]]
-name = "Github"
+name = "GitHub"
 icon = "fa-brands fa-github fa-2x"
 weight = 6
 url = "https://github.com/hu553in"
@@ -76,6 +80,86 @@ weight = 1
 url = "about/"
 
 [[menu.main]]
-name = "CV"
+name = "Blog"
 weight = 2
+url = "posts/"
+
+[[menu.main]]
+name = "CV"
+weight = 3
 url = "https://bit.ly/rkhasanshin-cv"
+
+[languages.en]
+languageName = ":us:"
+
+[languages.ru]
+languageName = ":ru:"
+title = "Руслан Хасаншин"
+
+[languages.ru.params]
+author = "Руслан Хасаншин"
+info = "Backend-разработчик"
+description = "Личный сайт Руслана Хасаншина"
+
+[[languages.ru.params.social]]
+name = "Email"
+icon = "fa-regular fa-envelope fa-2x"
+weight = 1
+url = "mailto:r.m.khasanshin@gmail.com"
+
+[[languages.ru.params.social]]
+name = "Резюме"
+icon = "fa-regular fa-file fa-2x"
+weight = 2
+url = "https://bit.ly/rkhasanshin-cv-ru"
+target = "_blank"
+
+[[languages.ru.params.social]]
+name = "WhatsApp"
+icon = "fa-brands fa-whatsapp fa-2x"
+weight = 3
+url = "https://wa.me/79136632337"
+target = "_blank"
+
+[[languages.ru.params.social]]
+name = "Telegram"
+icon = "fa-brands fa-telegram fa-2x"
+weight = 4
+url = "https://t.me/rkhasanshin"
+target = "_blank"
+
+[[languages.ru.params.social]]
+name = "LinkedIn"
+icon = "fa-brands fa-linkedin fa-2x"
+weight = 5
+url = "https://linkedin.com/in/ruslan-khasanshin/"
+target = "_blank"
+
+[[languages.ru.params.social]]
+name = "GitHub"
+icon = "fa-brands fa-github fa-2x"
+weight = 6
+url = "https://github.com/hu553in"
+target = "_blank"
+
+[[languages.ru.params.social]]
+name = "Instagram"
+icon = "fa-brands fa-instagram fa-2x"
+weight = 7
+url = "https://instagram.com/hu553in___"
+target = "_blank"
+
+[[languages.ru.menu.main]]
+name = "Обо мне"
+weight = 1
+url = "about/"
+
+[[languages.ru.menu.main]]
+name = "Блог"
+weight = 2
+url = "posts/"
+
+[[languages.ru.menu.main]]
+name = "Резюме"
+weight = 3
+url = "https://bit.ly/rkhasanshin-cv-ru"
