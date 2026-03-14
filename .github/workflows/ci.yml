@@ -2,7 +2,8 @@ name: CI
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -32,5 +33,4 @@ jobs:
       - uses: actions/upload-pages-artifact@v4
         with:
           path: "./public"
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v4
