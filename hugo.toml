@@ -15,7 +15,7 @@ unsafe = true
 [params]
 author = "Ruslan Khasanshin"
 info = "Backend Software Engineer"
-description = "Ruslan Khasanshin's personal website"
+description = "Ruslan Khasanshin's personal website."
 keywords = "personal,software,development,engineering,backend"
 gravatar = "r.m.khasanshin@gmail.com"
 since = 2024
@@ -99,7 +99,7 @@ title = "Руслан Хасаншин"
 [languages.ru.params]
 author = "Руслан Хасаншин"
 info = "Backend-разработчик"
-description = "Личный сайт Руслана Хасаншина"
+description = "Личный сайт Руслана Хасаншина."
 
 [[languages.ru.params.social]]
 name = "Email"

@@ -7,7 +7,7 @@ The deployed version is available on GitHub Pages: [hu553in.su](https://hu553in.
 ## Development
 
 ```bash
-hugo server
+make run
 ```
 
 ## Tech stack
