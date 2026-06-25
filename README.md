@@ -4,13 +4,25 @@
 
 The deployed version is available on GitHub Pages: [hu553in.su](https://hu553in.su).
 
-## Development
+## Local development
+
+### Prerequisites
+
+- Hugo Extended
+- Git
 
 ```bash
+git submodule update --init --recursive
 make run
 ```
 
+## Commands
+
+- `make run` starts the local Hugo server.
+- `make clean` removes the generated `public/` directory.
+- `make all` runs `clean` and then starts the local server.
+
 ## Tech stack
 
-- Hugo
+- Hugo with the `hugo-coder` theme
 - GitHub Pages
