@@ -4,19 +4,25 @@
 
 The deployed version is available on GitHub Pages: [hu553in.su](https://hu553in.su).
 
-## Local development
+## What it does
 
-### Prerequisites
+- Builds a Hugo personal website with the `hugo-coder` theme.
+- Keeps the theme as a Git submodule.
+- Deploys the generated site to GitHub Pages from CI.
+
+## Requirements
 
 - Hugo Extended
-- Git
+- Git with submodule support
+
+## Setup
 
 ```bash
 git submodule update --init --recursive
 make run
 ```
 
-## Commands
+## Development
 
 - `make run` starts the local Hugo server.
 - `make clean` removes the generated `public/` directory.
