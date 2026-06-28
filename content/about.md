@@ -12,7 +12,7 @@ Hi folks! ✋<br> My name is Ruslan Khasanshin.
 
 I graduated in Software Engineering from [OmSTU](https://omgtu.ru/english) in 2021.
 
-I specialize in backend development using **Java**, **Kotlin**, **Python**, and **Go**.<br> I've
+I specialize in backend development using **Go**, **Python**, **TypeScript**, and **JVM**.<br> I've
 been working with these technologies since 2017 across both commercial and personal projects, with a
 strong focus on reliability, clarity, and long-term maintainability.
 
