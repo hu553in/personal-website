@@ -1,18 +1,16 @@
 # Personal website
 
-[![CI](https://github.com/hu553in/personal-website/actions/workflows/ci.yml/badge.svg)](https://github.com/hu553in/personal-website/actions/workflows/ci.yml)
-
-The deployed version is available on GitHub Pages: [hu553in.su](https://hu553in.su).
+The deployed version is available at [hu553in.su](https://hu553in.su).
 
 ## What it does
 
 - Builds a Hugo personal website with the `hugo-coder` theme.
 - Keeps the theme as a Git submodule.
-- Deploys the generated site to GitHub Pages from CI.
+- Deploys the generated site with Vercel Git integration.
 
 ## Requirements
 
-- Hugo Extended
+- Hugo Extended 0.154.5
 - Git with submodule support
 
 ## Setup
@@ -31,4 +29,4 @@ make run
 ## Tech stack
 
 - Hugo with the `hugo-coder` theme
-- GitHub Pages
+- Vercel
