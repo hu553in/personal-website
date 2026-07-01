@@ -1,5 +1,7 @@
 # Personal website
 
+Ruslan Khasanshin's personal website.
+
 The deployed version is available at [hu553in.su](https://hu553in.su).
 
 ## What it does
