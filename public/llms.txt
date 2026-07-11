@@ -1,0 +1,31 @@
+# Ruslan Khasanshin
+
+> Personal site of Ruslan Khasanshin (hu553in), a senior product engineer building voomy - a creator platform for video, subscriptions, and community.
+
+## Site
+
+- [Full page in Markdown](https://hu553in.su/index.md): everything on this site in one file
+
+## Work
+
+- [QIC digital hub](https://qic.digital/): senior backend engineer, since 2025
+- [CV (English)](https://bit.ly/rkhasanshin-cv)
+- [CV (Russian)](https://bit.ly/rkhasanshin-cv-ru)
+
+## Writing
+
+- [Technical debt isn't just legacy: how we're reducing divergence across Go services (Medium, English)](https://medium.com/qicdigitalhub/technical-debt-isnt-just-legacy-how-we-re-reducing-divergence-across-go-services-6225e55b15c1)
+- [The same article on Habr (Russian)](https://habr.com/en/articles/1056628/)
+
+## Projects
+
+- [voomy](https://dev.voomy.tv/product): a creator platform for video, subscriptions, and community
+
+## Connect
+
+- [Photo](https://github.com/hu553in.png)
+- [GitHub](https://github.com/hu553in)
+- [LinkedIn](https://www.linkedin.com/in/ruslan-khasanshin)
+- [Telegram](https://t.me/rkhasanshin)
+- [Instagram](https://www.instagram.com/hu553in___)
+- Email: hu553in@poke.com

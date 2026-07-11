@@ -1,5 +1,12 @@
 .DS_Store
 Thumbs.db
-public/
-resources/
-.hugo_build.lock
+node_modules/
+.next/
+out/
+build/
+.vscode/
+*.pem
+*.log
+.env*
+*.tsbuildinfo
+next-env.d.ts
