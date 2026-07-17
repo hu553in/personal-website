@@ -29,7 +29,7 @@
     "moduleDetection": "force",
     "moduleResolution": "Bundler",
     "useDefineForClassFields": true,
-    "incremental": true,
+    "incremental": false,
     "plugins": [
       {
         "name": "next"
