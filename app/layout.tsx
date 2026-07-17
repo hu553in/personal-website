@@ -77,7 +77,7 @@ export default function RootLayout({
         <link as="image" href="/theme-toggle.gif" rel="prefetch" />
         <script
           type="application/ld+json"
-          // eslint-disable-next-line react/no-danger -- Canonical Next.js JSON-LD pattern; the payload is JSON.stringify of local static data.
+          // oxlint-disable-next-line react/no-danger -- Canonical Next.js JSON-LD pattern; the payload is JSON.stringify of local static data.
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>

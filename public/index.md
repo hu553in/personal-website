@@ -4,7 +4,9 @@ hu553in · senior product engineer, building voomy
 
 ## About
 
-Backend engineer by trade, generalist by pull: lately frontend, serverless, and the design engineers posting shaders on X all have my attention. AI is in my loop by default. Everything feeds into [voomy](https://dev.voomy.tv/product) - my first startup, hopefully not the last.
+Backend engineer by trade, generalist by pull: lately frontend, serverless, and the design engineers
+posting shaders on X all have my attention. AI is in my loop by default. Everything feeds into
+[voomy](https://dev.voomy.tv/product) - my first startup, hopefully not the last.
 
 ## Work
 
@@ -22,11 +24,15 @@ Backend engineer by trade, generalist by pull: lately frontend, serverless, and 
 
 ### voomy (founder)
 
-A creator platform for video, subscriptions, and community. Building it from zero with my wife: she owns the vision and a good share of the design, I write all the code. No team, just the two of us. [dev.voomy.tv/product](https://dev.voomy.tv/product)
+A creator platform for video, subscriptions, and community. Building it from zero with my wife: she
+owns the vision and a good share of the design, I write all the code. No team, just the two of us.
+[dev.voomy.tv/product](https://dev.voomy.tv/product)
 
 ## Elsewhere
 
-- Technical debt isn't just legacy: how we're reducing divergence across Go services - [medium](https://medium.com/qicdigitalhub/technical-debt-isnt-just-legacy-how-we-re-reducing-divergence-across-go-services-6225e55b15c1) · [habr](https://habr.com/en/articles/1056628/)
+- Technical debt isn't just legacy: how we're reducing divergence across Go services -
+  [medium](https://medium.com/qicdigitalhub/technical-debt-isnt-just-legacy-how-we-re-reducing-divergence-across-go-services-6225e55b15c1)
+  · [habr](https://habr.com/en/articles/1056628/)
 
 ## Interests
 
@@ -34,7 +40,8 @@ A creator platform for video, subscriptions, and community. Building it from zer
 2. Hunting open source that hits like Docker and Ansible did the first time.
 3. Self-hosting, VPNs, and the hobbyist end of hacking.
 4. Vibe-coding sharp little utilities - most die young, and that's fine.
-5. [Borya the Welsh Corgi](https://i.postimg.cc/QxJH6RfS/photo-2025-01-26-04-52-04.jpg), the third founder.
+5. [Borya the Welsh Corgi](https://i.postimg.cc/QxJH6RfS/photo-2025-01-26-04-52-04.jpg), the third
+   founder.
 6. A full-black Toyota Yaris, rap turned up, and the urge to drive faster than I should.
 7. Fashion - deeply loved, lazily practiced.
 8. An unreasonable amount of movies, series, and no-name Twitch streamers - with my wife, always.
