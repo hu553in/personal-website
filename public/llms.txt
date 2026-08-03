@@ -1,32 +1,10 @@
 # Ruslan Khasanshin
 
-> Personal site of Ruslan Khasanshin (hu553in), a senior software engineer working across product engineering, distributed systems, developer platforms, and product UI.
+> Personal site of Ruslan Khasanshin (hu553in), a senior software engineer working across product
+> engineering, distributed systems, developer platforms, and product UI.
 
-## Site
+## Content
 
-- [Full page in Markdown](https://hu553in.su/index.md): everything on this site in one file
-- [Resume (PDF)](/resume.pdf)
-
-## Work
-
-- [QIC digital hub](https://qic.digital/): senior backend engineer since 2025; helped launch a new Go-based motor-insurance backend and QIC Travel, and built observability foundations across 25 services
-- [Noveo](https://noveogroup.com/): senior java developer, 2021–2025; built and operated five Java/Kotlin microservices and acted as tech lead for five engineers
-- [7bits](https://7bits.it/): full-stack software engineer, 2017–2021; built Java/Kotlin/Spring and React/TypeScript products across the full development cycle
-
-## Projects
-
-- [voomy](https://dev.voomy.tv/product): a pre-launch bilingual creator platform for video, subscriptions, paid access, discovery, community, and moderation
-
-## Writing & speaking
-
-- [Technical debt isn’t just legacy: how we’re reducing divergence across Go services (Medium)](https://medium.com/qicdigitalhub/technical-debt-isnt-just-legacy-how-we-re-reducing-divergence-across-go-services-6225e55b15c1)
-- [The same article on Habr](https://habr.com/en/articles/1056628/)
-- [Designing a Real-World High-Scale Content Filtering System (YouTube, Russian)](https://www.youtube.com/watch?v=Xkidzosg02E)
-
-## Connect
-
-- [Photo](https://github.com/hu553in.png)
-- [GitHub](https://github.com/hu553in)
-- [LinkedIn](https://www.linkedin.com/in/ruslan-khasanshin)
-- [Telegram](https://t.me/rkhasanshin)
-- [Email](mailto:r.m.khasanshin@gmail.com)
+- [Full profile](https://hu553in.su/index.md): About, work history, skills, projects, writing and
+  speaking, interests, and contacts
+- [Resume](https://hu553in.su/resume.pdf): PDF resume

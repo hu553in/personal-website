@@ -3,9 +3,9 @@ import {
   connectLinks,
   identity,
   interests,
-  project,
+  projects,
   resume,
-  stack,
+  skills,
   work,
   writing,
 } from "./data";
@@ -97,14 +97,12 @@ const Home = () => (
 
     <Divider />
 
-    <Section title="Stack">
-      <div className="flex flex-col gap-3">
-        {stack.map((group) => (
-          <div key={group.label} className="flex items-baseline gap-3">
-            <span className={`w-16 shrink-0 ${monoMetaClassName}`}>
-              {group.label}
-            </span>
-            <div className="flex flex-wrap gap-2">
+    <Section title="Skills">
+      <div className="grid grid-cols-[max-content_minmax(0,1fr)] items-baseline gap-x-3 gap-y-3">
+        {skills.map((group) => (
+          <div key={group.label} className="contents">
+            <span className={monoMetaClassName}>{group.label}</span>
+            <div className="flex min-w-0 flex-wrap gap-2">
               {group.items.map((item) => (
                 <span
                   key={item}
@@ -122,18 +120,20 @@ const Home = () => (
     <Divider />
 
     <Section title="Projects">
-      <div className="flex flex-col gap-1.5">
-        <div className="flex items-baseline gap-2">
-          <Link className="text-[15px]" href={project.href} variant="title">
-            {project.name}
-          </Link>
-          <span className={monoMetaClassName}>{project.role}</span>
-        </div>
-        <div className="flex flex-col gap-1.5">
-          {project.description.map((paragraph) => (
-            <BodyText key={paragraph}>{paragraph}</BodyText>
-          ))}
-        </div>
+      <div className="flex flex-col gap-4">
+        {projects.map((project) => (
+          <div key={project.name} className="flex flex-col gap-1.5">
+            <div className="flex flex-col items-start gap-1 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-2 sm:gap-y-1">
+              <span className="text-[15px] font-medium">{project.name}</span>
+              <MetaLine items={[{ label: project.role }, ...project.links]} />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              {project.description.map((paragraph) => (
+                <BodyText key={paragraph}>{paragraph}</BodyText>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </Section>
 

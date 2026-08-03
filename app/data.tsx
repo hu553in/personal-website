@@ -26,7 +26,7 @@ const identity = {
 
 const about = [
   "I build products end to end and the platform foundations behind them — distributed systems, developer tooling, observability, and product UI.",
-  "Over 8+ years, I’ve shipped software across insurance, travel, contact-center SaaS, and creator tooling. I’m most useful when the requirements are incomplete, the system is unfinished, and someone has to turn both into something reliable enough to ship.",
+  "Over eight years, I’ve shipped software across insurance, travel, contact-center SaaS, and creator tooling. I’m most useful when the requirements are incomplete, the system is unfinished, and someone has to turn that ambiguity into something reliable in production.",
   "I tend to go deep on products I care about: tracing edge cases, tightening the model, reducing operational ambiguity, and polishing things long after the happy path works.",
 ] as const;
 
@@ -39,26 +39,26 @@ const resume = {
 const work = [
   {
     description:
-      "Joined while QIC’s new Go-based motor-insurance backend was still an incomplete pre-production rewrite. Helped take it through a phased production launch, built the observability foundation used across 25 services, and co-owned the backend launch of QIC Travel with one other engineer.",
+      "Joined while QIC’s new Go-based motor-insurance backend was still an incomplete pre-production rewrite. Helped take it through a phased production launch, built the observability foundation used across 25 services, and co-owned the backend launch of QIC Travel as part of a small backend team.",
     period: "since 2025",
     role: "senior backend engineer",
-    site: { href: "https://qic.digital/", label: "qic.digital" },
+    site: { href: "https://qic.digital", label: "qic.digital" },
     title: "QIC digital hub",
   },
   {
     description:
-      "Built and operated five Java/Kotlin microservices for a cloud contact-center CRM. Reduced a frequently called API from approximately 800 ms to 150 ms, added approximately 800–1,000 automated tests, and acted as tech lead for five engineers during the final 18 months.",
+      "Built and operated five Java/Kotlin microservices for a cloud contact-center CRM. Reduced response time for a frequently called API from approximately 800 ms to 150 ms, added approximately 800–1,000 automated tests, and acted as tech lead for five engineers during the final 18 months.",
     period: "2021–2025",
     role: "senior java developer",
-    site: { href: "https://noveogroup.com/", label: "noveogroup.com" },
+    site: { href: "https://noveogroup.com", label: "noveogroup.com" },
     title: "Noveo",
   },
   {
     description:
-      "Built external and internal products with Java/Kotlin/Spring and React/TypeScript across the full development cycle. Led one project and taught programming to students and beginners.",
+      "Built external and internal products with Java/Kotlin/Spring and React/TypeScript across the full development cycle. Led one project and taught introductory programming courses.",
     period: "2017–2021",
     role: "full-stack software engineer",
-    site: { href: "https://7bits.it/", label: "7bits.it" },
+    site: { href: "https://7bits.it", label: "7bits.it" },
     title: "7bits",
   },
 ] as const;
@@ -66,15 +66,15 @@ const work = [
 const writing = [
   {
     description:
-      "How a shared Go platform library, service templates, and dependency policy reduce cross-service divergence during a backend migration.",
+      "How a shared Go platform library, a service template, and a dependency policy reduce cross-service divergence during a backend migration.",
     details: [
       {
         href: "https://medium.com/qicdigitalhub/technical-debt-isnt-just-legacy-how-we-re-reducing-divergence-across-go-services-6225e55b15c1",
-        label: "medium",
+        label: "medium en",
       },
       {
-        href: "https://habr.com/en/articles/1056628/",
-        label: "habr",
+        href: "https://habr.com/ru/articles/1056628",
+        label: "habr ru",
       },
     ],
     title:
@@ -86,42 +86,112 @@ const writing = [
     details: [
       {
         href: "https://www.youtube.com/watch?v=Xkidzosg02E",
-        label: "youtube",
+        label: "youtube ru",
       },
-      { label: "russian" },
     ],
     title: "Designing a Real-World High-Scale Content Filtering System",
   },
 ] as const;
 
-const stack = [
+const skills = [
   {
-    items: ["TypeScript", "React", "Next.js", "Tailwind CSS", "shadcn/ui"],
+    items: ["TypeScript", "JavaScript", "React", "Next.js"],
     label: "product",
   },
   {
-    items: ["Go", "Java/Kotlin", "Python", "Node.js", "gRPC"],
-    label: "systems",
+    items: ["Node.js", "Bun", "Go", "Java/Kotlin", "Python"],
+    label: "backend",
   },
   {
-    items: ["PostgreSQL", "Kafka", "Redis", "ClickHouse", "Drizzle"],
+    items: ["PostgreSQL", "ClickHouse", "Redis", "Kafka", "gRPC/Protobuf"],
     label: "data",
   },
   {
     items: ["OpenTelemetry", "Prometheus", "Grafana", "Docker", "Kubernetes"],
     label: "platform",
   },
+  {
+    items: ["GitLab CI", "GitHub Actions", "Ansible"],
+    label: "ops",
+  },
 ];
 
-const project = {
-  description: [
-    "A pre-launch bilingual creator platform for video, subscriptions, paid access, discovery, community, and moderation.",
-    "I own the domain model, architecture, implementation, CI, and operations; product vision, design, and user workflows are developed with my wife.",
-  ],
-  href: "https://dev.voomy.tv/product",
-  name: "voomy",
-  role: "independent product",
-} as const;
+const projects = [
+  {
+    description: [
+      "A pre-launch bilingual creator platform for video, subscriptions, paid access, discovery, community, and moderation.",
+      "I own the domain model, architecture, implementation, CI, and operations; product vision, design, and user workflows are developed with my wife.",
+    ],
+    links: [
+      {
+        href: "https://dev.voomy.tv/product",
+        label: "website",
+      },
+    ],
+    name: "voomy",
+    role: "independent product",
+  },
+  {
+    description: [
+      "A browser-only GitHub Actions workflow dashboard for multiple repositories.",
+    ],
+    links: [
+      {
+        href: "https://gh-workflow-dashboard.vercel.app",
+        label: "website",
+      },
+      {
+        href: "https://github.com/hu553in/gh-workflow-dashboard",
+        label: "github",
+      },
+    ],
+    name: "gh-workflow-dashboard",
+    role: "web dashboard",
+  },
+  {
+    description: [
+      "A Cloudflare Telegram bot for Dota 2 schedules, live matches, results, and favorites.",
+    ],
+    links: [
+      {
+        href: "https://t.me/d2_schedule_bot",
+        label: "telegram",
+      },
+      {
+        href: "https://github.com/hu553in/dota2-schedule-bot",
+        label: "github",
+      },
+    ],
+    name: "dota2-schedule-bot",
+    role: "telegram bot",
+  },
+  {
+    description: [
+      "A GitHub Action that generates Neofetch-style SVG profile cards with daily ASCII art and live GitHub stats.",
+    ],
+    links: [
+      {
+        href: "https://github.com/hu553in/ascii-profile-card",
+        label: "github",
+      },
+    ],
+    name: "ascii-profile-card",
+    role: "github action",
+  },
+  {
+    description: [
+      "An Electron desktop app for live speech transcription and translated captions.",
+    ],
+    links: [
+      {
+        href: "https://github.com/hu553in/relay",
+        label: "github",
+      },
+    ],
+    name: "relay",
+    role: "desktop app",
+  },
+] as const;
 
 const interests = [
   {
@@ -152,7 +222,7 @@ const interests = [
         <Link href="https://i.postimg.cc/QxJH6RfS/photo-2025-01-26-04-52-04.jpg">
           Borya the Welsh Corgi
         </Link>
-        , the third founder.
+        , voomy’s third founder.
       </>
     ),
     id: "borya",
@@ -200,10 +270,10 @@ export {
   connectLinks,
   identity,
   interests,
-  project,
+  projects,
   resume,
   site,
-  stack,
+  skills,
   work,
   writing,
 };

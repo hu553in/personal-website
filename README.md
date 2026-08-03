@@ -8,13 +8,13 @@ Live at [hu553in.su](https://hu553in.su).
 
 ## What it does
 
-- Renders a single-page profile: about, work, stack, projects, writing and speaking, interests, and
+- Renders a single-page profile: about, work, skills, projects, writing and speaking, interests, and
   contacts
-- Keeps rendered page content in one data module and mirrors it in public text surfaces
+- Keeps rendered page content in one data module and mirrors it in a public Markdown version
 - Supports light and dark themes with a system default, a manual toggle, and a GIF-masked View
   Transitions animation on switch
 - Ships SEO and AEO surfaces: Open Graph banner, JSON-LD, `robots.txt`, `sitemap.xml`, `llms.txt`,
-  and a Markdown twin of the page served through content negotiation
+  an `llms-full.txt` redirect, and a Markdown twin advertised through HTML and HTTP alternate links
 
 ## Requirements
 
