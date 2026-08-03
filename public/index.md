@@ -46,8 +46,8 @@ development cycle. Led one project and taught introductory programming courses.
 ## Skills
 
 - **product**: TypeScript, JavaScript, React, Next.js
-- **backend**: Node.js, Bun, Go, Java/Kotlin, Python
-- **data**: PostgreSQL, ClickHouse, Redis, Kafka, gRPC/Protobuf
+- **backend**: Node.js, Bun, Go, Java/Kotlin, Python, gRPC/Protobuf
+- **data**: PostgreSQL, ClickHouse, Redis, Kafka
 - **platform**: OpenTelemetry, Prometheus, Grafana, Docker, Kubernetes
 - **ops**: GitLab CI, GitHub Actions, Ansible
 
@@ -120,7 +120,6 @@ A conference talk on architecture, caching, horizontal scaling, observability, a
 
 ## Connect
 
-- Photo: [github.com/hu553in.png](https://github.com/hu553in.png)
 - GitHub: [hu553in](https://github.com/hu553in)
 - LinkedIn: [ruslan-khasanshin](https://www.linkedin.com/in/ruslan-khasanshin)
 - Telegram: [rkhasanshin](https://t.me/rkhasanshin)
