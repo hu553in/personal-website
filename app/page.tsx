@@ -37,11 +37,7 @@ const MetaLine = ({
 const Home = () => (
   <main className="mx-auto flex w-full max-w-160 flex-col px-6 py-24 sm:py-32">
     <header className="flex flex-col gap-3 pb-10">
-      <h1 className="text-2xl sm:text-3xl">
-        <Link href={identity.photo} variant="title">
-          {identity.name}
-        </Link>
-      </h1>
+      <h1 className="text-2xl sm:text-3xl">{identity.name}</h1>
       <p className="flex items-baseline gap-2 text-[15px] leading-snug text-muted font-medium">
         <span className="text-(--ink)">{identity.handle}</span>
         <span aria-hidden="true">·</span>

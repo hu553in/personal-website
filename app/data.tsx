@@ -99,11 +99,11 @@ const skills = [
     label: "product",
   },
   {
-    items: ["Node.js", "Bun", "Go", "Java/Kotlin", "Python"],
+    items: ["Node.js", "Bun", "Go", "Java/Kotlin", "Python", "gRPC/Protobuf"],
     label: "backend",
   },
   {
-    items: ["PostgreSQL", "ClickHouse", "Redis", "Kafka", "gRPC/Protobuf"],
+    items: ["PostgreSQL", "ClickHouse", "Redis", "Kafka"],
     label: "data",
   },
   {
