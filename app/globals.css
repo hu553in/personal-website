@@ -6,11 +6,11 @@
   --font-sans: OpenRunde, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--surface);
+  --color-foreground: var(--ink);
   --color-muted: var(--muted);
-  --color-border: var(--border);
-  --color-ring: var(--ring);
+  --color-border: var(--line);
+  --color-ring: oklch(0.708 0 0);
 }
 
 @font-face {
@@ -44,11 +44,6 @@
   --ink: #171717;
   --muted: #737373;
   --line: #17171724;
-
-  --background: var(--surface);
-  --foreground: var(--ink);
-  --border: var(--line);
-  --ring: oklch(0.708 0 0);
 
   --expo-in: linear(
     0 0%,

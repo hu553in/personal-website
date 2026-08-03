@@ -2,9 +2,9 @@
 
 import { useTheme } from "next-themes";
 import { useEffect } from "react";
+import { FaMoon, FaSun } from "react-icons/fa6";
 
 import { site } from "./data";
-import { MoonIcon, SunIcon } from "./icons";
 
 const ThemeToggle = () => {
   const { resolvedTheme, setTheme, systemTheme } = useTheme();
@@ -52,8 +52,8 @@ const ThemeToggle = () => {
       onClick={toggle}
       className="fixed top-2 right-2 flex size-8 items-center justify-center text-muted transition-colors hover:text-(--ink)"
     >
-      <MoonIcon />
-      <SunIcon />
+      <FaMoon aria-hidden="true" className="size-4 shrink-0 dark:hidden" />
+      <FaSun aria-hidden="true" className="hidden size-4 shrink-0 dark:block" />
     </button>
   );
 };

@@ -8,8 +8,9 @@ Live at [hu553in.su](https://hu553in.su).
 
 ## What it does
 
-- Renders a single-page profile: about, work, stack, projects, publications, interests, and contacts
-- Keeps all content in one data module, so copy changes never touch markup
+- Renders a single-page profile: about, work, stack, projects, writing and speaking, interests, and
+  contacts
+- Keeps rendered page content in one data module and mirrors it in public text surfaces
 - Supports light and dark themes with a system default, a manual toggle, and a GIF-masked View
   Transitions animation on switch
 - Ships SEO and AEO surfaces: Open Graph banner, JSON-LD, `robots.txt`, `sitemap.xml`, `llms.txt`,
@@ -28,7 +29,8 @@ bun dev
 
 ## Configuration
 
-There is no runtime configuration. All content, metadata, and theme colors live in `app/data.tsx`.
+There is no runtime configuration. Page content and metadata live in `app/data.tsx`; styles and CSS
+theme tokens live in `app/globals.css`.
 
 ## Development
 

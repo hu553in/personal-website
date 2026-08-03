@@ -6,6 +6,13 @@ import "./globals.css";
 import { connectLinks, identity, site, work } from "./data";
 import { ThemeToggle } from "./theme-toggle";
 
+const socialImage = {
+  alt: `${identity.name}, ${identity.role}`,
+  height: 630,
+  url: "/og.png",
+  width: 1200,
+};
+
 export const metadata: Metadata = {
   alternates: {
     canonical: "/",
@@ -24,18 +31,18 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(site.url),
   openGraph: {
-    description: site.description,
-    images: [{ height: 630, url: "/og.png", width: 1200 }],
-    title: site.title,
+    description: site.openGraphDescription,
+    images: [socialImage],
+    title: site.openGraphTitle,
     type: "website",
     url: "/",
   },
   title: site.title,
   twitter: {
     card: "summary_large_image",
-    description: site.description,
-    images: ["/og.png"],
-    title: site.title,
+    description: site.openGraphDescription,
+    images: [socialImage],
+    title: site.openGraphTitle,
   },
 };
 
@@ -47,11 +54,13 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
+const [currentPosition] = work;
+
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   image: identity.photo,
-  jobTitle: "Senior Product Engineer",
+  jobTitle: "Senior Software Engineer",
   name: identity.name,
   sameAs: connectLinks
     .map((link) => link.href)
@@ -59,32 +68,32 @@ const personJsonLd = {
   url: site.url,
   worksFor: {
     "@type": "Organization",
-    name: work[0]?.title,
-    url: work[0]?.links[0]?.href,
+    name: currentPosition.title,
+    url: currentPosition.site.href,
   },
 };
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
-        {/* The theme-transition mask GIF loads lazily on first toggle;
+}>) => (
+  <html lang="en" suppressHydrationWarning>
+    <body>
+      {/* The theme-transition mask GIF loads lazily on first toggle;
             prefetch it so the first lap is smooth even on slow networks. */}
-        <link as="image" href="/theme-toggle.gif" rel="prefetch" />
-        <script
-          type="application/ld+json"
-          // oxlint-disable-next-line react/no-danger -- Canonical Next.js JSON-LD pattern; the payload is JSON.stringify of local static data.
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
-        />
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <ThemeToggle />
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
-  );
-}
+      <link as="image" href="/theme-toggle.gif" rel="prefetch" />
+      <script
+        type="application/ld+json"
+        // oxlint-disable-next-line react/no-danger -- Canonical Next.js JSON-LD pattern; the payload is JSON.stringify of local static data.
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeToggle />
+        {children}
+      </ThemeProvider>
+    </body>
+  </html>
+);
+
+export default RootLayout;
