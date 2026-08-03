@@ -1,20 +1,19 @@
-import {
-  EmailIcon,
-  GitHubIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  TelegramIcon,
-} from "./icons";
+import { FaEnvelope, FaGithub, FaLinkedin, FaTelegram } from "react-icons/fa6";
+
 import { Link } from "./primitives";
 
 const site = {
   description:
-    "Senior product engineer. Backend, frontend, AI, design - currently building voomy with my wife.",
+    "Senior software engineer working across product engineering, distributed systems, developer platforms, and product UI.",
+  openGraphDescription:
+    "Product engineering, distributed systems, developer platforms, and product UI.",
+  openGraphTitle:
+    "Ruslan Khasanshin\nSenior Software Engineer — Product & Platform",
   themeColor: {
     dark: "#0e0e11",
     light: "#fffdfa",
   },
-  title: "Ruslan Khasanshin · senior product engineer",
+  title: "Ruslan Khasanshin — Senior Software Engineer, Product & Platform",
   url: "https://hu553in.su",
 } as const;
 
@@ -22,48 +21,53 @@ const identity = {
   handle: "hu553in",
   name: "Ruslan Khasanshin",
   photo: "https://github.com/hu553in.png",
-  role: "senior product engineer, building voomy",
+  role: "senior software engineer — product & platform",
 };
 
-const about = (
-  <>
-    Backend engineer by trade, generalist by pull: lately frontend, serverless,
-    and the design engineers posting shaders on X all have my attention. AI is
-    in my loop by default. Everything feeds into{" "}
-    <Link href="#voomy">voomy</Link>
-    {" - my first startup, hopefully not the last."}
-  </>
-);
+const about = [
+  "I build products end to end and the platform foundations behind them — distributed systems, developer tooling, observability, and product UI.",
+  "Over 8+ years, I’ve shipped software across insurance, travel, contact-center SaaS, and creator tooling. I’m most useful when the requirements are incomplete, the system is unfinished, and someone has to turn both into something reliable enough to ship.",
+  "I tend to go deep on products I care about: tracing edge cases, tightening the model, reducing operational ambiguity, and polishing things long after the happy path works.",
+] as const;
 
-const sectionTitles = {
-  about: "About",
-  connect: "Connect",
-  elsewhere: "Elsewhere",
-  interests: "Interests",
-  projects: "Projects",
-  stack: "Stack",
-  work: "Work",
-};
+const resume = {
+  href: "/resume.pdf",
+  label: "pdf",
+  title: "Resume",
+} as const;
 
 const work = [
   {
-    links: [{ href: "https://qic.digital/", label: "qic.digital" }],
-    meta: "since 2025",
+    description:
+      "Joined while QIC’s new Go-based motor-insurance backend was still an incomplete pre-production rewrite. Helped take it through a phased production launch, built the observability foundation used across 25 services, and co-owned the backend launch of QIC Travel with one other engineer.",
+    period: "since 2025",
     role: "senior backend engineer",
+    site: { href: "https://qic.digital/", label: "qic.digital" },
     title: "QIC digital hub",
   },
   {
-    links: [
-      { href: "https://bit.ly/rkhasanshin-cv", label: "en" },
-      { href: "https://bit.ly/rkhasanshin-cv-ru", label: "ru" },
-    ],
-    title: "CV",
+    description:
+      "Built and operated five Java/Kotlin microservices for a cloud contact-center CRM. Reduced a frequently called API from approximately 800 ms to 150 ms, added approximately 800–1,000 automated tests, and acted as tech lead for five engineers during the final 18 months.",
+    period: "2021–2025",
+    role: "senior java developer",
+    site: { href: "https://noveogroup.com/", label: "noveogroup.com" },
+    title: "Noveo",
   },
-];
-
-const elsewhere = [
   {
-    links: [
+    description:
+      "Built external and internal products with Java/Kotlin/Spring and React/TypeScript across the full development cycle. Led one project and taught programming to students and beginners.",
+    period: "2017–2021",
+    role: "full-stack software engineer",
+    site: { href: "https://7bits.it/", label: "7bits.it" },
+    title: "7bits",
+  },
+] as const;
+
+const writing = [
+  {
+    description:
+      "How a shared Go platform library, service templates, and dependency policy reduce cross-service divergence during a backend migration.",
+    details: [
       {
         href: "https://medium.com/qicdigitalhub/technical-debt-isnt-just-legacy-how-we-re-reducing-divergence-across-go-services-6225e55b15c1",
         label: "medium",
@@ -74,49 +78,50 @@ const elsewhere = [
       },
     ],
     title:
-      "Technical debt isn't just legacy: how we're reducing divergence across Go services",
+      "Technical debt isn’t just legacy: how we’re reducing divergence across Go services",
   },
-];
+  {
+    description:
+      "A conference talk on architecture, caching, horizontal scaling, observability, and failure handling.",
+    details: [
+      {
+        href: "https://www.youtube.com/watch?v=Xkidzosg02E",
+        label: "youtube",
+      },
+      { label: "russian" },
+    ],
+    title: "Designing a Real-World High-Scale Content Filtering System",
+  },
+] as const;
 
 const stack = [
   {
-    id: "work",
-    items: ["Go", "Postgres", "Kafka", "Redis"],
-    label: "work",
+    items: ["TypeScript", "React", "Next.js", "Tailwind CSS", "shadcn/ui"],
+    label: "product",
   },
   {
-    id: "side",
-    items: [
-      "TypeScript",
-      "Next.js",
-      "Vercel",
-      "shadcn/ui",
-      "Tailwind CSS",
-      "Drizzle",
-    ],
-    label: "side",
+    items: ["Go", "Java/Kotlin", "Python", "Node.js", "gRPC"],
+    label: "systems",
   },
   {
-    id: "infra",
-    items: ["Linux", "Docker", "Ansible", "Nginx", "Caddy"],
-    label: "infra",
+    items: ["PostgreSQL", "Kafka", "Redis", "ClickHouse", "Drizzle"],
+    label: "data",
   },
   {
-    id: "roots",
-    items: ["Java", "Kotlin", "Spring Boot", "React", "C/C++"],
-    label: "roots",
+    items: ["OpenTelemetry", "Prometheus", "Grafana", "Docker", "Kubernetes"],
+    label: "platform",
   },
 ];
 
-const projects = [
-  {
-    description:
-      "A creator platform for video, subscriptions, and community. Building it from zero with my wife: she owns the vision and a good share of the design, I write all the code. No team, just the two of us.",
-    href: "https://dev.voomy.tv/product",
-    name: "voomy",
-    role: "founder",
-  },
-];
+const project = {
+  description: [
+    "A pre-launch bilingual creator platform for video, subscriptions, paid access, discovery, community, and moderation.",
+    "I own the domain model, architecture, implementation, CI, and operations; product vision, design, and user workflows are developed with my wife.",
+  ],
+  href: "https://dev.voomy.tv/product",
+  name: "voomy",
+  role: "independent product",
+} as const;
 
 const interests = [
   {
@@ -124,8 +129,7 @@ const interests = [
     id: "ai",
   },
   {
-    content:
-      "Hunting open source that hits like Docker and Ansible did the first time.",
+    content: "Open source that changes how I work.",
     id: "open-source",
   },
   {
@@ -134,8 +138,13 @@ const interests = [
   },
   {
     content:
-      "Vibe-coding sharp little utilities - most die young, and that's fine.",
+      "Vibe coding sharp little utilities — most die young, and that’s fine.",
     id: "vibe-coding",
+  },
+  {
+    content:
+      "Product design, especially the tiny details nobody asked me to polish.",
+    id: "product-design",
   },
   {
     content: (
@@ -149,17 +158,16 @@ const interests = [
     id: "borya",
   },
   {
-    content:
-      "A full-black Toyota Yaris, rap turned up, and the urge to drive faster than I should.",
+    content: "A full-black Toyota Yaris and any excuse for a long drive.",
     id: "yaris",
   },
   {
-    content: "Fashion - deeply loved, lazily practiced.",
+    content: "Fashion — deeply loved, lazily practiced.",
     id: "fashion",
   },
   {
     content:
-      "An unreasonable amount of movies, series, and no-name Twitch streamers - with my wife, always.",
+      "An unreasonable amount of movies, series, and no-name Twitch streamers — with my wife, always.",
     id: "screens",
   },
 ];
@@ -167,40 +175,35 @@ const interests = [
 const connectLinks = [
   {
     href: "https://github.com/hu553in",
-    icon: GitHubIcon,
+    icon: FaGithub,
     label: "hu553in",
   },
   {
     href: "https://www.linkedin.com/in/ruslan-khasanshin",
-    icon: LinkedInIcon,
+    icon: FaLinkedin,
     label: "ruslan-khasanshin",
   },
   {
     href: "https://t.me/rkhasanshin",
-    icon: TelegramIcon,
+    icon: FaTelegram,
     label: "rkhasanshin",
   },
   {
-    href: "https://www.instagram.com/hu553in___",
-    icon: InstagramIcon,
-    label: "hu553in___",
-  },
-  {
-    href: "mailto:hu553in@poke.com",
-    icon: EmailIcon,
-    label: "hu553in@poke.com",
+    href: "mailto:r.m.khasanshin@gmail.com",
+    icon: FaEnvelope,
+    label: "r.m.khasanshin@gmail.com",
   },
 ];
 
 export {
   about,
   connectLinks,
-  elsewhere,
   identity,
   interests,
-  projects,
-  sectionTitles,
+  project,
+  resume,
   site,
   stack,
   work,
+  writing,
 };
