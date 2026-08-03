@@ -30,34 +30,30 @@ const nextConfig: NextConfig = {
             key: "Link",
             value: '</index.md>; rel="alternate"; type="text/markdown"',
           },
-          { key: "Vary", value: "Accept" },
         ],
         source: "/",
+      },
+      {
+        headers: [
+          {
+            key: "Link",
+            value: '</>; rel="alternate"; type="text/html"',
+          },
+        ],
+        source: "/index.md",
       },
     ]);
   },
   poweredByHeader: false,
   reactCompiler: true,
-  rewrites() {
-    return Promise.resolve({
-      afterFiles: [],
-      // The root page is prerendered, so the Markdown content negotiation
-      // must run before the filesystem match.
-      beforeFiles: [
-        {
-          destination: "/index.md",
-          has: [
-            {
-              key: "accept",
-              type: "header",
-              value: "(.*text/markdown.*)",
-            },
-          ],
-          source: "/",
-        },
-      ],
-      fallback: [],
-    });
+  redirects() {
+    return Promise.resolve([
+      {
+        destination: "/index.md",
+        permanent: false,
+        source: "/llms-full.txt",
+      },
+    ]);
   },
 };
 
