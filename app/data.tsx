@@ -145,7 +145,7 @@ const projects = [
         label: "github",
       },
     ],
-    name: "gh-workflow-dashboard",
+    name: "GitHub workflow dashboard",
     role: "web dashboard",
   },
   {
@@ -162,7 +162,7 @@ const projects = [
         label: "github",
       },
     ],
-    name: "dota2-schedule-bot",
+    name: "Dota 2 schedule bot",
     role: "telegram bot",
   },
   {
@@ -175,7 +175,7 @@ const projects = [
         label: "github",
       },
     ],
-    name: "ascii-profile-card",
+    name: "ASCII profile card",
     role: "github action",
   },
   {
@@ -188,7 +188,7 @@ const projects = [
         label: "github",
       },
     ],
-    name: "relay",
+    name: "Relay",
     role: "desktop app",
   },
 ] as const;
@@ -219,10 +219,8 @@ const interests = [
   {
     content: (
       <>
-        <Link href="https://i.postimg.cc/QxJH6RfS/photo-2025-01-26-04-52-04.jpg">
-          Borya the Welsh Corgi
-        </Link>
-        , voomy’s third founder.
+        <Link href="/borya.jpg">Borya the Welsh Corgi</Link>, voomy’s third
+        founder.
       </>
     ),
     id: "borya",

@@ -63,27 +63,27 @@ and user workflows are developed with my wife.
 
 [website](https://dev.voomy.tv/product)
 
-### gh-workflow-dashboard (web dashboard)
+### GitHub workflow dashboard (web dashboard)
 
 A browser-only GitHub Actions workflow dashboard for multiple repositories.
 
 [website](https://gh-workflow-dashboard.vercel.app) ·
 [github](https://github.com/hu553in/gh-workflow-dashboard)
 
-### dota2-schedule-bot (telegram bot)
+### Dota 2 schedule bot (telegram bot)
 
 A Cloudflare Telegram bot for Dota 2 schedules, live matches, results, and favorites.
 
 [telegram](https://t.me/d2_schedule_bot) · [github](https://github.com/hu553in/dota2-schedule-bot)
 
-### ascii-profile-card (github action)
+### ASCII profile card (github action)
 
 A GitHub Action that generates Neofetch-style SVG profile cards with daily ASCII art and live GitHub
 stats.
 
 [github](https://github.com/hu553in/ascii-profile-card)
 
-### relay (desktop app)
+### Relay (desktop app)
 
 An Electron desktop app for live speech transcription and translated captions.
 
@@ -112,8 +112,7 @@ A conference talk on architecture, caching, horizontal scaling, observability, a
 3. Self-hosting, VPNs, and the hobbyist end of hacking.
 4. Vibe coding sharp little utilities — most die young, and that’s fine.
 5. Product design, especially the tiny details nobody asked me to polish.
-6. [Borya the Welsh Corgi](https://i.postimg.cc/QxJH6RfS/photo-2025-01-26-04-52-04.jpg), voomy’s
-   third founder.
+6. [Borya the Welsh Corgi](/borya.jpg), voomy’s third founder.
 7. A full-black Toyota Yaris and any excuse for a long drive.
 8. Fashion — deeply loved, lazily practiced.
 9. An unreasonable amount of movies, series, and no-name Twitch streamers — with my wife, always.
