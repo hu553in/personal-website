@@ -26,7 +26,7 @@ const identity = {
 
 const about = [
   "I build products end to end and the platform foundations behind them — distributed systems, developer tooling, observability, and product UI.",
-  "Over eight years, I’ve shipped software across insurance, travel, contact-center SaaS, and creator tooling. I’m most useful when the requirements are incomplete, the system is unfinished, and someone has to turn that ambiguity into something reliable in production.",
+  "Over eight years, I’ve shipped software across insurance, travel, contact-center SaaS, creator tooling, and nonprofit infrastructure. I’m most useful when the requirements are incomplete, the system is unfinished, and someone has to turn that ambiguity into something reliable in production.",
   "I tend to go deep on products I care about: tracing edge cases, tightening the model, reducing operational ambiguity, and polishing things long after the happy path works.",
 ] as const;
 
@@ -60,6 +60,18 @@ const work = [
     role: "full-stack software engineer",
     site: { href: "https://7bits.it", label: "7bits.it" },
     title: "7bits",
+  },
+] as const;
+
+const volunteer = [
+  {
+    description: [
+      "I lead engineering for a production, location-aware nonprofit platform. I own the Django/DRF backend, deployment, and observability, contribute across the Next.js frontend, and work directly with users and a non-technical volunteer team to turn loosely defined needs into complete product changes.",
+      "The work includes a timezone-aware scheduling engine, PostGIS-backed search, hierarchy-aware delegated administration, multilingual search, and a multi-stage performance program that reduced a key p99 from about 15 seconds to 500 ms.",
+    ],
+    period: "since 2024",
+    role: "volunteer lead software engineer",
+    title: "Nonprofit information platform",
   },
 ] as const;
 
@@ -99,11 +111,19 @@ const skills = [
     label: "product",
   },
   {
-    items: ["Node.js", "Bun", "Go", "Java/Kotlin", "Python", "gRPC/Protobuf"],
+    items: [
+      "Node.js",
+      "Bun",
+      "Go",
+      "Java/Kotlin",
+      "Python",
+      "Django",
+      "gRPC/Protobuf",
+    ],
     label: "backend",
   },
   {
-    items: ["PostgreSQL", "ClickHouse", "Redis", "Kafka"],
+    items: ["PostgreSQL", "PostGIS", "ClickHouse", "Redis", "Kafka"],
     label: "data",
   },
   {
@@ -272,6 +292,7 @@ export {
   resume,
   site,
   skills,
+  volunteer,
   work,
   writing,
 };

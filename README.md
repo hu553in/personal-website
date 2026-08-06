@@ -8,8 +8,8 @@ Live at [hu553in.su](https://hu553in.su).
 
 ## What it does
 
-- Renders a single-page profile: about, work, skills, projects, writing and speaking, interests, and
-  contacts
+- Renders a single-page profile: about, work, volunteering, skills, projects, writing and speaking,
+  interests, and contacts
 - Keeps rendered page content in one data module and mirrors it in a public Markdown version
 - Supports light and dark themes with a system default, a manual toggle, and a GIF-masked View
   Transitions animation on switch

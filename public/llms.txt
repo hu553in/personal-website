@@ -5,6 +5,6 @@
 
 ## Content
 
-- [Full profile](https://hu553in.su/index.md): About, work history, skills, projects, writing and
-  speaking, interests, and contacts
+- [Full profile](https://hu553in.su/index.md): About, work and volunteer history, skills, projects,
+  writing and speaking, interests, and contacts
 - [Resume](https://hu553in.su/resume.pdf): PDF resume

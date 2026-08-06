@@ -6,6 +6,7 @@ import {
   projects,
   resume,
   skills,
+  volunteer,
   work,
   writing,
 } from "./data";
@@ -86,6 +87,35 @@ const Home = () => (
               <MetaLine items={[{ label: entry.period }, entry.site]} />
             </div>
             <BodyText>{entry.description}</BodyText>
+          </div>
+        ))}
+      </div>
+    </Section>
+
+    <Divider />
+
+    <Section title="Volunteer">
+      <div className="flex flex-col gap-4">
+        {volunteer.map((entry) => (
+          <div key={entry.title} className="flex flex-col gap-1.5">
+            <div className="flex flex-col items-start gap-1 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-2 sm:gap-y-1">
+              <span className="text-[15px] font-medium">{entry.title}</span>
+              <span className="flex items-baseline gap-2 whitespace-nowrap">
+                <span className={monoMetaClassName}>{entry.role}</span>
+                <span
+                  aria-hidden="true"
+                  className={`hidden sm:inline ${monoMetaClassName}`}
+                >
+                  ·
+                </span>
+              </span>
+              <MetaLine items={[{ label: entry.period }]} />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              {entry.description.map((paragraph) => (
+                <BodyText key={paragraph}>{paragraph}</BodyText>
+              ))}
+            </div>
           </div>
         ))}
       </div>
