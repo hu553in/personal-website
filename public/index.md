@@ -7,9 +7,9 @@ hu553in · senior software engineer — product & platform
 I build products end to end and the platform foundations behind them — distributed systems,
 developer tooling, observability, and product UI.
 
-Over eight years, I’ve shipped software across insurance, travel, contact-center SaaS, and creator
-tooling. I’m most useful when the requirements are incomplete, the system is unfinished, and someone
-has to turn that ambiguity into something reliable in production.
+Over eight years, I’ve shipped software across insurance, travel, contact-center SaaS, creator
+tooling, and nonprofit infrastructure. I’m most useful when the requirements are incomplete, the
+system is unfinished, and someone has to turn that ambiguity into something reliable in production.
 
 I tend to go deep on products I care about: tracing edge cases, tightening the model, reducing
 operational ambiguity, and polishing things long after the happy path works.
@@ -43,11 +43,26 @@ full-stack software engineer · 2017–2021 · [7bits.it](https://7bits.it)
 Built external and internal products with Java/Kotlin/Spring and React/TypeScript across the full
 development cycle. Led one project and taught introductory programming courses.
 
+## Volunteer
+
+### Nonprofit information platform
+
+volunteer lead software engineer · since 2024
+
+I lead engineering for a production, location-aware nonprofit platform. I own the Django/DRF
+backend, deployment, and observability, contribute across the Next.js frontend, and work directly
+with users and a non-technical volunteer team to turn loosely defined needs into complete product
+changes.
+
+The work includes a timezone-aware scheduling engine, PostGIS-backed search, hierarchy-aware
+delegated administration, multilingual search, and a multi-stage performance program that reduced a
+key p99 from about 15 seconds to 500 ms.
+
 ## Skills
 
 - **product**: TypeScript, JavaScript, React, Next.js
-- **backend**: Node.js, Bun, Go, Java/Kotlin, Python, gRPC/Protobuf
-- **data**: PostgreSQL, ClickHouse, Redis, Kafka
+- **backend**: Node.js, Bun, Go, Java/Kotlin, Python, Django, gRPC/Protobuf
+- **data**: PostgreSQL, PostGIS, ClickHouse, Redis, Kafka
 - **platform**: OpenTelemetry, Prometheus, Grafana, Docker, Kubernetes
 - **ops**: GitLab CI, GitHub Actions, Ansible
 
