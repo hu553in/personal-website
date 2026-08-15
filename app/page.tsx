@@ -39,7 +39,7 @@ const Home = () => (
   <main className="mx-auto flex w-full max-w-160 flex-col px-6 py-24 sm:py-32">
     <header className="flex flex-col gap-3 pb-10">
       <h1 className="text-2xl sm:text-3xl">{identity.name}</h1>
-      <p className="flex items-baseline gap-2 text-[15px] leading-snug text-muted font-medium">
+      <p className="text-muted flex items-baseline gap-2 text-[15px] leading-snug font-medium">
         <span className="text-(--ink)">{identity.handle}</span>
         <span aria-hidden="true">·</span>
         <span className="min-w-0">{identity.role}</span>
@@ -132,7 +132,7 @@ const Home = () => (
               {group.items.map((item) => (
                 <span
                   key={item}
-                  className="inline-block border border-black/10 dark:border-white/10 rounded px-2.5 py-1 text-[13px] font-mono font-medium text-muted leading-snug"
+                  className="text-muted inline-block rounded border border-black/10 px-2.5 py-1 font-mono text-[13px] leading-snug font-medium dark:border-white/10"
                 >
                   {item}
                 </span>
@@ -201,7 +201,7 @@ const Home = () => (
         {connectLinks.map((link) => (
           <Link
             key={link.href}
-            className="flex items-center gap-2 text-[15px] text-muted"
+            className="text-muted flex items-center gap-2 text-[15px]"
             href={link.href}
             variant="quiet"
           >
