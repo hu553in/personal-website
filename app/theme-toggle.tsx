@@ -50,7 +50,7 @@ const ThemeToggle = () => {
       aria-label="Toggle theme"
       type="button"
       onClick={toggle}
-      className="fixed top-2 right-2 flex size-8 items-center justify-center text-muted transition-colors hover:text-(--ink)"
+      className="text-muted fixed top-2 right-2 flex size-8 items-center justify-center transition-colors hover:text-(--ink)"
     >
       <FaMoon aria-hidden="true" className="size-4 shrink-0 dark:hidden" />
       <FaSun aria-hidden="true" className="hidden size-4 shrink-0 dark:block" />

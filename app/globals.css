@@ -111,7 +111,7 @@
   }
 
   html {
-    @apply bg-background font-sans text-foreground;
+    @apply bg-background text-foreground font-sans;
     min-height: 100%;
     overscroll-behavior: none;
   }
