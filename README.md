@@ -18,7 +18,7 @@ Live at [hu553in.su](https://hu553in.su).
 
 ## Requirements
 
-- Bun 1.3.14
+- Bun
 
 ## Setup
 
