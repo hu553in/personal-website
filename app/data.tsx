@@ -144,7 +144,7 @@ const projects = [
     ],
     links: [
       {
-        href: "https://dev.voomy.tv/product",
+        href: "https://voomy.tv/product",
         label: "website",
       },
     ],

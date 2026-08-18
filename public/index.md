@@ -76,7 +76,7 @@ and moderation.
 I own the domain model, architecture, implementation, CI, and operations; product vision, design,
 and user workflows are developed with my wife.
 
-[website](https://dev.voomy.tv/product)
+[website](https://voomy.tv/product)
 
 ### GitHub workflow dashboard (web dashboard)
 
