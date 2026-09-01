@@ -24,6 +24,23 @@ const identity = {
   role: "senior software engineer — product & platform",
 };
 
+const socialImage = {
+  alt: `${identity.name}, ${identity.role}`,
+  height: 630,
+  url: "/og.png",
+  width: 1200,
+} as const;
+
+const codeRegistry = {
+  description: "A shadcn registry for sharing reusable code across projects.",
+  githubHref: "https://github.com/hu553in/personal-website/tree/main/registry",
+  href: "/registry",
+  licenseHref:
+    "https://github.com/hu553in/personal-website/blob/main/registry/LICENSE",
+  role: "code registry",
+  title: "shadcn registry",
+} as const;
+
 const about = [
   "I build products end to end and the platform foundations behind them — distributed systems, developer tooling, observability, and product UI.",
   "Over eight years, I’ve shipped software across insurance, travel, contact-center SaaS, creator tooling, and nonprofit infrastructure. I’m most useful when the requirements are incomplete, the system is unfinished, and someone has to turn that ambiguity into something reliable in production.",
@@ -211,6 +228,21 @@ const projects = [
     name: "Relay",
     role: "desktop app",
   },
+  {
+    description: [codeRegistry.description],
+    links: [
+      {
+        href: codeRegistry.href,
+        label: "website",
+      },
+      {
+        href: codeRegistry.githubHref,
+        label: "github",
+      },
+    ],
+    name: codeRegistry.title,
+    role: codeRegistry.role,
+  },
 ] as const;
 
 const interests = [
@@ -285,6 +317,7 @@ const connectLinks = [
 
 export {
   about,
+  codeRegistry,
   connectLinks,
   identity,
   interests,
@@ -292,6 +325,7 @@ export {
   resume,
   site,
   skills,
+  socialImage,
   volunteer,
   work,
   writing,

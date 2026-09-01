@@ -4,8 +4,10 @@ node_modules/
 .next/
 out/
 build/
+coverage/
 .vscode/
 .idea/
+public/r/
 *.iml
 *.pem
 *.log

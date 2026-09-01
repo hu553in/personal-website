@@ -10,11 +10,12 @@ Live at [hu553in.su](https://hu553in.su).
 
 - Renders a single-page profile: about, work, volunteering, skills, projects, writing and speaking,
   interests, and contacts
-- Keeps rendered page content in one data module and mirrors it in a public Markdown version
-- Supports light and dark themes with a system default, a manual toggle, and a GIF-masked View
-  Transitions animation on switch
+- Publishes a shadcn registry with demos and install instructions
+- Keeps rendered content in shared data and mirrors public pages in Markdown
+- Supports light and dark themes with a system default, a manual toggle, a `d` shortcut, and a
+  GIF-masked View Transitions animation on switch
 - Ships SEO and AEO surfaces: Open Graph banner, JSON-LD, `robots.txt`, `sitemap.xml`, `llms.txt`,
-  an `llms-full.txt` redirect, and a Markdown twin advertised through HTML and HTTP alternate links
+  an `llms-full.txt` redirect, and Markdown twins advertised through HTML and HTTP alternate links
 
 ## Requirements
 
@@ -29,24 +30,26 @@ bun dev
 
 ## Configuration
 
-There is no runtime configuration. Page content and metadata live in `app/data.tsx`; styles and CSS
-theme tokens live in `app/globals.css`.
+There is no runtime configuration. Shared content and metadata live in `app/data.tsx`; component
+docs live with their demos. Styles and CSS theme tokens live in `app/globals.css`.
 
 ## Development
 
 ```bash
-bun dev        # Development server
-bun run build  # Production build
-bun start      # Production server
-bun check      # Full local gate
-bun check:fix  # Full local gate with automatic fixes
+bun dev             # Development server
+bun run build       # Production build
+bun build:registry  # shadcn registry build
+bun start           # Production server
+bun check           # Full local gate
+bun check:fix       # Full local gate with automatic fixes
 ```
 
 ## Tech stack
 
 - Next.js with React and the React Compiler
 - Tailwind CSS
-- next-themes for theme switching
+- shadcn and Shiki for the component registry
+- next-themes and react-hotkeys-hook for theme switching
 - react-icons for brand icons
 - Bun, Ultracite (Oxlint + Oxfmt), Knip, Lefthook, and commitlint for tooling
 
@@ -54,3 +57,6 @@ bun check:fix  # Full local gate with automatic fixes
 
 - [Production site](https://hu553in.su)
 - [Markdown version](https://hu553in.su/index.md)
+- [shadcn registry](https://hu553in.su/registry)
+- [shadcn registry Markdown version](https://hu553in.su/registry.md)
+- [shadcn registry MIT license](registry/LICENSE)

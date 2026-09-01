@@ -104,6 +104,13 @@ An Electron desktop app for live speech transcription and translated captions.
 
 [github](https://github.com/hu553in/relay)
 
+### shadcn registry (code registry)
+
+A shadcn registry for sharing reusable code across projects.
+
+[website](https://hu553in.su/registry) ·
+[github](https://github.com/hu553in/personal-website/tree/main/registry)
+
 ## Writing & speaking
 
 ### Technical debt isn’t just legacy: how we’re reducing divergence across Go services

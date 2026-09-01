@@ -3,15 +3,8 @@ import { ThemeProvider } from "next-themes";
 
 import "./globals.css";
 
-import { connectLinks, identity, site, work } from "./data";
+import { connectLinks, identity, site, socialImage, work } from "./data";
 import { ThemeToggle } from "./theme-toggle";
-
-const socialImage = {
-  alt: `${identity.name}, ${identity.role}`,
-  height: 630,
-  url: "/og.png",
-  width: 1200,
-};
 
 export const metadata: Metadata = {
   alternates: {

@@ -39,6 +39,24 @@ const nextConfig: NextConfig = {
         ],
         source: "/index.md",
       },
+      {
+        headers: [
+          {
+            key: "Link",
+            value: '</registry.md>; rel="alternate"; type="text/markdown"',
+          },
+        ],
+        source: "/registry",
+      },
+      {
+        headers: [
+          {
+            key: "Link",
+            value: '</registry>; rel="alternate"; type="text/html"',
+          },
+        ],
+        source: "/registry.md",
+      },
     ]);
   },
   poweredByHeader: false,

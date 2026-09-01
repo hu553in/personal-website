@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "hu553in",
+  "homepage": "https://hu553in.su/registry",
+  "items": [
+    {
+      "name": "comet-progress",
+      "type": "registry:ui",
+      "title": "Comet progress",
+      "description": "An accessible grid progress bar with a fading, randomized comet tail.",
+      "author": "Ruslan Khasanshin",
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/default/ui/comet-progress.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}

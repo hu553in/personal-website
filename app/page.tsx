@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 import {
   about,
   connectLinks,
@@ -10,37 +12,21 @@ import {
   work,
   writing,
 } from "./data";
-import { BodyText, Divider, Link, Section } from "./primitives";
-
-const monoMetaClassName = "text-[13px] font-mono text-muted";
-
-const MetaLine = ({
-  items,
-}: Readonly<{
-  items: readonly { href?: string; label: string }[];
-}>) => (
-  <span className={`flex items-baseline gap-2 ${monoMetaClassName}`}>
-    {items.map((item, index) => (
-      <span key={item.label} className="flex items-baseline gap-2">
-        {index > 0 ? <span aria-hidden="true">·</span> : null}
-        {item.href ? (
-          <Link href={item.href} variant="quiet">
-            {item.label}
-          </Link>
-        ) : (
-          <span>{item.label}</span>
-        )}
-      </span>
-    ))}
-  </span>
-);
+import {
+  BodyText,
+  Divider,
+  Link,
+  MetaLine,
+  monoMetaClassName,
+  Section,
+} from "./primitives";
 
 const Home = () => (
   <main className="mx-auto flex w-full max-w-160 flex-col px-6 py-24 sm:py-32">
     <header className="flex flex-col gap-3 pb-10">
       <h1 className="text-2xl sm:text-3xl">{identity.name}</h1>
-      <p className="text-muted flex items-baseline gap-2 text-[15px] leading-snug font-medium">
-        <span className="text-(--ink)">{identity.handle}</span>
+      <p className="text-muted-foreground flex items-baseline gap-2 text-[15px] leading-snug font-medium">
+        <span className="text-foreground">{identity.handle}</span>
         <span aria-hidden="true">·</span>
         <span className="min-w-0">{identity.role}</span>
       </p>
@@ -79,7 +65,7 @@ const Home = () => (
                 <span className={monoMetaClassName}>{entry.role}</span>
                 <span
                   aria-hidden="true"
-                  className={`hidden sm:inline ${monoMetaClassName}`}
+                  className={cn("hidden sm:inline", monoMetaClassName)}
                 >
                   ·
                 </span>
@@ -104,7 +90,7 @@ const Home = () => (
                 <span className={monoMetaClassName}>{entry.role}</span>
                 <span
                   aria-hidden="true"
-                  className={`hidden sm:inline ${monoMetaClassName}`}
+                  className={cn("hidden sm:inline", monoMetaClassName)}
                 >
                   ·
                 </span>
@@ -132,7 +118,7 @@ const Home = () => (
               {group.items.map((item) => (
                 <span
                   key={item}
-                  className="text-muted inline-block rounded border border-black/10 px-2.5 py-1 font-mono text-[13px] leading-snug font-medium dark:border-white/10"
+                  className="text-muted-foreground inline-block rounded border border-black/10 px-2.5 py-1 font-mono text-[13px] leading-snug font-medium dark:border-white/10"
                 >
                   {item}
                 </span>
@@ -185,7 +171,9 @@ const Home = () => (
       <div className="flex flex-col gap-3">
         {interests.map((interest, index) => (
           <div key={interest.id} className="flex items-baseline gap-3">
-            <span className={`w-5 shrink-0 tabular-nums ${monoMetaClassName}`}>
+            <span
+              className={cn("w-5 shrink-0 tabular-nums", monoMetaClassName)}
+            >
               {String(index + 1).padStart(2, "0")}
             </span>
             <BodyText>{interest.content}</BodyText>
@@ -201,7 +189,7 @@ const Home = () => (
         {connectLinks.map((link) => (
           <Link
             key={link.href}
-            className="text-muted flex items-center gap-2 text-[15px]"
+            className="text-muted-foreground flex items-center gap-2 text-[15px]"
             href={link.href}
             variant="quiet"
           >
