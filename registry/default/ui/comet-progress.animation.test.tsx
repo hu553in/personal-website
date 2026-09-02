@@ -1,8 +1,10 @@
-import { act, cleanup, render } from "@testing-library/react";
+import { act, cleanup, render, screen } from "@testing-library/react";
+import { StrictMode } from "react";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { CometProgress } from "./comet-progress";
 import {
+  createDrawing,
   mockAnimationFrame,
   mockCanvas2DContext,
   mockCanvasWidth,
@@ -26,37 +28,44 @@ describe("CometProgress animation", () => {
     vi.restoreAllMocks();
   });
 
-  test("moves the front past the right edge after reaching 100%", () => {
-    const canvasWidth = 384;
-    mockCanvasWidth(canvasWidth);
-    vi.spyOn(Math, "random").mockReturnValue(0);
-    const runAnimationFrame = mockAnimationFrame();
-    const roundRect = vi.fn();
-    mockCanvas2DContext(() => ({ roundRect }));
+  test.each([4, 200, 1024])(
+    "settles initial and updated 100% on the first frame at width %i",
+    (width) => {
+      const drawing = createDrawing(width);
+      const complete = vi.fn();
+      const bar = (value: number) => (
+        <CometProgress
+          aria-label="Comet progress"
+          value={value}
+          onAnimationComplete={complete}
+        />
+      );
+      const { rerender, unmount } = render(bar(100));
+      drawing.frame(0);
+      expect(drawing.cells.size).toBe((width / 4) * 5);
+      expect(new Set(drawing.cells.values())).toStrictEqual(new Set([0.75]));
+      expect(complete).toHaveBeenCalledOnce();
+      drawing.frame(16);
+      expect(complete).toHaveBeenCalledOnce();
 
-    render(<CometProgress aria-label="Comet progress" value={100} />);
-
-    runAnimationFrame(0);
-    const cellsBeforeExit = roundRect.mock.calls.length;
-
-    for (let time = 16; time <= 1200; time += 16) {
-      roundRect.mockClear();
-      runAnimationFrame(time);
+      rerender(bar(0));
+      expect(drawing.cells.size).toBe(0);
+      expect(drawing.frames.size).toBe(0);
+      rerender(bar(100));
+      drawing.frame(32);
+      expect(drawing.cells.size).toBe((width / 4) * 5);
+      expect(new Set(drawing.cells.values())).toStrictEqual(new Set([0.75]));
+      expect(complete).toHaveBeenCalledTimes(2);
+      unmount();
+      expect(drawing.frames.size).toBe(0);
     }
+  );
 
-    const cellsAfterExit = roundRect.mock.calls.length;
-
-    expect(cellsBeforeExit).toBeLessThan((canvasWidth / 4) * 5);
-    expect(cellsAfterExit).toBe((canvasWidth / 4) * 5);
-  });
-
-  test("reports completion only after the front exits and rearms below 100%", () => {
-    mockCanvasWidth(8);
-    vi.spyOn(Math, "random").mockReturnValue(0);
-    const runAnimationFrame = mockAnimationFrame();
+  test("reports completion with the latest callback and rearms below 100% while offscreen", () => {
+    const drawing = createDrawing(8);
+    vi.mocked(Math.random).mockReturnValue(0);
     const previousOnAnimationComplete = vi.fn();
     const onAnimationComplete = vi.fn();
-    mockCanvas2DContext(() => ({ roundRect: vi.fn() }));
 
     const { rerender } = render(
       <CometProgress
@@ -73,18 +82,13 @@ describe("CometProgress animation", () => {
         value={100}
       />
     );
-    runAnimationFrame(0);
+    drawing.frame(0);
 
-    for (let frameIndex = 1; frameIndex < 9; frameIndex += 1) {
-      runAnimationFrame(frameIndex * 66);
-    }
-
-    expect(onAnimationComplete).not.toHaveBeenCalled();
+    expect(onAnimationComplete).toHaveBeenCalledOnce();
     expect(previousOnAnimationComplete).not.toHaveBeenCalled();
-
-    runAnimationFrame(9 * 66);
-    runAnimationFrame(10 * 66);
-
+    expect(drawing.cells.size).toBe(10);
+    expect(new Set(drawing.cells.values())).toStrictEqual(new Set([0.5]));
+    drawing.frame(16);
     expect(onAnimationComplete).toHaveBeenCalledOnce();
 
     act(() => {
@@ -94,7 +98,7 @@ describe("CometProgress animation", () => {
       <CometProgress
         aria-label="Comet progress"
         onAnimationComplete={onAnimationComplete}
-        value={0}
+        value={50}
       />
     );
     rerender(
@@ -104,18 +108,12 @@ describe("CometProgress animation", () => {
         value={100}
       />
     );
+    drawing.frame(32);
+    expect(onAnimationComplete).toHaveBeenCalledOnce();
     act(() => {
       intersectionObserver.setIntersecting(true);
     });
-
-    runAnimationFrame(11 * 66);
-
-    expect(onAnimationComplete).toHaveBeenCalledOnce();
-
-    for (let frameIndex = 12; frameIndex <= 21; frameIndex += 1) {
-      runAnimationFrame(frameIndex * 66);
-    }
-
+    drawing.frame(48);
     expect(onAnimationComplete).toHaveBeenCalledTimes(2);
   });
 
@@ -168,34 +166,28 @@ describe("CometProgress animation", () => {
   });
 
   test("pauses outside the viewport and resumes without a time jump", () => {
-    mockCanvasWidth(40);
-    vi.spyOn(Math, "random").mockReturnValue(1);
-    const runAnimationFrame = mockAnimationFrame();
-    const roundRect = vi.fn();
-
-    mockCanvas2DContext(() => ({ roundRect }));
-
-    const { rerender } = render(
-      <CometProgress aria-label="Comet progress" value={0} />
-    );
-
-    rerender(<CometProgress aria-label="Comet progress" value={100} />);
-
+    const drawing = createDrawing(40);
+    render(<CometProgress aria-label="Comet progress" value={50} />);
+    drawing.frame(0);
+    const beforePause = new Map(drawing.cells);
+    vi.mocked(Math.random).mockReturnValue(1);
     act(() => {
       intersectionObserver.setIntersecting(false);
     });
 
-    expect(cancelAnimationFrame).toHaveBeenCalledOnce();
+    drawing.frame(100_000);
+    expect(drawing.frames.size).toBe(0);
+    expect(drawing.cells).toStrictEqual(beforePause);
 
     act(() => {
       intersectionObserver.setIntersecting(true);
     });
 
-    runAnimationFrame(100_000);
-    expect(roundRect).not.toHaveBeenCalled();
-
-    runAnimationFrame(100_016);
-    expect(roundRect.mock.calls.length).toBeGreaterThan(0);
+    drawing.frame(100_000);
+    expect(drawing.cells).toStrictEqual(beforePause);
+    drawing.frame(100_016);
+    expect(drawing.cells).not.toStrictEqual(beforePause);
+    expect(drawing.frames.size).toBe(1);
   });
 
   test("sleeps while empty and resumes when progress advances", () => {
@@ -444,7 +436,7 @@ describe("CometProgress animation", () => {
     expect(new Set(movements).size).toBeGreaterThan(1);
   });
 
-  test("advances no more than one column even after a slow animation frame", () => {
+  test("advances decorative row tips no more than one column after a slow animation frame", () => {
     mockCanvasWidth(384);
     const rowTipRandomValues = Array.from({ length: 5 }, () => [
       0, 0, 1,
@@ -462,12 +454,8 @@ describe("CometProgress animation", () => {
     const roundRect = vi.fn();
     mockCanvas2DContext(() => ({ roundRect }));
 
-    const { rerender } = render(
-      <CometProgress aria-label="Comet progress" value={0} />
-    );
-
+    render(<CometProgress aria-label="Comet progress" value={50} />);
     runAnimationFrame(0);
-    rerender(<CometProgress aria-label="Comet progress" value={100} />);
 
     const rightmostPaintedColumns: number[] = [];
 
@@ -489,6 +477,110 @@ describe("CometProgress animation", () => {
       );
 
     expect(rightmostPaintedColumns.length).toBeGreaterThan(1);
+    expect(columnJumps.some((jump) => jump > 0)).toBeTruthy();
     expect(Math.max(...columnJumps)).toBeLessThanOrEqual(1);
+  });
+
+  test.each([30, 60, 144])(
+    "settles a large intermediate jump in 200ms at %i fps",
+    (fps) => {
+      const drawing = createDrawing(1024);
+      const { rerender, unmount } = render(
+        <CometProgress aria-label="Comet progress" value={20} />
+      );
+      drawing.frame(0);
+      rerender(<CometProgress aria-label="Comet progress" value={80} />);
+      drawing.frame(0);
+      for (let time = 1000 / fps; time < 200; time += 1000 / fps) {
+        drawing.frame(time);
+      }
+      drawing.frame(200);
+      const settled = new Map(drawing.cells);
+      unmount();
+      render(<CometProgress aria-label="Comet progress" value={80} />);
+      drawing.frame(0);
+      expect(settled).toStrictEqual(drawing.cells);
+    }
+  );
+
+  test("keeps moving when progress changes before every frame", () => {
+    const drawing = createDrawing(1024);
+    const { rerender, unmount } = render(
+      <CometProgress aria-label="Comet progress" value={0} />
+    );
+    drawing.frame(0);
+    for (let value = 1; value <= 60; value += 1) {
+      rerender(<CometProgress aria-label="Comet progress" value={value} />);
+      drawing.frame(value * 16);
+    }
+    expect(screen.getByRole("progressbar").getAttribute("aria-valuenow")).toBe(
+      "60"
+    );
+    expect(drawing.cells.size).toBeGreaterThan(0);
+    drawing.frame(1160);
+    const settled = new Map(drawing.cells);
+    unmount();
+    render(<CometProgress aria-label="Comet progress" value={60} />);
+    drawing.frame(1160);
+    expect(settled).toStrictEqual(drawing.cells);
+  });
+
+  test("restarts from zero when reset during an intermediate transition", () => {
+    const drawing = createDrawing(1024);
+    const { rerender } = render(
+      <CometProgress aria-label="Comet progress" value={80} />
+    );
+    drawing.frame(0);
+    rerender(<CometProgress aria-label="Comet progress" value={90} />);
+    drawing.frame(16);
+    rerender(<CometProgress aria-label="Comet progress" value={0} />);
+    expect(drawing.cells.size).toBe(0);
+    rerender(<CometProgress aria-label="Comet progress" value={10} />);
+    drawing.frame(32);
+    expect(drawing.cells.size).toBe(0);
+    drawing.frame(232);
+    expect(drawing.cells.size).toBeGreaterThan(0);
+    expect(drawing.cells.size).toBeLessThan(256);
+  });
+
+  test("does not schedule frames after synchronous unmount in the completion callback", () => {
+    const drawing = createDrawing();
+    const complete = vi.fn();
+    const { unmount } = render(
+      <CometProgress
+        aria-label="Comet progress"
+        value={100}
+        onAnimationComplete={complete}
+      />
+    );
+    complete.mockImplementation(unmount);
+    drawing.frame(0);
+    drawing.frame(16);
+    drawing.frame(32);
+    expect(complete).toHaveBeenCalledOnce();
+    expect(screen.queryByRole("progressbar")).toBeNull();
+    expect(drawing.frames.size).toBe(0);
+  });
+
+  test("pauses offscreen and cleans up in Strict Mode", () => {
+    const drawing = createDrawing();
+    const { unmount } = render(
+      <StrictMode>
+        <CometProgress aria-label="Comet progress" value={50} />
+      </StrictMode>
+    );
+    expect(drawing.frames.size).toBe(1);
+    drawing.frame(0);
+    expect(drawing.cells.size).toBeGreaterThan(0);
+    act(() => {
+      intersectionObserver.setIntersecting(false);
+    });
+    expect(drawing.frames.size).toBe(0);
+    act(() => {
+      intersectionObserver.setIntersecting(true);
+    });
+    expect(drawing.frames.size).toBe(1);
+    unmount();
+    expect(drawing.frames.size).toBe(0);
   });
 });

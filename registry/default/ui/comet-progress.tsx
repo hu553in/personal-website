@@ -1,5 +1,6 @@
 "use client";
 
+import type { ComponentProps } from "react";
 import {
   useEffect,
   useId,
@@ -7,7 +8,6 @@ import {
   useRef,
   useSyncExternalStore,
 } from "react";
-import type { ComponentProps } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -39,10 +39,11 @@ const shimmerResponse = 7;
 const settledOpacityFloor = 0.5;
 const frontShimmerExponent = 3;
 const minimumVisibleOpacity = 0.025;
-// 60 cells per second stays smooth at high refresh rates; the frame cap prevents visible skips.
-const headCellsPerSecond = 60;
-const maxHeadAdvancePerFrame = 1;
-// Limit background-tab time jumps so the front remains visible when animation resumes.
+// Bound visual lag independently of width; endpoints bypass this transition.
+const progressTransitionMs = 200;
+// Cap decorative tip motion, not the reported progress.
+const maxRowTipAdvancePerFrame = 1;
+// Limit jumps in shimmer and row-tip motion when animation resumes.
 const maxFrameElapsedSeconds = 1 / 15;
 const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
 const defaultMin = 0;
@@ -132,13 +133,10 @@ const useClientLayoutEffect =
 const getFrontLength = (columnCount: number) =>
   Math.min(columnCount, maxFrontLengthInCells);
 
-const getExitDistance = (columnCount: number) =>
-  getFrontLength(columnCount) - minRowTipOffsetInCells;
-
+// Map the full tail travel to 0..1 so 100% has no separate exit phase.
 const getTargetHead = (progress: number, columnCount: number) =>
-  progress >= 1
-    ? columnCount + getExitDistance(columnCount)
-    : progress * columnCount;
+  progress *
+  (columnCount + getFrontLength(columnCount) - minRowTipOffsetInCells);
 
 const createShimmerCell = (time: number): ShimmerCell => ({
   current: Math.random(),
@@ -425,14 +423,19 @@ const CometProgress = ({
     let isMeasurable = false;
     let shimmerCells: ShimmerCell[] = [];
     const rowTips = createRowTips(performance.now());
-    let displayedHead: number | null = null;
+    let displayedProgress = progressRef.current;
+    let transitionFromProgress = displayedProgress;
+    let transitionTargetProgress = displayedProgress;
+    let transitionStartedAt = 0;
     let lastDrawnStaticProgress: number | null = null;
     const drawStaticProgress = (staticProgress?: number) => {
-      if (!shouldReduceMotion || columnCount === 0) {
+      if (columnCount === 0) {
         return;
       }
 
-      const currentProgress = staticProgress ?? progressRef.current;
+      const currentProgress =
+        staticProgress ??
+        (shouldReduceMotion ? progressRef.current : displayedProgress);
 
       drawProgress(
         context,
@@ -459,9 +462,11 @@ const CometProgress = ({
       ? redrawStaticProgress
       : null;
     const resizeCanvas = () => {
-      const cssWidth = canvas.getBoundingClientRect().width;
+      // Keep fractional layout pixels; transforms must not change the grid spacing.
+      // oxlint-disable-next-line unicorn/prefer-number-coercion -- CSS lengths include px; Number would return NaN.
+      const cssWidth = Number.parseFloat(getComputedStyle(canvas).width);
 
-      if (cssWidth <= 0) {
+      if (!Number.isFinite(cssWidth) || cssWidth <= 0) {
         isMeasurable = false;
         return;
       }
@@ -475,19 +480,6 @@ const CometProgress = ({
       scale = nextScale;
 
       if (nextColumnCount !== columnCount) {
-        if (displayedHead !== null && columnCount > 0) {
-          if (displayedHead <= columnCount) {
-            displayedHead = (displayedHead / columnCount) * nextColumnCount;
-          } else {
-            const previousExitDistance = getExitDistance(columnCount);
-            const nextExitDistance = getExitDistance(nextColumnCount);
-            const exitProgress =
-              (displayedHead - columnCount) / previousExitDistance;
-
-            displayedHead = nextColumnCount + exitProgress * nextExitDistance;
-          }
-        }
-
         shimmerCells = resizeShimmerCells(
           shimmerCells,
           columnCount,
@@ -497,9 +489,6 @@ const CometProgress = ({
         columnCount = nextColumnCount;
       }
 
-      if (displayedHead === null) {
-        displayedHead = progressRef.current * columnCount;
-      }
       drawStaticProgress();
 
       if (progressRef.current > 0) {
@@ -551,7 +540,9 @@ const CometProgress = ({
       previousTime = null;
     };
     const resetProgress = () => {
-      displayedHead = 0;
+      displayedProgress = 0;
+      transitionFromProgress = 0;
+      transitionTargetProgress = 0;
       stopAnimation();
       context.clearRect(0, 0, context.canvas.width, context.canvas.height);
     };
@@ -560,15 +551,12 @@ const CometProgress = ({
     const loop = (time: number) => {
       const targetProgress = progressRef.current;
 
-      if (
-        targetProgress <= 0 &&
-        (displayedHead === null || displayedHead <= 0)
-      ) {
+      if (targetProgress <= 0) {
         stopAnimation();
         return;
       }
 
-      if (!isMeasurable || columnCount === 0 || displayedHead === null) {
+      if (!isMeasurable || columnCount === 0) {
         stopAnimation();
         return;
       }
@@ -577,18 +565,31 @@ const CometProgress = ({
         previousTime === null
           ? 0
           : Math.min((time - previousTime) / 1000, maxFrameElapsedSeconds);
-      const targetHead = getTargetHead(targetProgress, columnCount);
-      const previousHead = displayedHead;
-      const headAdvance = Math.min(
-        headCellsPerSecond * elapsed,
-        maxHeadAdvancePerFrame
+      const previousHead = getTargetHead(displayedProgress, columnCount);
+
+      const transitionFraction = Math.min(
+        (time - transitionStartedAt) / progressTransitionMs,
+        1
       );
 
-      displayedHead += Math.min(targetHead - displayedHead, headAdvance);
+      // Advance the old transition before retargeting, even when value changes every frame.
+      displayedProgress =
+        targetProgress >= 1
+          ? targetProgress
+          : transitionFromProgress +
+            (transitionTargetProgress - transitionFromProgress) *
+              transitionFraction;
 
+      if (targetProgress !== transitionTargetProgress) {
+        transitionFromProgress = displayedProgress;
+        transitionTargetProgress = targetProgress;
+        transitionStartedAt = time;
+      }
+
+      const displayedHead = getTargetHead(displayedProgress, columnCount);
       const remainingRowTipAdvance = Math.max(
         0,
-        maxHeadAdvancePerFrame - Math.max(0, displayedHead - previousHead)
+        maxRowTipAdvancePerFrame - Math.max(0, displayedHead - previousHead)
       );
 
       drawProgress(
@@ -605,22 +606,14 @@ const CometProgress = ({
         true
       );
 
-      if (targetHead <= 0 && displayedHead <= 0) {
-        stopAnimation();
-        return;
-      }
+      previousTime = time;
+      // Schedule before the callback so synchronous unmount or reset can cancel it.
+      animationFrame = requestAnimationFrame(loop);
 
-      if (
-        targetProgress >= 1 &&
-        displayedHead >= targetHead &&
-        !animationCompletedRef.current
-      ) {
+      if (targetProgress >= 1 && !animationCompletedRef.current) {
         animationCompletedRef.current = true;
         onAnimationCompleteRef.current?.();
       }
-
-      previousTime = time;
-      animationFrame = requestAnimationFrame(loop);
     };
     const startAnimation = () => {
       if (animationFrame !== undefined) {
@@ -688,8 +681,7 @@ const CometProgress = ({
     }
   }, [progress, shouldReduceMotion]);
 
-  // A native progress element cannot contain the SVG and canvas grid.
-  /* oxlint-disable jsx-a11y/prefer-tag-over-role -- This custom rendering still exposes the complete progressbar contract. */
+  /* oxlint-disable jsx-a11y/prefer-tag-over-role -- A native progress widget cannot display this SVG/canvas grid; preserve its accessible contract on the custom root. */
   return (
     <div
       {...props}
@@ -704,7 +696,10 @@ const CometProgress = ({
       data-slot="comet-progress"
       role="progressbar"
     >
-      <div className="relative h-5 w-full overflow-hidden rounded-sm">
+      <div
+        className="relative w-full overflow-hidden rounded-sm"
+        style={{ height: gridHeight }}
+      >
         <svg
           aria-hidden="true"
           className="absolute inset-0 size-full"

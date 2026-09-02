@@ -1,46 +1,39 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { CometProgress } from "@/registry/default/ui/comet-progress";
 
 const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
 
 const CometProgressPreview = () => {
-  const replayFrame = useRef<number | null>(null);
   const [value, setValue] = useState(0);
-  const replay = useCallback(() => {
-    if (window.matchMedia(reducedMotionQuery).matches) {
-      return;
-    }
-
-    setValue(0);
-    replayFrame.current = requestAnimationFrame(() => {
-      replayFrame.current = null;
-      setValue(100);
-    });
-  }, []);
 
   useEffect(() => {
-    replayFrame.current = requestAnimationFrame(() => {
-      replayFrame.current = null;
-      setValue(100);
-    });
+    const mediaQuery = window.matchMedia(reducedMotionQuery);
+    let interval: ReturnType<typeof setInterval> | undefined;
+    const restart = () => {
+      clearInterval(interval);
+      setValue(mediaQuery.matches ? 100 : 0);
+
+      if (!mediaQuery.matches) {
+        // Reach 100% in four seconds; keep each endpoint visible for one 200ms tick.
+        interval = setInterval(() => {
+          setValue((current) => (current >= 100 ? 0 : current + 5));
+        }, 200);
+      }
+    };
+
+    restart();
+    mediaQuery.addEventListener("change", restart);
 
     return () => {
-      if (replayFrame.current !== null) {
-        cancelAnimationFrame(replayFrame.current);
-      }
+      clearInterval(interval);
+      mediaQuery.removeEventListener("change", restart);
     };
   }, []);
 
-  return (
-    <CometProgress
-      aria-label="Comet progress demo"
-      onAnimationComplete={replay}
-      value={value}
-    />
-  );
+  return <CometProgress aria-label="Comet progress demo" value={value} />;
 };
 
 export { CometProgressPreview };

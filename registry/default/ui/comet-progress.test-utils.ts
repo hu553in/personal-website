@@ -1,5 +1,6 @@
 /* oxlint-disable max-classes-per-file, promise/prefer-await-to-callbacks -- Browser API mocks implement several constructable, callback-based interfaces. */
 
+import { act } from "@testing-library/react";
 import { vi } from "vitest";
 
 const createCanvas2DMock = (canvas: HTMLCanvasElement) =>
@@ -17,9 +18,8 @@ const mockCanvas2DContext = (
     canvas: HTMLCanvasElement
   ) => Partial<CanvasRenderingContext2D>
 ) => {
-  Object.defineProperty(window.HTMLCanvasElement.prototype, "getContext", {
-    configurable: true,
-    value(this: HTMLCanvasElement, contextId: string) {
+  vi.spyOn(window.HTMLCanvasElement.prototype, "getContext").mockImplementation(
+    function getContext(this: HTMLCanvasElement, contextId: string) {
       if (contextId !== "2d") {
         return null;
       }
@@ -32,13 +32,24 @@ const mockCanvas2DContext = (
       );
 
       return canvasMock;
-    },
-    writable: true,
-  });
+    }
+  );
 };
 
 const mockCanvasWidth = (width: number | (() => number)) => {
   const getWidth = typeof width === "function" ? width : () => width;
+  const { getComputedStyle } = globalThis;
+
+  vi.spyOn(globalThis, "getComputedStyle").mockImplementation((element) => {
+    const style = getComputedStyle(element);
+
+    return element instanceof window.HTMLCanvasElement
+      ? ({
+          color: style.color,
+          width: `${String(getWidth())}px`,
+        } as CSSStyleDeclaration)
+      : style;
+  });
 
   return vi
     .spyOn(window.HTMLCanvasElement.prototype, "getBoundingClientRect")
@@ -61,19 +72,82 @@ const mockAnimationFrame = () => {
     frames.delete(frameId);
   });
 
-  return (time: number) => {
-    const nextFrame = frames.entries().next().value as
-      | [number, FrameRequestCallback]
-      | undefined;
+  return Object.assign(
+    (time: number) => {
+      const pending = [...frames];
 
-    if (!nextFrame) {
-      return;
-    }
+      act(() => {
+        for (const [frameId, runFrame] of pending) {
+          if (frames.delete(frameId)) {
+            runFrame(time);
+          }
+        }
+      });
+    },
+    { frames }
+  );
+};
 
-    const [frameId, callback] = nextFrame;
+const createDrawing = (initialWidth = 200) => {
+  let width = initialWidth;
+  const cells = new Map<string, number>();
+  vi.spyOn(Math, "random").mockReturnValue(0.5);
+  mockCanvasWidth(() => width);
+  const frame = mockAnimationFrame();
 
-    frames.delete(frameId);
-    callback(time);
+  mockCanvas2DContext((canvas) => {
+    let alpha = 1;
+    let position = "";
+    let canvasWidth = canvas.width;
+    let canvasHeight = canvas.height;
+
+    // Assigning either native canvas dimension clears its bitmap, even if unchanged.
+    Object.defineProperties(canvas, {
+      height: {
+        configurable: true,
+        get: () => canvasHeight,
+        set: (value: number) => {
+          canvasHeight = value;
+          cells.clear();
+        },
+      },
+      width: {
+        configurable: true,
+        get: () => canvasWidth,
+        set: (value: number) => {
+          canvasWidth = value;
+          cells.clear();
+        },
+      },
+    });
+
+    return {
+      clearRect: () => {
+        cells.clear();
+      },
+      fill: () => cells.set(position, alpha),
+      get globalAlpha() {
+        return alpha;
+      },
+      set globalAlpha(value: number) {
+        alpha = value;
+      },
+      roundRect: (x, y) => {
+        position = `${String(x)},${String(y)}`;
+      },
+    };
+  });
+
+  return {
+    cells,
+    frame,
+    frames: frame.frames,
+    resize(nextWidth: number) {
+      width = nextWidth;
+      act(() => {
+        window.dispatchEvent(new Event("resize"));
+      });
+    },
   };
 };
 
@@ -230,6 +304,7 @@ const mockResizeObserver = () => {
 };
 
 export {
+  createDrawing,
   mockAnimationFrame,
   mockCanvas2DContext,
   mockCanvasWidth,

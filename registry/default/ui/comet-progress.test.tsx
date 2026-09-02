@@ -12,6 +12,7 @@ import {
 import { CometProgress } from "./comet-progress";
 import type { CometProgressProps } from "./comet-progress";
 import {
+  createDrawing,
   mockAnimationFrame,
   mockCanvas2DContext,
   mockCanvasWidth,
@@ -79,6 +80,7 @@ describe(CometProgress, () => {
       "var(--comet-progress-empty, color-mix(in oklab, var(--muted-foreground) 10%, transparent))"
     );
 
+    roundRect.mockClear();
     runAnimationFrame(performance.now());
 
     expect(roundRect.mock.calls.length).toBeGreaterThan(0);
@@ -136,69 +138,91 @@ describe(CometProgress, () => {
     expect(getValueText).toHaveBeenLastCalledWith(10, 10, 20);
   });
 
-  test("falls back to a finite, non-zero range for extreme numeric inputs", () => {
-    mockCanvasWidth(40);
-    mockAnimationFrame();
-    mockCanvas2DContext(() => ({ roundRect: vi.fn() }));
-    const { rerender } = render(
-      <CometProgress
-        aria-label="Comet progress"
-        max={Number.MAX_VALUE}
-        min={Number.MAX_VALUE}
-        value={Number.MAX_VALUE}
-      />
-    );
-    const progress = screen.getByRole("progressbar", {
-      name: "Comet progress",
-    });
-
-    expect(progress.getAttribute("aria-valuemin")).toBe("0");
-    expect(progress.getAttribute("aria-valuemax")).toBe("100");
-    expect(progress.getAttribute("aria-valuenow")).toBe("100");
-    expect(progress.getAttribute("aria-valuetext")).toBe("100%");
-
-    rerender(
-      <CometProgress
-        aria-label="Comet progress"
-        max={Number.MAX_VALUE}
-        min={-Number.MAX_VALUE}
-        value={0}
-      />
-    );
-
-    expect(progress.getAttribute("aria-valuemin")).toBe("0");
-    expect(progress.getAttribute("aria-valuemax")).toBe("100");
-    expect(progress.getAttribute("aria-valuenow")).toBe("0");
-    expect(progress.getAttribute("aria-valuetext")).toBe("0%");
-
-    rerender(
-      <CometProgress
-        aria-label="Comet progress"
-        max={Number.NaN}
-        min={10}
-        value={15}
-      />
-    );
-
-    expect(progress.getAttribute("aria-valuemin")).toBe("10");
-    expect(progress.getAttribute("aria-valuemax")).toBe("110");
-    expect(progress.getAttribute("aria-valuenow")).toBe("15");
-    expect(progress.getAttribute("aria-valuetext")).toBe("5%");
-
-    rerender(
-      <CometProgress
-        aria-label="Comet progress"
-        max={20}
-        min={Number.NaN}
-        value={Number.POSITIVE_INFINITY}
-      />
-    );
-
-    expect(progress.getAttribute("aria-valuemin")).toBe("0");
-    expect(progress.getAttribute("aria-valuemax")).toBe("20");
-    expect(progress.getAttribute("aria-valuenow")).toBe("0");
-    expect(progress.getAttribute("aria-valuetext")).toBe("0%");
-  });
+  test.each([
+    {
+      expectedMax: 100,
+      expectedMin: 0,
+      expectedValue: 100,
+      max: Number.MAX_VALUE,
+      min: Number.MAX_VALUE,
+      text: "100%",
+      value: Number.MAX_VALUE,
+    },
+    {
+      expectedMax: 100,
+      expectedMin: 0,
+      expectedValue: 0,
+      max: Number.MAX_VALUE,
+      min: -Number.MAX_VALUE,
+      text: "0%",
+      value: 0,
+    },
+    {
+      expectedMax: 110,
+      expectedMin: 10,
+      expectedValue: 15,
+      max: Number.NaN,
+      min: 10,
+      text: "5%",
+      value: 15,
+    },
+    {
+      expectedMax: 20,
+      expectedMin: 0,
+      expectedValue: 0,
+      max: 20,
+      min: Number.NaN,
+      text: "0%",
+      value: Number.POSITIVE_INFINITY,
+    },
+    {
+      expectedMax: 100,
+      expectedMin: 0,
+      expectedValue: 100,
+      max: 0,
+      min: 0,
+      text: "100%",
+      value: 150,
+    },
+    {
+      expectedMax: 100,
+      expectedMin: 0,
+      expectedValue: 0,
+      max: Number.POSITIVE_INFINITY,
+      min: Number.NaN,
+      text: "0%",
+      value: -1,
+    },
+    {
+      expectedMax: 100,
+      expectedMin: 0,
+      expectedValue: 0,
+      max: Number.MAX_VALUE,
+      min: -Number.MAX_VALUE,
+      text: "0%",
+      value: Number.NaN,
+    },
+  ])(
+    "normalizes invalid numeric inputs: $min / $max / $value",
+    ({ min, max, value, expectedMin, expectedMax, expectedValue, text }) => {
+      createDrawing();
+      render(
+        <CometProgress
+          aria-label="Progress"
+          min={min}
+          max={max}
+          value={value}
+        />
+      );
+      const progress = screen.getByRole("progressbar");
+      expect(progress.getAttribute("aria-valuemin")).toBe(String(expectedMin));
+      expect(progress.getAttribute("aria-valuemax")).toBe(String(expectedMax));
+      expect(progress.getAttribute("aria-valuenow")).toBe(
+        String(expectedValue)
+      );
+      expect(progress.getAttribute("aria-valuetext")).toBe(text);
+    }
+  );
 
   test("preserves one static texture when reduced motion is enabled", () => {
     mockCanvasWidth(384);
@@ -230,7 +254,7 @@ describe(CometProgress, () => {
     expect(requestAnimationFrameMock).not.toHaveBeenCalled();
 
     random.mockReturnValue(1);
-    rerender(<CometProgress aria-label="Comet progress" value={80} />);
+    rerender(<CometProgress aria-label="Comet progress" value={50} />);
 
     const progress = screen.getByRole("progressbar", {
       name: "Comet progress",
@@ -361,7 +385,7 @@ describe(CometProgress, () => {
     let computedColor = "rgb(10, 20, 30)";
 
     vi.spyOn(globalThis, "getComputedStyle").mockImplementation(
-      () => ({ color: computedColor }) as CSSStyleDeclaration
+      () => ({ color: computedColor, width: "40px" }) as CSSStyleDeclaration
     );
     const paintedColors: string[] = [];
     const roundRect = vi.fn();
@@ -400,7 +424,10 @@ describe(CometProgress, () => {
     mockCanvas2DContext(() => ({ roundRect: vi.fn() }));
     const getComputedStyleMock = vi
       .spyOn(globalThis, "getComputedStyle")
-      .mockReturnValue({ color: "rgb(10, 20, 30)" } as CSSStyleDeclaration);
+      .mockReturnValue({
+        color: "rgb(10, 20, 30)",
+        width: "40px",
+      } as CSSStyleDeclaration);
     const { rerender } = render(
       <CometProgress aria-label="Comet progress" value={10} />
     );
@@ -462,91 +489,76 @@ describe(CometProgress, () => {
   });
 
   test("preserves an advancing front through a collapsed resize", () => {
-    let canvasWidth = 40;
-    mockCanvasWidth(() => canvasWidth);
-    const notifyResize = mockResizeObserver();
-    vi.spyOn(Math, "random").mockReturnValue(1);
-    const runAnimationFrame = mockAnimationFrame();
-    const paintedCells: { x: number; y: number }[] = [];
-    mockCanvas2DContext(() => ({
-      roundRect: (x, y) => {
-        paintedCells.push({ x, y });
-      },
-    }));
-
-    const { rerender } = render(
-      <CometProgress aria-label="Comet progress" value={0} />
+    const drawing = createDrawing(384);
+    const { rerender, unmount } = render(
+      <CometProgress aria-label="Progress" value={20} />
     );
-
-    rerender(<CometProgress aria-label="Comet progress" value={50} />);
-    runAnimationFrame(0);
-    runAnimationFrame(16);
-
-    const rightmostBeforeResize = Math.max(
-      ...paintedCells.filter((cell) => cell.y === 8.5).map((cell) => cell.x)
-    );
-
-    paintedCells.length = 0;
-    canvasWidth = 0;
-    notifyResize();
-    runAnimationFrame(32);
-
-    expect(paintedCells).toHaveLength(0);
-
-    canvasWidth = 80;
-    notifyResize();
-    runAnimationFrame(48);
-
-    const rightmostAfterResize = Math.max(
-      ...paintedCells.filter((cell) => cell.y === 8.5).map((cell) => cell.x)
-    );
-
-    expect(rightmostAfterResize).toBeGreaterThan(rightmostBeforeResize);
-    expect(rightmostAfterResize - rightmostBeforeResize).toBeLessThan(12);
+    drawing.frame(0);
+    rerender(<CometProgress aria-label="Progress" value={80} />);
+    drawing.frame(16);
+    drawing.frame(116);
+    const beforeCollapse = new Map(drawing.cells);
+    drawing.resize(0);
+    drawing.frame(132);
+    expect(drawing.frames.size).toBe(0);
+    expect(drawing.cells).toStrictEqual(beforeCollapse);
+    drawing.resize(768);
+    drawing.frame(216);
+    const resumed = new Map(drawing.cells);
+    expect(resumed.size).toBeGreaterThan(beforeCollapse.size);
+    unmount();
+    render(<CometProgress aria-label="Progress" value={80} />);
+    drawing.frame(216);
+    expect(drawing.cells).toStrictEqual(resumed);
   });
 
-  test("preserves exit progress across a live resize after reaching 100%", () => {
-    let canvasWidth = 40;
-    mockCanvasWidth(() => canvasWidth);
-    const notifyResize = mockResizeObserver();
-    vi.spyOn(Math, "random").mockReturnValue(0);
-    const runAnimationFrame = mockAnimationFrame();
-    const paintedCells: { x: number; y: number }[] = [];
-    const roundRect = vi.fn((x: number, y: number) => {
-      paintedCells.push({ x, y });
-    });
-    mockCanvas2DContext(() => ({ roundRect }));
-
-    render(<CometProgress aria-label="Comet progress" value={100} />);
-    runAnimationFrame(0);
-    runAnimationFrame(66);
-
-    paintedCells.length = 0;
-    roundRect.mockClear();
-    canvasWidth = 0;
-    notifyResize();
-    runAnimationFrame(132);
-
-    expect(roundRect).not.toHaveBeenCalled();
-
-    canvasWidth = 400;
-    notifyResize();
-    const resumedAt = 198;
-    runAnimationFrame(resumedAt);
-
-    const resizedCenterTip = Math.max(
-      ...paintedCells.filter((cell) => cell.y === 8.5).map((cell) => cell.x)
-    );
-
-    expect(resizedCenterTip).toBeGreaterThan(352);
-    expect(resizedCenterTip).toBeLessThan(368);
-
-    for (let frameIndex = 1; frameIndex <= 80; frameIndex += 1) {
-      paintedCells.length = 0;
-      roundRect.mockClear();
-      runAnimationFrame(resumedAt + frameIndex * 66);
+  test.each([false, true])(
+    "redraws completed pixels immediately after resize (collapsed: %s)",
+    (collapsed) => {
+      const drawing = createDrawing(200);
+      render(<CometProgress aria-label="Progress" value={100} />);
+      drawing.frame(0);
+      expect(drawing.cells.size).toBe(250);
+      if (collapsed) {
+        drawing.resize(0);
+        drawing.frame(16);
+      }
+      expect(drawing.frames.size).toBe(collapsed ? 0 : 1);
+      drawing.resize(400);
+      expect(drawing.cells.size).toBe(500);
+      expect(new Set(drawing.cells.values())).toStrictEqual(new Set([0.75]));
     }
+  );
 
-    expect(roundRect).toHaveBeenCalledTimes(100 * 5);
+  test("uses the fractional layout width when a parent is scaled", () => {
+    const drawing = createDrawing(200.5);
+    vi.spyOn(
+      window.HTMLCanvasElement.prototype,
+      "getBoundingClientRect"
+    ).mockReturnValue(new DOMRect(0, 0, 100.25, 10));
+    render(<CometProgress aria-label="Progress" value={100} />);
+    drawing.frame(0);
+    const canvas = screen.getByRole("progressbar").querySelector("canvas");
+    expect(canvas?.width).toBe(Math.round(200.5 * window.devicePixelRatio));
+    expect(drawing.cells.size).toBe(Math.ceil(200.5 / 4) * 5);
+  });
+
+  test("draws a negative custom range without animation under reduced motion", () => {
+    mediaQueries.setReducedMotion(true);
+    const drawing = createDrawing();
+    const { rerender } = render(
+      <CometProgress aria-label="Progress" min={-50} max={50} value={0} />
+    );
+    expect(drawing.cells.size).toBeGreaterThan(0);
+    expect(drawing.cells.size).toBeLessThan(250);
+    expect(drawing.frames.size).toBe(0);
+    expect(screen.getByRole("progressbar").getAttribute("aria-valuetext")).toBe(
+      "50%"
+    );
+    rerender(
+      <CometProgress aria-label="Progress" min={-50} max={50} value={50} />
+    );
+    expect(drawing.cells.size).toBe(250);
+    expect(drawing.frames.size).toBe(0);
   });
 });

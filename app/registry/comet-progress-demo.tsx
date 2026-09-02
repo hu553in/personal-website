@@ -20,7 +20,7 @@ const cometProgressDocumentation = {
 <CometProgress
   /* Required accessible name. aria-labelledby also works. */
   aria-label="Progress"
-  /* Required current value. Values outside the range are clamped. */
+  /* Supply actual progress. Clamped to min/max; endpoints update immediately. */
   value={42}
   /* Optional lower bound. Defaults to 0. */
   min={0}
@@ -29,11 +29,12 @@ const cometProgressDocumentation = {
   /* Optional aria-valuetext formatter. Defaults to a rounded percentage. */
   getValueText={(value, min, max) => [value, min, max].join(' / ')}
   /*
-   * Optional visual completion callback. Offscreen animation pauses; reduced
-   * motion completes immediately. Set value below max to rearm it.
+   * Optional callback on the first completed frame, with no separate tail exit.
+   * Offscreen animation pauses; reduced motion draws without animation.
+   * Set value below max to rearm it.
    */
   onAnimationComplete={() => {
-    /* Runs after the comet tail exits. */
+    /* React to completion; the caller drives progress, not this callback. */
   }}
   /* Optional classes for the root element. */
   className="max-w-xl"

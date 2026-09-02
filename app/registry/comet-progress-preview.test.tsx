@@ -1,112 +1,121 @@
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-} from "@testing-library/react";
+import { act, cleanup, render, screen } from "@testing-library/react";
+import { StrictMode } from "react";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+
+import {
+  createDrawing,
+  mockIntersectionObserver,
+  mockMediaQueries,
+} from "@/registry/default/ui/comet-progress.test-utils";
 
 import { CometProgressPreview } from "./comet-progress-preview";
 
-vi.mock(import("@/registry/default/ui/comet-progress"), () => ({
-  CometProgress: ({
-    onAnimationComplete,
-    value,
-  }: {
-    onAnimationComplete?: () => void;
-    value: number;
-  }) => (
-    <button data-value={value} type="button" onClick={onAnimationComplete}>
-      Complete animation
-    </button>
-  ),
-}));
-
-const animationFrames = new Map<number, FrameRequestCallback>();
-let nextAnimationFrameId = 0;
-
-/* oxlint-disable promise/prefer-await-to-callbacks -- Animation frames use a callback-only browser API. */
-const runNextAnimationFrame = () => {
-  const nextFrame = animationFrames.entries().next().value as
-    | [number, FrameRequestCallback]
-    | undefined;
-
-  if (!nextFrame) {
-    throw new Error("Expected a queued animation frame.");
-  }
-
-  const [frameId, callback] = nextFrame;
-
-  animationFrames.delete(frameId);
-  callback(0);
-};
-
-const setReducedMotion = (matches: boolean) => {
-  vi.spyOn(window, "matchMedia").mockReturnValue({
-    matches,
-  } as MediaQueryList);
-};
+let mediaQueries: ReturnType<typeof mockMediaQueries>;
 
 describe(CometProgressPreview, () => {
   beforeEach(() => {
-    animationFrames.clear();
-    nextAnimationFrameId = 0;
-    vi.spyOn(window, "requestAnimationFrame").mockImplementation((callback) => {
-      nextAnimationFrameId += 1;
-      animationFrames.set(nextAnimationFrameId, callback);
-
-      return nextAnimationFrameId;
-    });
-    vi.spyOn(window, "cancelAnimationFrame").mockImplementation((frameId) => {
-      animationFrames.delete(frameId);
-    });
-    setReducedMotion(false);
+    vi.useFakeTimers({ toFake: ["setInterval", "clearInterval"] });
+    vi.spyOn(performance, "now").mockReturnValue(0);
+    mediaQueries = mockMediaQueries();
+    mockIntersectionObserver();
   });
-  /* oxlint-enable promise/prefer-await-to-callbacks */
 
   afterEach(() => {
     cleanup();
+    vi.useRealTimers();
     vi.restoreAllMocks();
   });
 
-  test("replays immediately after the comet tail exits", () => {
+  test("paints intermediate progress, completes and starts another cycle", () => {
+    const drawing = createDrawing(400);
     render(<CometProgressPreview />);
-    const progress = screen.getByRole("button", { name: "Complete animation" });
+    const progress = screen.getByRole("progressbar", {
+      name: "Comet progress demo",
+    });
+    expect(progress.getAttribute("aria-valuenow")).toBe("0");
 
-    expect(progress.dataset["value"]).toBe("0");
+    for (let tick = 1; tick <= 10; tick += 1) {
+      act(() => {
+        vi.advanceTimersByTime(200);
+      });
+      drawing.frame(tick * 200);
+    }
+    expect(progress.getAttribute("aria-valuenow")).toBe("50");
+    expect(drawing.cells.size).toBeGreaterThan(0);
+    expect(drawing.cells.size).toBeLessThan(500);
 
-    act(runNextAnimationFrame);
-    expect(progress.dataset["value"]).toBe("100");
+    for (let tick = 11; tick <= 20; tick += 1) {
+      act(() => {
+        vi.advanceTimersByTime(200);
+      });
+      drawing.frame(tick * 200);
+    }
+    expect(progress.getAttribute("aria-valuenow")).toBe("100");
+    expect(drawing.cells.size).toBe(500);
+    drawing.frame(4016);
+    expect(progress.getAttribute("aria-valuenow")).toBe("100");
 
-    fireEvent.click(progress);
-    expect(progress.dataset["value"]).toBe("0");
-
-    act(runNextAnimationFrame);
-    expect(progress.dataset["value"]).toBe("100");
+    act(() => {
+      vi.advanceTimersByTime(200);
+    });
+    expect(progress.getAttribute("aria-valuenow")).toBe("0");
+    expect(drawing.cells.size).toBe(0);
+    act(() => {
+      vi.advanceTimersByTime(200);
+    });
+    expect(progress.getAttribute("aria-valuenow")).toBe("5");
   });
 
-  test("keeps the completed frame under reduced motion", () => {
-    setReducedMotion(true);
+  test("keeps a static completed frame under reduced motion", () => {
+    mediaQueries.setReducedMotion(true);
+    const drawing = createDrawing();
     render(<CometProgressPreview />);
-    const progress = screen.getByRole("button", { name: "Complete animation" });
-
-    act(runNextAnimationFrame);
-    fireEvent.click(progress);
-
-    expect(progress.dataset["value"]).toBe("100");
-    expect(animationFrames.size).toBe(0);
+    expect(screen.getByRole("progressbar").getAttribute("aria-valuenow")).toBe(
+      "100"
+    );
+    expect(drawing.cells.size).toBe(250);
+    expect(drawing.frames.size).toBe(0);
+    expect(vi.getTimerCount()).toBe(0);
   });
 
-  test("cancels a queued replay when unmounted", () => {
-    const { unmount } = render(<CometProgressPreview />);
-    const progress = screen.getByRole("button", { name: "Complete animation" });
+  test("reacts to reduced-motion changes and cleans up in Strict Mode", () => {
+    const drawing = createDrawing();
+    const { unmount } = render(
+      <StrictMode>
+        <CometProgressPreview />
+      </StrictMode>
+    );
+    expect(vi.getTimerCount()).toBe(1);
+    act(() => {
+      vi.advanceTimersByTime(200);
+    });
+    expect(screen.getByRole("progressbar").getAttribute("aria-valuenow")).toBe(
+      "5"
+    );
 
-    act(runNextAnimationFrame);
-    fireEvent.click(progress);
+    act(() => {
+      mediaQueries.setReducedMotion(true);
+    });
+    expect(screen.getByRole("progressbar").getAttribute("aria-valuenow")).toBe(
+      "100"
+    );
+    expect(drawing.cells.size).toBe(250);
+    expect(drawing.frames.size).toBe(0);
+    expect(vi.getTimerCount()).toBe(0);
+
+    act(() => {
+      mediaQueries.setReducedMotion(false);
+    });
+    expect(screen.getByRole("progressbar").getAttribute("aria-valuenow")).toBe(
+      "0"
+    );
+    expect(vi.getTimerCount()).toBe(1);
     unmount();
-
-    expect(cancelAnimationFrame).toHaveBeenCalledWith(2);
-    expect(animationFrames.size).toBe(0);
+    expect(vi.getTimerCount()).toBe(0);
+    expect(drawing.frames.size).toBe(0);
+    expect(mediaQueries.removeEventListener).toHaveBeenCalledWith(
+      "(prefers-reduced-motion: reduce)",
+      expect.any(Function)
+    );
   });
 });
