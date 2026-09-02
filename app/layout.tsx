@@ -3,7 +3,8 @@ import { ThemeProvider } from "next-themes";
 
 import "./globals.css";
 
-import { connectLinks, identity, site, socialImage, work } from "./data";
+import { connectLinks, work } from "./data";
+import { identity, site, socialImage } from "./site-data";
 import { ThemeToggle } from "./theme-toggle";
 
 export const metadata: Metadata = {

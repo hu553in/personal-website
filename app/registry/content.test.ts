@@ -3,7 +3,7 @@ import path from "node:path";
 
 import { describe, expect, test } from "vitest";
 
-import { codeRegistry, site } from "../data";
+import { codeRegistry, site } from "../site-data";
 import { cometProgressDocumentation } from "./comet-progress-demo";
 
 const registryMarkdown = readFileSync(
@@ -59,7 +59,7 @@ describe("registry content", () => {
       (item) => item.name === cometProgressDocumentation.id
     );
 
-    expect(manifestItem).toEqual(
+    expect(manifestItem).toStrictEqual(
       expect.objectContaining({
         description: cometProgressDocumentation.description,
         registryDependencies: ["utils"],

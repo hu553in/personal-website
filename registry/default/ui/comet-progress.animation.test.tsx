@@ -14,18 +14,18 @@ import {
 let intersectionObserver: ReturnType<typeof mockIntersectionObserver>;
 let mediaQueries: ReturnType<typeof mockMediaQueries>;
 
-beforeEach(() => {
-  vi.spyOn(performance, "now").mockReturnValue(0);
-  mediaQueries = mockMediaQueries();
-  intersectionObserver = mockIntersectionObserver();
-});
-
-afterEach(() => {
-  cleanup();
-  vi.restoreAllMocks();
-});
-
 describe("CometProgress animation", () => {
+  beforeEach(() => {
+    vi.spyOn(performance, "now").mockReturnValue(0);
+    mediaQueries = mockMediaQueries();
+    intersectionObserver = mockIntersectionObserver();
+  });
+
+  afterEach(() => {
+    cleanup();
+    vi.restoreAllMocks();
+  });
+
   test("moves the front past the right edge after reaching 100%", () => {
     const canvasWidth = 384;
     mockCanvasWidth(canvasWidth);
@@ -85,7 +85,7 @@ describe("CometProgress animation", () => {
     runAnimationFrame(9 * 66);
     runAnimationFrame(10 * 66);
 
-    expect(onAnimationComplete).toHaveBeenCalledTimes(1);
+    expect(onAnimationComplete).toHaveBeenCalledOnce();
 
     act(() => {
       intersectionObserver.setIntersecting(false);
@@ -110,7 +110,7 @@ describe("CometProgress animation", () => {
 
     runAnimationFrame(11 * 66);
 
-    expect(onAnimationComplete).toHaveBeenCalledTimes(1);
+    expect(onAnimationComplete).toHaveBeenCalledOnce();
 
     for (let frameIndex = 12; frameIndex <= 21; frameIndex += 1) {
       runAnimationFrame(frameIndex * 66);
@@ -185,7 +185,7 @@ describe("CometProgress animation", () => {
       intersectionObserver.setIntersecting(false);
     });
 
-    expect(cancelAnimationFrame).toHaveBeenCalledTimes(1);
+    expect(cancelAnimationFrame).toHaveBeenCalledOnce();
 
     act(() => {
       intersectionObserver.setIntersecting(true);
@@ -195,57 +195,76 @@ describe("CometProgress animation", () => {
     expect(roundRect).not.toHaveBeenCalled();
 
     runAnimationFrame(100_016);
-    expect(roundRect).toHaveBeenCalled();
+    expect(roundRect.mock.calls.length).toBeGreaterThan(0);
   });
 
-  test.each([0, 40])(
-    "sleeps while empty at %ipx wide and resumes when progress advances",
-    (canvasWidth) => {
-      let currentCanvasWidth = canvasWidth;
-      mockCanvasWidth(() => currentCanvasWidth);
-      const notifyResize = mockResizeObserver();
-      vi.spyOn(Math, "random").mockReturnValue(1);
-      const runAnimationFrame = mockAnimationFrame();
-      const roundRect = vi.fn();
+  test("sleeps while empty and resumes when progress advances", () => {
+    mockCanvasWidth(40);
+    vi.spyOn(Math, "random").mockReturnValue(1);
+    const runAnimationFrame = mockAnimationFrame();
+    const roundRect = vi.fn();
 
-      mockCanvas2DContext(() => ({ roundRect }));
+    mockCanvas2DContext(() => ({ roundRect }));
 
-      const { rerender } = render(
-        <CometProgress aria-label="Comet progress" value={0} />
-      );
+    const { rerender } = render(
+      <CometProgress aria-label="Comet progress" value={0} />
+    );
 
-      expect(requestAnimationFrame).toHaveBeenCalledTimes(1);
+    expect(requestAnimationFrame).toHaveBeenCalledOnce();
+    runAnimationFrame(0);
+    expect(roundRect).not.toHaveBeenCalled();
+    expect(requestAnimationFrame).toHaveBeenCalledOnce();
 
-      runAnimationFrame(0);
+    rerender(<CometProgress aria-label="Comet progress" value={50} />);
+    expect(requestAnimationFrame).toHaveBeenCalledTimes(2);
 
-      expect(roundRect).not.toHaveBeenCalled();
-      expect(requestAnimationFrame).toHaveBeenCalledTimes(1);
+    runAnimationFrame(16);
+    runAnimationFrame(32);
 
-      rerender(<CometProgress aria-label="Comet progress" value={50} />);
+    expect(roundRect.mock.calls.length).toBeGreaterThan(0);
+  });
 
-      expect(requestAnimationFrame).toHaveBeenCalledTimes(2);
+  test("sleeps at zero width and resumes after progress advances and the canvas expands", () => {
+    let currentCanvasWidth = 0;
+    mockCanvasWidth(() => currentCanvasWidth);
+    const notifyResize = mockResizeObserver();
+    vi.spyOn(Math, "random").mockReturnValue(1);
+    const runAnimationFrame = mockAnimationFrame();
+    const roundRect = vi.fn();
 
-      runAnimationFrame(16);
+    mockCanvas2DContext(() => ({ roundRect }));
 
-      if (canvasWidth > 0) {
-        runAnimationFrame(32);
-      } else {
-        expect(requestAnimationFrame).toHaveBeenCalledTimes(2);
-        expect(roundRect).not.toHaveBeenCalled();
+    const { rerender } = render(
+      <CometProgress aria-label="Comet progress" value={0} />
+    );
 
-        currentCanvasWidth = 40;
-        act(() => {
-          notifyResize();
-        });
-        expect(requestAnimationFrame).toHaveBeenCalledTimes(3);
+    expect(requestAnimationFrame).toHaveBeenCalledOnce();
 
-        runAnimationFrame(32);
-        runAnimationFrame(48);
-      }
+    runAnimationFrame(0);
 
-      expect(roundRect).toHaveBeenCalled();
-    }
-  );
+    expect(roundRect).not.toHaveBeenCalled();
+    expect(requestAnimationFrame).toHaveBeenCalledOnce();
+
+    rerender(<CometProgress aria-label="Comet progress" value={50} />);
+
+    expect(requestAnimationFrame).toHaveBeenCalledTimes(2);
+
+    runAnimationFrame(16);
+
+    expect(requestAnimationFrame).toHaveBeenCalledTimes(2);
+    expect(roundRect).not.toHaveBeenCalled();
+
+    currentCanvasWidth = 40;
+    act(() => {
+      notifyResize();
+    });
+    expect(requestAnimationFrame).toHaveBeenCalledTimes(3);
+
+    runAnimationFrame(32);
+    runAnimationFrame(48);
+
+    expect(roundRect.mock.calls.length).toBeGreaterThan(0);
+  });
 
   test("switches animation when reduced-motion preference changes", () => {
     mockCanvasWidth(40);
@@ -254,13 +273,13 @@ describe("CometProgress animation", () => {
 
     render(<CometProgress aria-label="Comet progress" value={50} />);
 
-    expect(requestAnimationFrame).toHaveBeenCalledTimes(1);
+    expect(requestAnimationFrame).toHaveBeenCalledOnce();
 
     act(() => {
       mediaQueries.setReducedMotion(true);
     });
 
-    expect(cancelAnimationFrame).toHaveBeenCalledTimes(1);
+    expect(cancelAnimationFrame).toHaveBeenCalledOnce();
 
     act(() => {
       mediaQueries.setReducedMotion(false);
@@ -293,10 +312,10 @@ describe("CometProgress animation", () => {
 
     unmount();
 
-    expect(cancelAnimationFrame).toHaveBeenCalledTimes(1);
-    expect(intersectionObserver.disconnect).toHaveBeenCalledTimes(1);
-    expect(resizeObserver.disconnect).toHaveBeenCalledTimes(1);
-    expect(colorObserverDisconnect).toHaveBeenCalledTimes(1);
+    expect(cancelAnimationFrame).toHaveBeenCalledOnce();
+    expect(intersectionObserver.disconnect).toHaveBeenCalledOnce();
+    expect(resizeObserver.disconnect).toHaveBeenCalledOnce();
+    expect(colorObserverDisconnect).toHaveBeenCalledOnce();
     expect(mediaQueries.removeEventListener).toHaveBeenCalledWith(
       "(prefers-color-scheme: dark)",
       expect.any(Function)
@@ -365,7 +384,7 @@ describe("CometProgress animation", () => {
         .every(
           (cellOpacity, index) => cellOpacity <= (centerOpacities[index] ?? 0)
         )
-    ).toBe(true);
+    ).toBeTruthy();
     expect(topTipGap).toBeGreaterThanOrEqual(40);
     expect(topTipGap).toBeLessThanOrEqual(48);
     expect(bottomTipGap).toBe(topTipGap);
@@ -421,7 +440,7 @@ describe("CometProgress animation", () => {
 
     expect(initialTips).toHaveLength(5);
     expect(retargetedTips).toHaveLength(5);
-    expect(movements.some((movement) => movement > 0)).toBe(true);
+    expect(movements.some((movement) => movement > 0)).toBeTruthy();
     expect(new Set(movements).size).toBeGreaterThan(1);
   });
 

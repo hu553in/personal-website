@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Fragment } from "react";
 
-import { codeRegistry, identity, socialImage } from "../data";
 import { BodyText, Divider, Link, MetaLine } from "../primitives";
+import { codeRegistry, identity, registrySocialImage } from "../site-data";
 import {
   CometProgressDemo,
   cometProgressDocumentation,
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   description: codeRegistry.description,
   openGraph: {
     description: codeRegistry.description,
-    images: [socialImage],
+    images: [registrySocialImage],
     title: metadataTitle,
     type: "website",
     url: codeRegistry.href,
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     description: codeRegistry.description,
-    images: [socialImage],
+    images: [registrySocialImage],
     title: metadataTitle,
   },
 };

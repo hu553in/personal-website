@@ -6,7 +6,7 @@ import { FaMoon, FaSun } from "react-icons/fa6";
 
 import { useThemeTransition } from "@/hooks/use-theme-transition";
 
-import { site } from "./data";
+import { site } from "./site-data";
 
 const ThemeToggle = () => {
   const { resolvedTheme, setTheme, systemTheme } = useThemeTransition();

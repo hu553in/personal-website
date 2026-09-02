@@ -22,18 +22,18 @@ import {
 
 let mediaQueries: ReturnType<typeof mockMediaQueries>;
 
-beforeEach(() => {
-  vi.spyOn(performance, "now").mockReturnValue(0);
-  mediaQueries = mockMediaQueries();
-  mockIntersectionObserver();
-});
+describe(CometProgress, () => {
+  beforeEach(() => {
+    vi.spyOn(performance, "now").mockReturnValue(0);
+    mediaQueries = mockMediaQueries();
+    mockIntersectionObserver();
+  });
 
-afterEach(() => {
-  cleanup();
-  vi.restoreAllMocks();
-});
+  afterEach(() => {
+    cleanup();
+    vi.restoreAllMocks();
+  });
 
-describe("CometProgress", () => {
   test("requires and exposes an accessible name", () => {
     expectTypeOf<{ value: number }>().not.toMatchTypeOf<CometProgressProps>();
     expectTypeOf<{
@@ -241,12 +241,14 @@ describe("CometProgress", () => {
     const settledStartCells = paintedCells.filter((cell) => cell.x === 0.5);
 
     expect(settledStartCells).toHaveLength(5);
-    expect(settledStartCells.every((cell) => cell.opacity === 0.5)).toBe(true);
+    expect(
+      settledStartCells.every((cell) => cell.opacity === 0.5)
+    ).toBeTruthy();
     expect(emptyCellRadius).toBe(0.75);
-    expect(paintedCells.every((cell) => cell.radius === emptyCellRadius)).toBe(
-      true
-    );
-    expect(paintedCells.some((cell) => cell.x === 95 * 4 + 0.5)).toBe(false);
+    expect(
+      paintedCells.every((cell) => cell.radius === emptyCellRadius)
+    ).toBeTruthy();
+    expect(paintedCells.some((cell) => cell.x === 95 * 4 + 0.5)).toBeFalsy();
     expect(requestAnimationFrameMock).not.toHaveBeenCalled();
   });
 
@@ -263,7 +265,7 @@ describe("CometProgress", () => {
       />
     );
 
-    expect(onAnimationComplete).toHaveBeenCalledTimes(1);
+    expect(onAnimationComplete).toHaveBeenCalledOnce();
 
     rerender(
       <CometProgress
@@ -273,7 +275,7 @@ describe("CometProgress", () => {
       />
     );
 
-    expect(onAnimationComplete).toHaveBeenCalledTimes(1);
+    expect(onAnimationComplete).toHaveBeenCalledOnce();
 
     rerender(
       <CometProgress
@@ -327,9 +329,9 @@ describe("CometProgress", () => {
     const addedCells = paintedCells.filter((cell) => cell.x === 8.5);
 
     expect(retainedCells).toHaveLength(5 * 2);
-    expect(retainedCells.every((cell) => cell.opacity === 0.5)).toBe(true);
+    expect(retainedCells.every((cell) => cell.opacity === 0.5)).toBeTruthy();
     expect(addedCells).toHaveLength(5);
-    expect(addedCells.every((cell) => cell.opacity === 1)).toBe(true);
+    expect(addedCells.every((cell) => cell.opacity === 1)).toBeTruthy();
   });
 
   test("redraws a reduced-motion frame when inherited styles change", () => {
@@ -378,7 +380,10 @@ describe("CometProgress", () => {
     render(<CometProgress aria-label="Comet progress" value={100} />);
 
     expect(paintedColors).toContain("rgb(10, 20, 30)");
-    expect(observe).toHaveBeenCalled();
+    expect(observe).toHaveBeenCalledWith(document.documentElement, {
+      attributeFilter: ["class", "data-theme", "style"],
+      attributes: true,
+    });
 
     computedColor = "rgb(220, 210, 240)";
     paintedColors.length = 0;

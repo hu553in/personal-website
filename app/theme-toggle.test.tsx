@@ -12,7 +12,7 @@ import { ThemeToggle } from "./theme-toggle";
 const themeMock = vi.hoisted(() => {
   const state = {
     resolvedTheme: "light" as string | undefined,
-    systemTheme: "light" as string | undefined,
+    systemTheme: "light" as "light" | "dark" | undefined,
     theme: "light",
   };
   const setTheme = vi.fn(
@@ -25,12 +25,13 @@ const themeMock = vi.hoisted(() => {
   return { setTheme, state };
 });
 
-vi.mock("next-themes", () => ({
+vi.mock(import("next-themes"), () => ({
   useTheme: () => ({
     resolvedTheme: themeMock.state.resolvedTheme,
     setTheme: themeMock.setTheme,
     systemTheme: themeMock.state.systemTheme,
     theme: themeMock.state.theme,
+    themes: ["light", "dark", "system"],
   }),
 }));
 
@@ -39,26 +40,26 @@ const pressD = (target: Document | Element, init: KeyboardEventInit = {}) => {
   fireEvent.keyUp(target, { code: "KeyD", key: "d", ...init });
 };
 
-beforeEach(() => {
-  themeMock.state.resolvedTheme = "light";
-  themeMock.state.systemTheme = "light";
-  themeMock.state.theme = "light";
-  themeMock.setTheme.mockClear();
-  vi.spyOn(window, "matchMedia").mockReturnValue({
-    matches: true,
-  } as MediaQueryList);
-  Object.defineProperty(document, "startViewTransition", {
-    configurable: true,
-    value: undefined,
-  });
-});
-
-afterEach(() => {
-  cleanup();
-  vi.restoreAllMocks();
-});
-
 describe("theme toggle", () => {
+  beforeEach(() => {
+    themeMock.state.resolvedTheme = "light";
+    themeMock.state.systemTheme = "light";
+    themeMock.state.theme = "light";
+    themeMock.setTheme.mockClear();
+    vi.spyOn(window, "matchMedia").mockReturnValue({
+      matches: true,
+    } as MediaQueryList);
+    Object.defineProperty(document, "startViewTransition", {
+      configurable: true,
+      value: undefined,
+    });
+  });
+
+  afterEach(() => {
+    cleanup();
+    vi.restoreAllMocks();
+  });
+
   test.each([
     {
       currentTheme: "light",
@@ -84,7 +85,7 @@ describe("theme toggle", () => {
       resolvedTheme: "dark",
       systemTheme: "dark",
     },
-  ])(
+  ] as const)(
     "switches from $currentTheme/$resolvedTheme to $expectedTheme",
     ({ currentTheme, expectedTheme, resolvedTheme, systemTheme }) => {
       themeMock.state.theme = currentTheme;
@@ -113,7 +114,7 @@ describe("theme toggle", () => {
       resolvedTheme: "dark",
       systemTheme: "dark",
     },
-  ])(
+  ] as const)(
     "switches with d from $currentTheme/$resolvedTheme to $expectedTheme",
     ({ currentTheme, expectedTheme, resolvedTheme, systemTheme }) => {
       themeMock.state.theme = currentTheme;

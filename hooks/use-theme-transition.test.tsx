@@ -11,8 +11,12 @@ import { useThemeTransition } from "./use-theme-transition";
 
 const setTheme = vi.hoisted(() => vi.fn());
 
-vi.mock("next-themes", () => ({
-  useTheme: () => ({ setTheme, theme: "light" }),
+vi.mock(import("next-themes"), () => ({
+  useTheme: () => ({
+    setTheme,
+    theme: "light",
+    themes: ["light", "dark", "system"],
+  }),
 }));
 
 const Probe = () => {
@@ -54,21 +58,21 @@ const setReducedMotion = (matches: boolean) => {
   });
 };
 
-beforeEach(() => {
-  setTheme.mockClear();
-  setReducedMotion(false);
-  Object.defineProperty(document, "startViewTransition", {
-    configurable: true,
-    value: undefined,
+describe(useThemeTransition, () => {
+  beforeEach(() => {
+    setTheme.mockClear();
+    setReducedMotion(false);
+    Object.defineProperty(document, "startViewTransition", {
+      configurable: true,
+      value: undefined,
+    });
   });
-});
 
-afterEach(() => {
-  cleanup();
-  vi.restoreAllMocks();
-});
+  afterEach(() => {
+    cleanup();
+    vi.restoreAllMocks();
+  });
 
-describe("useThemeTransition", () => {
   test("switches instantly when the View Transitions API is unavailable", () => {
     render(<Probe />);
 
@@ -124,8 +128,7 @@ describe("useThemeTransition", () => {
     });
 
     expect(startViewTransition).toHaveBeenCalledTimes(2);
-    expect(setTheme).toHaveBeenCalledOnce();
-    expect(setTheme).toHaveBeenCalledWith("light");
+    expect(setTheme).toHaveBeenCalledExactlyOnceWith("light");
   });
   /* oxlint-enable node/callback-return, promise/prefer-await-to-callbacks */
 

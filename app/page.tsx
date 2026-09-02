@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils";
 import {
   about,
   connectLinks,
-  identity,
   interests,
   projects,
   resume,
@@ -20,6 +19,7 @@ import {
   monoMetaClassName,
   Section,
 } from "./primitives";
+import { identity } from "./site-data";
 
 const Home = () => (
   <main className="mx-auto flex w-full max-w-160 flex-col px-6 py-24 sm:py-32">

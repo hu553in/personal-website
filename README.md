@@ -20,6 +20,8 @@ Live at [hu553in.su](https://hu553in.su).
 ## Requirements
 
 - Bun
+- shfmt, for local checks
+- uv, only when rebuilding Open Graph fonts
 
 ## Setup
 
@@ -30,14 +32,16 @@ bun dev
 
 ## Configuration
 
-There is no runtime configuration. Shared content and metadata live in `app/data.tsx`; component
-docs live with their demos. Styles and CSS theme tokens live in `app/globals.css`.
+There is no runtime configuration. Shared site identity and metadata live in `app/site-data.ts`;
+page content lives in `app/data.tsx`; component docs live with their demos. Styles and CSS theme
+tokens live in `app/globals.css`.
 
 ## Development
 
 ```bash
 bun dev             # Development server
 bun run build       # Production build
+bun build:og-fonts  # Rebuild Open Graph fonts
 bun build:registry  # shadcn registry build
 bun start           # Production server
 bun check           # Full local gate

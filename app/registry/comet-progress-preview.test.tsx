@@ -5,11 +5,11 @@ import {
   render,
   screen,
 } from "@testing-library/react";
-import { afterEach, beforeEach, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { CometProgressPreview } from "./comet-progress-preview";
 
-vi.mock("@/registry/default/ui/comet-progress", () => ({
+vi.mock(import("@/registry/default/ui/comet-progress"), () => ({
   CometProgress: ({
     onAnimationComplete,
     value,
@@ -48,63 +48,65 @@ const setReducedMotion = (matches: boolean) => {
   } as MediaQueryList);
 };
 
-beforeEach(() => {
-  animationFrames.clear();
-  nextAnimationFrameId = 0;
-  vi.spyOn(window, "requestAnimationFrame").mockImplementation((callback) => {
-    nextAnimationFrameId += 1;
-    animationFrames.set(nextAnimationFrameId, callback);
+describe(CometProgressPreview, () => {
+  beforeEach(() => {
+    animationFrames.clear();
+    nextAnimationFrameId = 0;
+    vi.spyOn(window, "requestAnimationFrame").mockImplementation((callback) => {
+      nextAnimationFrameId += 1;
+      animationFrames.set(nextAnimationFrameId, callback);
 
-    return nextAnimationFrameId;
+      return nextAnimationFrameId;
+    });
+    vi.spyOn(window, "cancelAnimationFrame").mockImplementation((frameId) => {
+      animationFrames.delete(frameId);
+    });
+    setReducedMotion(false);
   });
-  vi.spyOn(window, "cancelAnimationFrame").mockImplementation((frameId) => {
-    animationFrames.delete(frameId);
+  /* oxlint-enable promise/prefer-await-to-callbacks */
+
+  afterEach(() => {
+    cleanup();
+    vi.restoreAllMocks();
   });
-  setReducedMotion(false);
-});
-/* oxlint-enable promise/prefer-await-to-callbacks */
 
-afterEach(() => {
-  cleanup();
-  vi.restoreAllMocks();
-});
+  test("replays immediately after the comet tail exits", () => {
+    render(<CometProgressPreview />);
+    const progress = screen.getByRole("button", { name: "Complete animation" });
 
-test("replays immediately after the comet tail exits", () => {
-  render(<CometProgressPreview />);
-  const progress = screen.getByRole("button", { name: "Complete animation" });
+    expect(progress.dataset["value"]).toBe("0");
 
-  expect(progress.dataset["value"]).toBe("0");
+    act(runNextAnimationFrame);
+    expect(progress.dataset["value"]).toBe("100");
 
-  act(runNextAnimationFrame);
-  expect(progress.dataset["value"]).toBe("100");
+    fireEvent.click(progress);
+    expect(progress.dataset["value"]).toBe("0");
 
-  fireEvent.click(progress);
-  expect(progress.dataset["value"]).toBe("0");
+    act(runNextAnimationFrame);
+    expect(progress.dataset["value"]).toBe("100");
+  });
 
-  act(runNextAnimationFrame);
-  expect(progress.dataset["value"]).toBe("100");
-});
+  test("keeps the completed frame under reduced motion", () => {
+    setReducedMotion(true);
+    render(<CometProgressPreview />);
+    const progress = screen.getByRole("button", { name: "Complete animation" });
 
-test("keeps the completed frame under reduced motion", () => {
-  setReducedMotion(true);
-  render(<CometProgressPreview />);
-  const progress = screen.getByRole("button", { name: "Complete animation" });
+    act(runNextAnimationFrame);
+    fireEvent.click(progress);
 
-  act(runNextAnimationFrame);
-  fireEvent.click(progress);
+    expect(progress.dataset["value"]).toBe("100");
+    expect(animationFrames.size).toBe(0);
+  });
 
-  expect(progress.dataset["value"]).toBe("100");
-  expect(animationFrames.size).toBe(0);
-});
+  test("cancels a queued replay when unmounted", () => {
+    const { unmount } = render(<CometProgressPreview />);
+    const progress = screen.getByRole("button", { name: "Complete animation" });
 
-test("cancels a queued replay when unmounted", () => {
-  const { unmount } = render(<CometProgressPreview />);
-  const progress = screen.getByRole("button", { name: "Complete animation" });
+    act(runNextAnimationFrame);
+    fireEvent.click(progress);
+    unmount();
 
-  act(runNextAnimationFrame);
-  fireEvent.click(progress);
-  unmount();
-
-  expect(cancelAnimationFrame).toHaveBeenCalledWith(2);
-  expect(animationFrames.size).toBe(0);
+    expect(cancelAnimationFrame).toHaveBeenCalledWith(2);
+    expect(animationFrames.size).toBe(0);
+  });
 });
