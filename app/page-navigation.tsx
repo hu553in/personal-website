@@ -91,6 +91,7 @@ const PageNavigationList = ({
                 : "text-muted-foreground hover:text-foreground"
             )}
             data-page-navigation-item={item.id}
+            data-cuelume-toggle="tick"
             href={`#${item.id}`}
             onClick={(event) => {
               if (
@@ -363,6 +364,7 @@ const PageNavigation = ({
             <button
               aria-controls={mobileNavigationId}
               aria-expanded={isMobileOpen}
+              data-cuelume-toggle="toggle"
               className="focus-visible:outline-ring flex min-h-10 w-full cursor-pointer items-center gap-2 rounded-sm px-0.5 font-mono text-[13px] focus-visible:outline-2 focus-visible:-outline-offset-2"
               onClick={() => setIsMobileOpen((isOpen) => !isOpen)}
               ref={mobileToggle}

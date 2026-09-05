@@ -9,6 +9,9 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { CodeBlockCopyButton } from "./code-block-copy-button";
 
+const audio = vi.hoisted(() => ({ play: vi.fn() }));
+vi.mock(import("@/lib/sounds"), () => audio);
+
 const writeText = vi.fn<(text: string) => Promise<unknown>>(() =>
   Promise.resolve()
 );
@@ -17,6 +20,7 @@ describe(CodeBlockCopyButton, () => {
   beforeEach(() => {
     vi.useFakeTimers();
     writeText.mockClear();
+    audio.play.mockClear();
     Object.defineProperty(navigator, "clipboard", {
       configurable: true,
       value: { writeText },
@@ -46,6 +50,7 @@ describe(CodeBlockCopyButton, () => {
     });
 
     expect(writeText).toHaveBeenCalledWith("const value = 42;");
+    expect(audio.play).toHaveBeenCalledExactlyOnceWith("success");
 
     screen.getByRole("button", { name: "Copied" });
     expect(screen.getByText("Code copied")).toBeDefined();
@@ -71,6 +76,7 @@ describe(CodeBlockCopyButton, () => {
     ).toBeDefined();
     expect(screen.getByText("Copy failed")).toBeDefined();
     expect(screen.queryByText("Code copied")).toBeNull();
+    expect(audio.play).not.toHaveBeenCalled();
 
     await act(async () => {
       fireEvent.click(
@@ -81,6 +87,7 @@ describe(CodeBlockCopyButton, () => {
 
     expect(screen.getByRole("button", { name: "Copied" })).toBeDefined();
     expect(screen.getByText("Code copied")).toBeDefined();
+    expect(audio.play).toHaveBeenCalledExactlyOnceWith("success");
   });
 
   test("restarts the copied-state timeout after another successful copy", async () => {
@@ -158,5 +165,6 @@ describe(CodeBlockCopyButton, () => {
     });
 
     expect(vi.getTimerCount()).toBe(0);
+    expect(audio.play).not.toHaveBeenCalled();
   });
 });

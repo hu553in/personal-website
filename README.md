@@ -12,6 +12,7 @@ Live at [hu553in.su](https://hu553in.su).
   interests, and contacts
 - Publishes a shadcn registry with demos and install instructions
 - Includes an editable LinkedIn cover image with 1× and 2× PNG downloads
+- Offers optional interaction sounds, off by default, with a saved preference
 - Keeps rendered content in shared data and mirrors public pages in Markdown
 - Supports light and dark themes with a system default, a manual toggle, a `d` shortcut, and a
   GIF-masked View Transitions animation on switch

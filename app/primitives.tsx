@@ -3,6 +3,8 @@ import { cn } from "@/lib/utils";
 const Divider = () => <hr className="border-black/10 dark:border-white/10" />;
 
 const monoMetaClassName = "text-muted-foreground font-mono text-[13px]";
+const iconButtonClassName =
+  "text-muted-foreground hover:text-foreground focus-visible:outline-ring flex size-8 items-center justify-center rounded-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2";
 const metaActionClassName =
   "hover:text-foreground focus-visible:outline-ring rounded-sm whitespace-nowrap transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-wait disabled:opacity-50";
 
@@ -37,6 +39,7 @@ const Link = ({
         className
       )}
       href={href}
+      data-cuelume-toggle="tick"
       rel={opensInNewTab ? "noreferrer" : undefined}
       target={opensInNewTab ? "_blank" : target}
     >
@@ -190,6 +193,7 @@ export {
   BodyText,
   Divider,
   HomeLink,
+  iconButtonClassName,
   InlineCode,
   Link,
   MetaLine,

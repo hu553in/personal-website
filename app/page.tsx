@@ -53,10 +53,12 @@ const Home = () => (
   <Page>
     <PageHeader>
       <PageTitle>{identity.name}</PageTitle>
-      <p className="text-muted-foreground flex items-baseline gap-2 text-[15px] leading-snug font-medium">
+      <p className="text-muted-foreground text-[15px] leading-snug font-medium">
         <span className="text-foreground">{identity.handle}</span>
-        <span aria-hidden="true">·</span>
-        <span className="min-w-0">{identity.role}</span>
+        <span aria-hidden="true" className="mx-2">
+          ·
+        </span>
+        {identity.role}
       </p>
     </PageHeader>
 

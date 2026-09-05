@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { play } from "@/lib/sounds";
 import { cn } from "@/lib/utils";
 
 import { Divider, MetaLine, monoMetaClassName, Section } from "../primitives";
@@ -228,6 +229,7 @@ const LinkedInCoverImageEditor = () => {
         });
 
         downloadDataUrl(dataUrl, scale);
+        play("success");
         setExportStatus(`Downloaded ${String(scale)}x PNG.`);
       }
     } catch (error) {

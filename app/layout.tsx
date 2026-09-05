@@ -6,6 +6,7 @@ import "./globals.css";
 import { connectLinks, work } from "./data";
 import { createSocialMetadata } from "./metadata";
 import { identity, site, socialImage } from "./site-data";
+import { SoundToggle } from "./sound-toggle";
 import { ThemeToggle } from "./theme-toggle";
 
 export const metadata: Metadata = {
@@ -77,7 +78,10 @@ const RootLayout = ({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <ThemeToggle />
+        <div className="absolute top-2 right-2 z-30 flex gap-1">
+          <SoundToggle />
+          <ThemeToggle />
+        </div>
         {children}
       </ThemeProvider>
     </body>

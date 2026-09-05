@@ -10,6 +10,9 @@ import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
 import { LinkedInCoverImageEditor } from "./linkedin-cover-image-editor";
 
+const audio = vi.hoisted(() => ({ play: vi.fn() }));
+vi.mock(import("@/lib/sounds"), () => audio);
+
 const screenshotMock = vi.hoisted(() => ({
   domToPng: vi.fn<() => Promise<string>>(),
 }));
@@ -33,6 +36,7 @@ describe("LinkedIn cover image editor", () => {
 
   beforeEach(() => {
     downloads.length = 0;
+    audio.play.mockClear();
     screenshotMock.domToPng.mockReset();
     screenshotMock.domToPng.mockResolvedValue("data:image/png;base64,cG5n");
     vi.stubGlobal(
@@ -131,6 +135,7 @@ describe("LinkedIn cover image editor", () => {
     expect(downloads[0]?.download).toBe(exportCase.filename);
     expect(downloads[0]?.href).toBe("data:image/png;base64,cG5n");
     expect(screen.getByText(exportCase.status)).toBeDefined();
+    expect(audio.play).toHaveBeenCalledExactlyOnceWith("success");
   });
 
   test("disables both downloads while the PNG renders", async () => {
@@ -145,6 +150,7 @@ describe("LinkedIn cover image editor", () => {
     fireEvent.click(download2x);
 
     await screen.findByText("Preparing 2x PNG…");
+    expect(audio.play).not.toHaveBeenCalled();
     expect((download1x as HTMLButtonElement).disabled).toBeTruthy();
     expect((download2x as HTMLButtonElement).disabled).toBeTruthy();
     expect(
@@ -157,6 +163,7 @@ describe("LinkedIn cover image editor", () => {
     });
 
     await screen.findByText("Downloaded 2x PNG.");
+    expect(audio.play).toHaveBeenCalledExactlyOnceWith("success");
     expect((download1x as HTMLButtonElement).disabled).toBeFalsy();
     expect((download2x as HTMLButtonElement).disabled).toBeFalsy();
     expect(
@@ -245,6 +252,7 @@ describe("LinkedIn cover image editor", () => {
     await expect(
       screen.findByText("Unable to download PNG. Try again.")
     ).resolves.toBeDefined();
+    expect(audio.play).not.toHaveBeenCalled();
     expect(
       (
         screen.getByRole("button", {

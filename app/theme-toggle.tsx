@@ -5,7 +5,9 @@ import { useHotkeys } from "react-hotkeys-hook";
 import { FaMoon, FaSun } from "react-icons/fa6";
 
 import { useThemeTransition } from "@/hooks/use-theme-transition";
+import { play } from "@/lib/sounds";
 
+import { iconButtonClassName } from "./primitives";
 import { site } from "./site-data";
 
 const ThemeToggle = () => {
@@ -41,6 +43,7 @@ const ThemeToggle = () => {
   useHotkeys(
     "d",
     () => {
+      play("toggle");
       setTheme((currentTheme) => {
         const activeTheme = getActiveTheme(currentTheme);
 
@@ -59,9 +62,10 @@ const ThemeToggle = () => {
     <button
       aria-keyshortcuts="d"
       aria-label="Toggle theme"
+      data-cuelume-toggle="toggle"
       type="button"
       onClick={toggle}
-      className="text-muted-foreground hover:text-foreground absolute top-2 right-2 z-30 flex size-8 items-center justify-center transition-colors"
+      className={iconButtonClassName}
     >
       <FaMoon aria-hidden="true" className="size-4 shrink-0 dark:hidden" />
       <FaSun aria-hidden="true" className="hidden size-4 shrink-0 dark:block" />

@@ -3,6 +3,7 @@
 import { Check, Copy } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+import { play } from "@/lib/sounds";
 import { cn } from "@/lib/utils";
 
 // Keep success visible long enough to register without delaying the next action.
@@ -63,6 +64,7 @@ const CodeBlockCopyButton = ({
       }
 
       setCopyState("copied");
+      play("success");
       copiedTimeout.current = window.setTimeout(() => {
         copiedTimeout.current = null;
 
