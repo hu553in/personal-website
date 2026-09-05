@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
 import { connectLinks, work } from "./data";
+import { createSocialMetadata } from "./metadata";
 import { identity, site, socialImage } from "./site-data";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -24,20 +25,13 @@ export const metadata: Metadata = {
     ],
   },
   metadataBase: new URL(site.url),
-  openGraph: {
+  ...createSocialMetadata({
     description: site.openGraphDescription,
-    images: [socialImage],
+    image: socialImage,
     title: site.openGraphTitle,
-    type: "website",
     url: "/",
-  },
+  }),
   title: site.title,
-  twitter: {
-    card: "summary_large_image",
-    description: site.openGraphDescription,
-    images: [socialImage],
-    title: site.openGraphTitle,
-  },
 };
 
 export const viewport: Viewport = {

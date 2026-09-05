@@ -37,10 +37,24 @@ const codeRegistry = {
   title: "shadcn registry",
 } as const;
 
+const linkedInCoverImage = {
+  description: "Use my template to make your own LinkedIn cover image.",
+  href: "/linkedin-cover-image",
+  role: "design tool",
+  title: "LinkedIn cover image",
+} as const;
+
 const registrySocialImage = {
   ...socialImage,
   alt: `${codeRegistry.title}, ${codeRegistry.description}`,
   url: `${codeRegistry.href}/og.png`,
 } as const;
 
-export { codeRegistry, identity, registrySocialImage, site, socialImage };
+export {
+  codeRegistry,
+  identity,
+  linkedInCoverImage,
+  registrySocialImage,
+  site,
+  socialImage,
+};

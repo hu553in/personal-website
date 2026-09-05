@@ -9,3 +9,5 @@
   writing and speaking, interests, and contacts
 - [Resume](https://hu553in.su/resume.pdf): PDF resume
 - [shadcn registry](https://hu553in.su/registry.md): Component documentation and install commands
+- [LinkedIn cover image](https://hu553in.su/linkedin-cover-image.md): Use my template to make your
+  own LinkedIn cover image

@@ -3,6 +3,8 @@ import { cn } from "@/lib/utils";
 const Divider = () => <hr className="border-black/10 dark:border-white/10" />;
 
 const monoMetaClassName = "text-muted-foreground font-mono text-[13px]";
+const metaActionClassName =
+  "hover:text-foreground focus-visible:outline-ring rounded-sm whitespace-nowrap transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-wait disabled:opacity-50";
 
 const linkClassNames = {
   inline:
@@ -29,7 +31,11 @@ const Link = ({
   return (
     <a
       {...props}
-      className={cn("transition-colors", linkClassNames[variant], className)}
+      className={cn(
+        "focus-visible:outline-ring rounded-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2",
+        linkClassNames[variant],
+        className
+      )}
       href={href}
       rel={opensInNewTab ? "noreferrer" : undefined}
       target={opensInNewTab ? "_blank" : target}
@@ -39,25 +45,88 @@ const Link = ({
   );
 };
 
-const MetaLine = ({
-  items,
-}: Readonly<{
-  items: readonly { href?: string; label: string }[];
-}>) => (
+const HomeLink = () => (
+  <Link
+    className={cn("self-start", monoMetaClassName)}
+    href="/"
+    variant="quiet"
+  >
+    ← home
+  </Link>
+);
+
+type MetaLineItem = Readonly<{
+  ariaLabel?: string;
+  disabled?: boolean;
+  href?: string;
+  label: string;
+  onClick?: () => void;
+}>;
+
+const MetaLineValue = ({ item }: Readonly<{ item: MetaLineItem }>) => {
+  if (item.onClick) {
+    const handleClick = item.onClick;
+
+    return (
+      <button
+        aria-label={item.ariaLabel}
+        className={metaActionClassName}
+        disabled={item.disabled}
+        onClick={handleClick}
+        type="button"
+      >
+        {item.label}
+      </button>
+    );
+  }
+
+  if (item.href) {
+    return (
+      <Link aria-label={item.ariaLabel} href={item.href} variant="quiet">
+        {item.label}
+      </Link>
+    );
+  }
+
+  return <span>{item.label}</span>;
+};
+
+const MetaLine = ({ items }: Readonly<{ items: readonly MetaLineItem[] }>) => (
   <span className={cn("flex items-baseline gap-2", monoMetaClassName)}>
     {items.map((item, index) => (
       <span key={item.label} className="flex items-baseline gap-2">
         {index > 0 ? <span aria-hidden="true">·</span> : null}
-        {item.href ? (
-          <Link href={item.href} variant="quiet">
-            {item.label}
-          </Link>
-        ) : (
-          <span>{item.label}</span>
-        )}
+        <MetaLineValue item={item} />
       </span>
     ))}
   </span>
+);
+
+const Page = ({ className, ...props }: React.ComponentProps<"main">) => (
+  <main
+    {...props}
+    className={cn(
+      "relative mx-auto flex w-full max-w-160 flex-col px-6 py-24 sm:py-32",
+      className
+    )}
+  />
+);
+
+const PageHeader = ({
+  className,
+  ...props
+}: React.ComponentProps<"header">) => (
+  <header {...props} className={cn("flex flex-col gap-3 pb-10", className)} />
+);
+
+const PageTitle = ({
+  children,
+  className,
+  ...props
+}: React.ComponentProps<"h1">) => (
+  <h1 {...props} className={cn("text-2xl sm:text-3xl", className)}>
+    {children}
+  </h1>
 );
 
 const Section = ({
@@ -70,7 +139,13 @@ const Section = ({
     title: string;
   }
 >) => (
-  <section {...props} className={cn("flex flex-col gap-4 py-10", className)}>
+  <section
+    {...props}
+    className={cn(
+      "sidebar:scroll-mt-0 flex scroll-mt-13 flex-col gap-4 py-10",
+      className
+    )}
+  >
     <h2 className="text-muted-foreground text-[13px] font-medium tracking-wider uppercase">
       {title}
     </h2>
@@ -114,10 +189,14 @@ const InlineCode = ({ className, ...props }: React.ComponentProps<"code">) => (
 export {
   BodyText,
   Divider,
+  HomeLink,
   InlineCode,
   Link,
   MetaLine,
   monoMetaClassName,
+  Page,
+  PageHeader,
+  PageTitle,
   Section,
   Subsection,
 };

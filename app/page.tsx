@@ -11,30 +11,60 @@ import {
   work,
   writing,
 } from "./data";
+import { PageNavigation } from "./page-navigation";
 import {
   BodyText,
   Divider,
   Link,
   MetaLine,
   monoMetaClassName,
+  Page,
+  PageHeader,
+  PageTitle,
   Section,
 } from "./primitives";
-import { identity } from "./site-data";
+import { identity, linkedInCoverImage } from "./site-data";
+
+const homeNavigationItems = [
+  { id: "about", title: "About" },
+  { id: "work", title: "Work" },
+  { id: "volunteer", title: "Volunteer" },
+  { id: "skills", title: "Skills" },
+  { id: "projects", title: "Projects" },
+  { id: "writing-and-speaking", title: "Writing & speaking" },
+  { id: "interests", title: "Interests" },
+  { id: "connect", title: "Connect" },
+  { id: "miscellany", title: "Miscellany" },
+] as const;
+
+const [
+  aboutSection,
+  workSection,
+  volunteerSection,
+  skillsSection,
+  projectsSection,
+  writingSection,
+  interestsSection,
+  connectSection,
+  miscellanySection,
+] = homeNavigationItems;
 
 const Home = () => (
-  <main className="mx-auto flex w-full max-w-160 flex-col px-6 py-24 sm:py-32">
-    <header className="flex flex-col gap-3 pb-10">
-      <h1 className="text-2xl sm:text-3xl">{identity.name}</h1>
+  <Page>
+    <PageHeader>
+      <PageTitle>{identity.name}</PageTitle>
       <p className="text-muted-foreground flex items-baseline gap-2 text-[15px] leading-snug font-medium">
         <span className="text-foreground">{identity.handle}</span>
         <span aria-hidden="true">·</span>
         <span className="min-w-0">{identity.role}</span>
       </p>
-    </header>
+    </PageHeader>
+
+    <PageNavigation items={homeNavigationItems} />
 
     <Divider />
 
-    <Section title="About">
+    <Section {...aboutSection}>
       <div className="flex flex-col gap-3">
         {about.map((paragraph) => (
           <BodyText key={paragraph}>{paragraph}</BodyText>
@@ -44,7 +74,7 @@ const Home = () => (
 
     <Divider />
 
-    <Section title="Work">
+    <Section {...workSection}>
       <div className="flex flex-col gap-4">
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
           <span className="text-[15px] font-medium">{resume.title}</span>
@@ -80,7 +110,7 @@ const Home = () => (
 
     <Divider />
 
-    <Section title="Volunteer">
+    <Section {...volunteerSection}>
       <div className="flex flex-col gap-4">
         {volunteer.map((entry) => (
           <div key={entry.title} className="flex flex-col gap-1.5">
@@ -109,7 +139,7 @@ const Home = () => (
 
     <Divider />
 
-    <Section title="Skills">
+    <Section {...skillsSection}>
       <div className="grid grid-cols-[max-content_minmax(0,1fr)] items-baseline gap-x-3 gap-y-3">
         {skills.map((group) => (
           <div key={group.label} className="contents">
@@ -131,7 +161,7 @@ const Home = () => (
 
     <Divider />
 
-    <Section title="Projects">
+    <Section {...projectsSection}>
       <div className="flex flex-col gap-4">
         {projects.map((project) => (
           <div key={project.name} className="flex flex-col gap-1.5">
@@ -151,7 +181,7 @@ const Home = () => (
 
     <Divider />
 
-    <Section title="Writing & speaking">
+    <Section {...writingSection}>
       <div className="flex flex-col gap-4">
         {writing.map((entry) => (
           <div key={entry.title} className="flex flex-col gap-1.5">
@@ -167,7 +197,7 @@ const Home = () => (
 
     <Divider />
 
-    <Section title="Interests">
+    <Section {...interestsSection}>
       <div className="flex flex-col gap-3">
         {interests.map((interest, index) => (
           <div key={interest.id} className="flex items-baseline gap-3">
@@ -184,7 +214,7 @@ const Home = () => (
 
     <Divider />
 
-    <Section title="Connect">
+    <Section {...connectSection}>
       <div className="flex flex-col items-start gap-3">
         {connectLinks.map((link) => (
           <Link
@@ -199,7 +229,30 @@ const Home = () => (
         ))}
       </div>
     </Section>
-  </main>
+
+    <Divider />
+
+    <Section {...miscellanySection}>
+      <div className="flex flex-col gap-1.5">
+        <div className="flex flex-col items-start gap-1 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-2 sm:gap-y-1">
+          <span className="text-[15px] font-medium">
+            {linkedInCoverImage.title}
+          </span>
+          <MetaLine
+            items={[
+              { label: linkedInCoverImage.role },
+              {
+                ariaLabel: `${linkedInCoverImage.title} page`,
+                href: linkedInCoverImage.href,
+                label: "page",
+              },
+            ]}
+          />
+        </div>
+        <BodyText>{linkedInCoverImage.description}</BodyText>
+      </div>
+    </Section>
+  </Page>
 );
 
 export default Home;

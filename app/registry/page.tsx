@@ -1,13 +1,22 @@
 import type { Metadata } from "next";
 import { Fragment } from "react";
 
-import { BodyText, Divider, Link, MetaLine } from "../primitives";
+import { createSocialMetadata } from "../metadata";
+import { PageNavigation } from "../page-navigation";
+import {
+  BodyText,
+  Divider,
+  HomeLink,
+  MetaLine,
+  Page,
+  PageHeader,
+  PageTitle,
+} from "../primitives";
 import { codeRegistry, identity, registrySocialImage } from "../site-data";
 import {
   CometProgressDemo,
   cometProgressDocumentation,
 } from "./comet-progress-demo";
-import { RegistryNavigation } from "./registry-navigation";
 
 const registryLinks = [
   {
@@ -37,39 +46,27 @@ export const metadata: Metadata = {
     },
   },
   description: codeRegistry.description,
-  openGraph: {
+  ...createSocialMetadata({
     description: codeRegistry.description,
-    images: [registrySocialImage],
+    image: registrySocialImage,
     title: metadataTitle,
-    type: "website",
     url: codeRegistry.href,
-  },
+  }),
   title: metadataTitle,
-  twitter: {
-    card: "summary_large_image",
-    description: codeRegistry.description,
-    images: [registrySocialImage],
-    title: metadataTitle,
-  },
 };
 
 const RegistryPage = () => (
-  <main className="relative mx-auto flex w-full max-w-160 flex-col px-6 py-24 sm:py-32">
-    <header className="flex flex-col gap-3 pb-4 min-[69rem]:pb-10">
-      <Link
-        className="text-muted-foreground font-mono text-[13px]"
-        href="/"
-        variant="quiet"
-      >
-        ← home
-      </Link>
-      <h1 className="text-2xl sm:text-3xl">{codeRegistry.title}</h1>
+  <Page>
+    <PageHeader>
+      <HomeLink />
+      <PageTitle>{codeRegistry.title}</PageTitle>
       <BodyText>{codeRegistry.description}</BodyText>
       <MetaLine items={registryLinks} />
-    </header>
+    </PageHeader>
 
-    <RegistryNavigation
+    <PageNavigation
       items={registryItems.map(({ id, title }) => ({ id, title }))}
+      titlePosition="after-home-link"
     />
 
     <Divider />
@@ -80,7 +77,7 @@ const RegistryPage = () => (
         {item.content}
       </Fragment>
     ))}
-  </main>
+  </Page>
 );
 
 export default RegistryPage;

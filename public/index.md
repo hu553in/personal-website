@@ -108,7 +108,7 @@ An Electron desktop app for live speech transcription and translated captions.
 
 A shadcn registry for sharing reusable code across projects.
 
-[website](https://hu553in.su/registry) ·
+[page](https://hu553in.su/registry) ·
 [github](https://github.com/hu553in/personal-website/tree/main/registry)
 
 ## Writing & speaking
@@ -145,3 +145,11 @@ A conference talk on architecture, caching, horizontal scaling, observability, a
 - LinkedIn: [ruslan-khasanshin](https://www.linkedin.com/in/ruslan-khasanshin)
 - Telegram: [rkhasanshin](https://t.me/rkhasanshin)
 - Email: [r.m.khasanshin@gmail.com](mailto:r.m.khasanshin@gmail.com)
+
+## Miscellany
+
+### LinkedIn cover image (design tool)
+
+Use my template to make your own LinkedIn cover image.
+
+[page](https://hu553in.su/linkedin-cover-image)

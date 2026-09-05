@@ -11,6 +11,7 @@ Live at [hu553in.su](https://hu553in.su).
 - Renders a single-page profile: about, work, volunteering, skills, projects, writing and speaking,
   interests, and contacts
 - Publishes a shadcn registry with demos and install instructions
+- Includes an editable LinkedIn cover image with 1× and 2× PNG downloads
 - Keeps rendered content in shared data and mirrors public pages in Markdown
 - Supports light and dark themes with a system default, a manual toggle, a `d` shortcut, and a
   GIF-masked View Transitions animation on switch
@@ -64,3 +65,5 @@ bun check:fix       # Full local gate with automatic fixes
 - [shadcn registry](https://hu553in.su/registry)
 - [shadcn registry Markdown version](https://hu553in.su/registry.md)
 - [shadcn registry MIT license](registry/LICENSE)
+- [LinkedIn cover image](https://hu553in.su/linkedin-cover-image)
+- [LinkedIn cover image Markdown version](https://hu553in.su/linkedin-cover-image.md)

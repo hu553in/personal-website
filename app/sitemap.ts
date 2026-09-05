@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { site } from "./site-data";
+import { codeRegistry, linkedInCoverImage, site } from "./site-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -12,7 +12,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       changeFrequency: "monthly",
       priority: 0.8,
-      url: `${site.url}/registry`,
+      url: `${site.url}${codeRegistry.href}`,
+    },
+    {
+      changeFrequency: "monthly",
+      priority: 0.5,
+      url: `${site.url}${linkedInCoverImage.href}`,
     },
   ];
 }

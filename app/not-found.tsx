@@ -1,15 +1,15 @@
-import { Link } from "./primitives";
+import { BodyText, Link, Page, PageTitle } from "./primitives";
 
 const NotFound = () => (
-  <main className="mx-auto flex min-h-dvh w-full max-w-160 flex-col items-start justify-center gap-3 px-6">
-    <h1 className="text-2xl sm:text-3xl">404</h1>
-    <p className="text-muted-foreground text-[15px] leading-relaxed">
+  <Page className="min-h-dvh items-start justify-center gap-3 py-0 sm:py-0">
+    <PageTitle>404</PageTitle>
+    <BodyText>
       This page does not exist.{" "}
       <Link className="text-foreground" href="/">
         home
       </Link>
-    </p>
-  </main>
+    </BodyText>
+  </Page>
 );
 
 export default NotFound;

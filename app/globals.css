@@ -6,6 +6,8 @@
   --font-sans: OpenRunde, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
+  --breakpoint-sidebar: 69rem;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
@@ -48,7 +50,7 @@
   --muted: #f5f3f0;
   --muted-foreground: #737373;
   --border: #17171724;
-  --ring: oklch(0.708 0 0);
+  --ring: oklch(0.62 0 0);
 
   --expo-in: linear(
     0 0%,

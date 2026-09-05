@@ -194,8 +194,9 @@ const projects = [
     description: [codeRegistry.description],
     links: [
       {
+        ariaLabel: `${codeRegistry.title} page`,
         href: codeRegistry.href,
-        label: "website",
+        label: "page",
       },
       {
         href: codeRegistry.githubHref,

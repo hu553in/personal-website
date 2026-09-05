@@ -1,5 +1,16 @@
 import type { NextConfig } from "next";
 
+import { codeRegistry, linkedInCoverImage } from "./app/site-data";
+
+const markdownAlternates = [
+  { html: "/", markdown: "/index.md" },
+  { html: codeRegistry.href, markdown: `${codeRegistry.href}.md` },
+  {
+    html: linkedInCoverImage.href,
+    markdown: `${linkedInCoverImage.href}.md`,
+  },
+] as const;
+
 const nextConfig: NextConfig = {
   headers() {
     return Promise.resolve([
@@ -21,42 +32,26 @@ const nextConfig: NextConfig = {
         ],
         source: "/theme-toggle.gif",
       },
-      {
-        headers: [
-          {
-            key: "Link",
-            value: '</index.md>; rel="alternate"; type="text/markdown"',
-          },
-        ],
-        source: "/",
-      },
-      {
-        headers: [
-          {
-            key: "Link",
-            value: '</>; rel="alternate"; type="text/html"',
-          },
-        ],
-        source: "/index.md",
-      },
-      {
-        headers: [
-          {
-            key: "Link",
-            value: '</registry.md>; rel="alternate"; type="text/markdown"',
-          },
-        ],
-        source: "/registry",
-      },
-      {
-        headers: [
-          {
-            key: "Link",
-            value: '</registry>; rel="alternate"; type="text/html"',
-          },
-        ],
-        source: "/registry.md",
-      },
+      ...markdownAlternates.flatMap(({ html, markdown }) => [
+        {
+          headers: [
+            {
+              key: "Link",
+              value: `<${markdown}>; rel="alternate"; type="text/markdown"`,
+            },
+          ],
+          source: html,
+        },
+        {
+          headers: [
+            {
+              key: "Link",
+              value: `<${html}>; rel="alternate"; type="text/html"`,
+            },
+          ],
+          source: markdown,
+        },
+      ]),
     ]);
   },
   poweredByHeader: false,
