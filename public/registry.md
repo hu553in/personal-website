@@ -15,7 +15,7 @@ Override `--comet-progress-active` and `--comet-progress-empty` from CSS. The de
 ### Install
 
 ```bash
-npx shadcn@latest add https://hu553in.su/r/comet-progress.json
+npx shadcn@latest add https://hu553in.dev/r/comet-progress.json
 ```
 
 ### Use

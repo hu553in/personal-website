@@ -8,7 +8,7 @@ const cometProgressDocumentation = {
     "An accessible grid progress bar with a fading, randomized comet tail.",
   id: "comet-progress",
   installCommand:
-    "npx shadcn@latest add https://hu553in.su/r/comet-progress.json",
+    "npx shadcn@latest add https://hu553in.dev/r/comet-progress.json",
   theming: {
     active: "--comet-progress-active",
     empty: "--comet-progress-empty",

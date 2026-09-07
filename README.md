@@ -4,7 +4,7 @@
 
 Personal website of Ruslan Khasanshin (hu553in).
 
-Live at [hu553in.su](https://hu553in.su).
+Live at [hu553in.dev](https://hu553in.dev).
 
 ## What it does
 
@@ -61,10 +61,10 @@ bun check:fix       # Full local gate with automatic fixes
 
 ## Resources
 
-- [Production site](https://hu553in.su)
-- [Markdown version](https://hu553in.su/index.md)
-- [shadcn registry](https://hu553in.su/registry)
-- [shadcn registry Markdown version](https://hu553in.su/registry.md)
+- [Production site](https://hu553in.dev)
+- [Markdown version](https://hu553in.dev/index.md)
+- [shadcn registry](https://hu553in.dev/registry)
+- [shadcn registry Markdown version](https://hu553in.dev/registry.md)
 - [shadcn registry MIT license](registry/LICENSE)
-- [LinkedIn cover image](https://hu553in.su/linkedin-cover-image)
-- [LinkedIn cover image Markdown version](https://hu553in.su/linkedin-cover-image.md)
+- [LinkedIn cover image](https://hu553in.dev/linkedin-cover-image)
+- [LinkedIn cover image Markdown version](https://hu553in.dev/linkedin-cover-image.md)

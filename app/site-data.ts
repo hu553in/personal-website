@@ -10,7 +10,7 @@ const site = {
     light: "#fffdfa",
   },
   title: "Ruslan Khasanshin — Senior Software Engineer, Product & Platform",
-  url: "https://hu553in.su",
+  url: "https://hu553in.dev",
 } as const;
 
 const identity = {

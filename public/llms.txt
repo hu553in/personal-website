@@ -5,9 +5,9 @@
 
 ## Content
 
-- [Full profile](https://hu553in.su/index.md): About, work and volunteer history, skills, projects,
+- [Full profile](https://hu553in.dev/index.md): About, work and volunteer history, skills, projects,
   writing and speaking, interests, and contacts
-- [Resume](https://hu553in.su/resume.pdf): PDF resume
-- [shadcn registry](https://hu553in.su/registry.md): Component documentation and install commands
-- [LinkedIn cover image](https://hu553in.su/linkedin-cover-image.md): Use my template to make your
+- [Resume](https://hu553in.dev/resume.pdf): PDF resume
+- [shadcn registry](https://hu553in.dev/registry.md): Component documentation and install commands
+- [LinkedIn cover image](https://hu553in.dev/linkedin-cover-image.md): Use my template to make your
   own LinkedIn cover image

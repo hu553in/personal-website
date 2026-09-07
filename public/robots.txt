@@ -3,4 +3,4 @@ Allow: /
 
 Content-Signal: search=yes, ai-input=yes, ai-train=yes
 
-Sitemap: https://hu553in.su/sitemap.xml
+Sitemap: https://hu553in.dev/sitemap.xml

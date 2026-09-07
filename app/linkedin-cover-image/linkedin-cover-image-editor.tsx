@@ -31,7 +31,7 @@ const initialCopy = {
   role: "Senior Software Engineer",
   specialty: "Product & Platform",
   stack: "TypeScript, Go, React, Next.js",
-  website: "hu553in.su",
+  website: "hu553in.dev",
 } as const;
 
 type CoverImageCopy = Record<keyof typeof initialCopy, string>;
