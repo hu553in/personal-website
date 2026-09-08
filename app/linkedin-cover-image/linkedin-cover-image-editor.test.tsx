@@ -171,76 +171,22 @@ describe("LinkedIn cover image editor", () => {
     ).toBeFalsy();
   });
 
-  test("rechecks overflow after the cover fonts load", async () => {
+  test("waits for fonts before rendering the PNG", async () => {
     const fontsReady = createDeferred<null>();
-    let fontsLoaded = false;
-
     Object.defineProperty(document, "fonts", {
       configurable: true,
       value: { ready: fontsReady.promise },
     });
-    vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockReturnValue(100);
-    vi.spyOn(HTMLElement.prototype, "scrollWidth", "get").mockImplementation(
-      function getWidth(this: HTMLElement) {
-        return fontsLoaded && this.dataset["coverField"] === "role"
-          ? 1600
-          : 100;
-      }
-    );
     render(<LinkedInCoverImageEditor />);
-
-    const role = screen.getByLabelText("Role") as HTMLInputElement;
-
     fireEvent.click(screen.getByRole("button", { name: "download 1x" }));
     await screen.findByText("Preparing 1x PNG…");
-    expect(role.disabled).toBeTruthy();
-
-    fontsLoaded = true;
+    expect(screenshotMock.domToPng).not.toHaveBeenCalled();
     await act(async () => {
       fontsReady.resolve(null);
       await fontsReady.promise;
     });
-
-    await screen.findByRole("alert");
-    expect(role.disabled).toBeFalsy();
-    expect(screenshotMock.domToPng).not.toHaveBeenCalled();
-    expect(
-      screen.getByText("Shorten the text marked as too long, then try again.")
-    ).toBeDefined();
-  });
-
-  test("blocks export until overflowing text is shortened", async () => {
-    vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockReturnValue(100);
-    vi.spyOn(HTMLElement.prototype, "scrollWidth", "get").mockImplementation(
-      function getWidth(this: HTMLElement) {
-        return this.dataset["coverField"] === "role" &&
-          this.textContent === "A role that is too long"
-          ? 1600
-          : 100;
-      }
-    );
-    render(<LinkedInCoverImageEditor />);
-
-    const role = screen.getByLabelText("Role");
-
-    fireEvent.change(role, { target: { value: "A role that is too long" } });
-
-    await screen.findByRole("alert");
-    expect(role.getAttribute("aria-invalid")).toBe("true");
-    fireEvent.click(screen.getByRole("button", { name: "download 1x" }));
-    expect(screenshotMock.domToPng).not.toHaveBeenCalled();
-    expect(
-      screen.getByText("Shorten the text marked as too long, then try again.")
-    ).toBeDefined();
-
-    fireEvent.change(role, { target: { value: "Staff Engineer" } });
-
-    await waitFor(() => expect(screen.queryByRole("alert")).toBeNull());
-    expect(
-      screen.queryByText("Shorten the text marked as too long, then try again.")
-    ).toBeNull();
-    fireEvent.click(screen.getByRole("button", { name: "download 1x" }));
-    await waitFor(() => expect(screenshotMock.domToPng).toHaveBeenCalledOnce());
+    await screen.findByText("Downloaded 1x PNG.");
+    expect(screenshotMock.domToPng).toHaveBeenCalledOnce();
   });
 
   test("reports an export failure and lets the user retry", async () => {

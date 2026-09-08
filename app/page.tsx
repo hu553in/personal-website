@@ -11,6 +11,7 @@ import {
   work,
   writing,
 } from "./data";
+import { HeroMedia } from "./hero-media";
 import { PageNavigation } from "./page-navigation";
 import {
   BodyText,
@@ -23,7 +24,7 @@ import {
   PageTitle,
   Section,
 } from "./primitives";
-import { identity, linkedInCoverImage } from "./site-data";
+import { identity, linkedInCoverImage, openGraphImage } from "./site-data";
 
 const homeNavigationItems = [
   { id: "about", title: "About" },
@@ -52,6 +53,7 @@ const [
 const Home = () => (
   <Page>
     <PageHeader>
+      <HeroMedia />
       <PageTitle>{identity.name}</PageTitle>
       <p className="text-muted-foreground text-[15px] leading-snug font-medium">
         <span className="text-foreground">{identity.handle}</span>
@@ -235,23 +237,25 @@ const Home = () => (
     <Divider />
 
     <Section {...miscellanySection}>
-      <div className="flex flex-col gap-1.5">
-        <div className="flex flex-col items-start gap-1 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-2 sm:gap-y-1">
-          <span className="text-[15px] font-medium">
-            {linkedInCoverImage.title}
-          </span>
-          <MetaLine
-            items={[
-              { label: linkedInCoverImage.role },
-              {
-                ariaLabel: `${linkedInCoverImage.title} page`,
-                href: linkedInCoverImage.href,
-                label: "page",
-              },
-            ]}
-          />
-        </div>
-        <BodyText>{linkedInCoverImage.description}</BodyText>
+      <div className="flex flex-col gap-4">
+        {[linkedInCoverImage, openGraphImage].map((tool) => (
+          <div key={tool.href} className="flex flex-col gap-1.5">
+            <div className="flex flex-col items-start gap-1 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-2 sm:gap-y-1">
+              <span className="text-[15px] font-medium">{tool.title}</span>
+              <MetaLine
+                items={[
+                  { label: tool.role },
+                  {
+                    ariaLabel: `${tool.title} page`,
+                    href: tool.href,
+                    label: "page",
+                  },
+                ]}
+              />
+            </div>
+            <BodyText>{tool.description}</BodyText>
+          </div>
+        ))}
       </div>
     </Section>
   </Page>

@@ -119,6 +119,27 @@
   animation-fill-mode: both;
 }
 
+/* Keep theme-independent media above the root mask and show live video, not its old snapshot. */
+::view-transition-group(hero-media),
+::view-transition-group(linkedin-preview),
+::view-transition-group(og-preview) {
+  z-index: 1;
+  animation: none;
+}
+
+::view-transition-old(hero-media),
+::view-transition-old(linkedin-preview),
+::view-transition-old(og-preview) {
+  display: none;
+}
+
+::view-transition-new(hero-media),
+::view-transition-new(linkedin-preview),
+::view-transition-new(og-preview) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
 @keyframes scale {
   0% {
     mask-size: 0;

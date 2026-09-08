@@ -12,6 +12,7 @@ Live at [hu553in.dev](https://hu553in.dev).
   interests, and contacts
 - Publishes a shadcn registry with demos and install instructions
 - Includes an editable LinkedIn cover image with 1× and 2× PNG downloads
+- Includes an Open Graph image editor using the site's OG template, with 1200 × 630 PNG downloads
 - Offers optional interaction sounds, off by default, with a saved preference
 - Keeps rendered content in shared data and mirrors public pages in Markdown
 - Supports light and dark themes with a system default, a manual toggle, a `d` shortcut, and a
@@ -68,3 +69,5 @@ bun check:fix       # Full local gate with automatic fixes
 - [shadcn registry MIT license](registry/LICENSE)
 - [LinkedIn cover image](https://hu553in.dev/linkedin-cover-image)
 - [LinkedIn cover image Markdown version](https://hu553in.dev/linkedin-cover-image.md)
+- [Open Graph image](https://hu553in.dev/open-graph-image)
+- [Open Graph image Markdown version](https://hu553in.dev/open-graph-image.md)

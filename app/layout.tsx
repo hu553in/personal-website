@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "next-themes";
+import { FaGithub } from "react-icons/fa6";
 
 import "./globals.css";
 
 import { connectLinks, work } from "./data";
 import { createSocialMetadata } from "./metadata";
+import { iconButtonClassName, Link } from "./primitives";
 import { identity, site, socialImage } from "./site-data";
 import { SoundToggle } from "./sound-toggle";
 import { ThemeToggle } from "./theme-toggle";
@@ -81,6 +83,15 @@ const RootLayout = ({
         <div className="absolute top-2 right-2 z-30 flex gap-1">
           <SoundToggle />
           <ThemeToggle />
+          <Link
+            aria-label="Website source code on GitHub"
+            title="Website source code on GitHub"
+            href={site.repository}
+            className={iconButtonClassName}
+            variant="quiet"
+          >
+            <FaGithub aria-hidden="true" className="size-4 shrink-0" />
+          </Link>
         </div>
         {children}
       </ThemeProvider>

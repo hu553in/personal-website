@@ -132,24 +132,63 @@ const projects = [
   },
   {
     description: [
-      "A browser-only GitHub Actions workflow dashboard for multiple repositories.",
+      "An Electron desktop app for live speech transcription and translated captions.",
     ],
     links: [
       {
-        href: "https://gh-workflow-dashboard.vercel.app",
-        label: "website",
-      },
-      {
-        href: "https://github.com/hu553in/gh-workflow-dashboard",
+        href: "https://github.com/hu553in/relay",
         label: "github",
       },
     ],
-    name: "GitHub workflow dashboard",
-    role: "web dashboard",
+    name: "Relay",
+    role: "desktop app",
   },
   {
     description: [
-      "A Cloudflare Telegram bot for Dota 2 schedules, live matches, results, and favorites.",
+      "A terminal interface for browsing and editing HashiCorp Vault KV v2 secrets.",
+    ],
+    links: [
+      {
+        href: "https://github.com/hu553in/vlt",
+        label: "github",
+      },
+    ],
+    name: "vlt",
+    role: "TUI app",
+  },
+  {
+    description: [
+      "A web app for Keycloak invitation links and user registration, with a Spring Boot backend.",
+    ],
+    links: [
+      {
+        href: "https://github.com/hu553in/invites-keycloak",
+        label: "github",
+      },
+    ],
+    name: "Invites for your Keycloak",
+    role: "web app",
+  },
+  {
+    description: [
+      "An exhibition website for the Omsk M. A. Vrubel Museum of Fine Arts, built with React and Vite.",
+    ],
+    links: [
+      {
+        href: "https://vrubel-museum-exhibitions.vercel.app",
+        label: "website",
+      },
+      {
+        href: "https://github.com/hu553in/vrubel-museum-exhibitions",
+        label: "github",
+      },
+    ],
+    name: "Vrubel Museum exhibitions",
+    role: "interactive",
+  },
+  {
+    description: [
+      "A Telegram bot for Dota 2 schedules, live matches, results, and favorites, hosted on Cloudflare.",
     ],
     links: [
       {
@@ -166,6 +205,111 @@ const projects = [
   },
   {
     description: [
+      "A minimal iPhone client for connecting to olcRTC through a single subscription URL.",
+    ],
+    links: [
+      {
+        href: "https://github.com/hu553in/one-last-chance",
+        label: "github",
+      },
+    ],
+    name: "One Last Chance",
+    role: "iOS app",
+  },
+  {
+    description: [
+      "A Telegram bot written in Go for RSS, Atom, and JSON feed digests and channel summaries.",
+    ],
+    links: [
+      {
+        href: "https://t.me/hu553in_telekilogram_bot",
+        label: "telegram",
+      },
+      {
+        href: "https://github.com/hu553in/telekilogram",
+        label: "github",
+      },
+    ],
+    name: "Telekilogram",
+    role: "telegram bot",
+  },
+  {
+    description: [
+      "A CLI built with Playwright and Crawlee for mirroring single-page applications as static files.",
+    ],
+    links: [
+      {
+        href: "https://github.com/hu553in/spa-crawler",
+        label: "github",
+      },
+    ],
+    name: "SPA crawler",
+    role: "CLI tool",
+  },
+  {
+    description: [
+      "A browser-only GitHub Actions workflow dashboard for multiple repositories.",
+    ],
+    links: [
+      {
+        href: "https://gh-workflow-dashboard.vercel.app",
+        label: "website",
+      },
+      {
+        href: "https://github.com/hu553in/gh-workflow-dashboard",
+        label: "github",
+      },
+    ],
+    name: "GitHub workflow dashboard",
+    role: "web dashboard",
+  },
+  {
+    description: ["My collection of reusable agent skills."],
+    links: [
+      {
+        href: "https://skills.sh/hu553in/skills",
+        label: "website",
+      },
+      {
+        href: "https://github.com/hu553in/skills",
+        label: "github",
+      },
+    ],
+    name: "Skills",
+    role: "agent workflows",
+  },
+  {
+    description: [
+      "A Python CLI for building and signing Tizen TV packages using Tizen Studio in Docker.",
+    ],
+    links: [
+      {
+        href: "https://github.com/hu553in/tizen-tool",
+        label: "github",
+      },
+    ],
+    name: "Tizen tool",
+    role: "CLI tool",
+  },
+  {
+    description: [
+      "A website for a pet grooming studio in Omsk, built with React and Vite.",
+    ],
+    links: [
+      {
+        href: "https://xn-----flcj2bnpjd0gcb.xn--p1ai",
+        label: "website",
+      },
+      {
+        href: "https://github.com/hu553in/grooming-studio",
+        label: "github",
+      },
+    ],
+    name: "Grooming studio website",
+    role: "landing page",
+  },
+  {
+    description: [
       "A GitHub Action that generates Neofetch-style SVG profile cards with daily ASCII art and live GitHub stats.",
     ],
     links: [
@@ -176,19 +320,6 @@ const projects = [
     ],
     name: "ASCII profile card",
     role: "github action",
-  },
-  {
-    description: [
-      "An Electron desktop app for live speech transcription and translated captions.",
-    ],
-    links: [
-      {
-        href: "https://github.com/hu553in/relay",
-        label: "github",
-      },
-    ],
-    name: "Relay",
-    role: "desktop app",
   },
   {
     description: [codeRegistry.description],

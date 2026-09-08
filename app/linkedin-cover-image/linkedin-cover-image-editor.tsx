@@ -1,11 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import { play } from "@/lib/sounds";
 import { cn } from "@/lib/utils";
 
-import { Divider, MetaLine, monoMetaClassName, Section } from "../primitives";
+import {
+  ImageDownloadLinks,
+  imageEditorInputClassName,
+} from "../image-editor-primitives";
+import { Divider, monoMetaClassName, Section } from "../primitives";
 
 const coverImageSize = {
   height: 396,
@@ -20,10 +24,7 @@ const coverDetailsGapClassName = "gap-[7px]";
 
 const exportScales = [1, 2] as const;
 type ExportScale = (typeof exportScales)[number];
-const coverImageDimensions = `${String(coverImageSize.width)} × ${String(coverImageSize.height)} px`;
 const coverImageAriaDimensions = `${String(coverImageSize.width)} by ${String(coverImageSize.height)} pixels`;
-const overflowExportStatus =
-  "Shorten the text marked as too long, then try again.";
 
 const initialCopy = {
   expertise:
@@ -47,15 +48,6 @@ const fields: readonly {
   { key: "stack", label: "Stack" },
   { inputMode: "url", key: "website", label: "Website" },
 ];
-
-const getOverflowingFields = (coverImage: HTMLElement) =>
-  fields.flatMap(({ key }) => {
-    const line = coverImage.querySelector<HTMLElement>(
-      `[data-cover-field="${key}"]`
-    );
-
-    return line && line.scrollWidth > line.clientWidth ? [key] : [];
-  });
 
 const fonts = [
   {
@@ -148,38 +140,10 @@ const downloadDataUrl = (dataUrl: string, scale: ExportScale) => {
 const LinkedInCoverImageEditor = () => {
   const [copy, setCopy] = useState<CoverImageCopy>(initialCopy);
   const [exportStatus, setExportStatus] = useState("");
-  const [overflowingFields, setOverflowingFields] = useState<
-    readonly (keyof CoverImageCopy)[]
-  >([]);
   const [renderingScale, setRenderingScale] = useState<ExportScale | null>(
     null
   );
   const coverImageRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let isCurrent = true;
-    const detectOverflow = () => {
-      const coverImage = coverImageRef.current;
-
-      if (!coverImage || !isCurrent) {
-        return;
-      }
-
-      setOverflowingFields(getOverflowingFields(coverImage));
-    };
-    const detectOverflowAfterFontsLoad = async () => {
-      await document.fonts.ready;
-      detectOverflow();
-    };
-
-    detectOverflow();
-    void detectOverflowAfterFontsLoad();
-
-    return () => {
-      isCurrent = false;
-    };
-    // oxlint-disable-next-line react/exhaustive-effect-dependencies -- Copy changes the measured DOM text.
-  }, [copy]);
 
   const updateCopy = (key: keyof CoverImageCopy, value: string) => {
     setExportStatus("");
@@ -193,45 +157,32 @@ const LinkedInCoverImageEditor = () => {
       return;
     }
 
-    if (overflowingFields.length > 0) {
-      setExportStatus(overflowExportStatus);
-      return;
-    }
-
     setRenderingScale(scale);
     setExportStatus(`Preparing ${String(scale)}x PNG…`);
 
     try {
       await document.fonts.ready;
-      const currentOverflowingFields = getOverflowingFields(coverImage);
+      const [domToPng, fontCss] = await Promise.all([
+        loadDomToPng(),
+        getExportFontCss(),
+      ]);
+      const dataUrl = await domToPng(coverImage, {
+        backgroundColor: "#080808",
+        font: {
+          cssText: fontCss,
+        },
+        height: coverImageSize.height,
+        scale,
+        style: {
+          transform: "none",
+          transformOrigin: "top left",
+        },
+        width: coverImageSize.width,
+      });
 
-      setOverflowingFields(currentOverflowingFields);
-
-      if (currentOverflowingFields.length > 0) {
-        setExportStatus(overflowExportStatus);
-      } else {
-        const [domToPng, fontCss] = await Promise.all([
-          loadDomToPng(),
-          getExportFontCss(),
-        ]);
-        const dataUrl = await domToPng(coverImage, {
-          backgroundColor: "#080808",
-          font: {
-            cssText: fontCss,
-          },
-          height: coverImageSize.height,
-          scale,
-          style: {
-            transform: "none",
-            transformOrigin: "top left",
-          },
-          width: coverImageSize.width,
-        });
-
-        downloadDataUrl(dataUrl, scale);
-        play("success");
-        setExportStatus(`Downloaded ${String(scale)}x PNG.`);
-      }
+      downloadDataUrl(dataUrl, scale);
+      play("success");
+      setExportStatus(`Downloaded ${String(scale)}x PNG.`);
     } catch (error) {
       console.error("Unable to export PNG:", error);
       setExportStatus("Unable to download PNG. Try again.");
@@ -248,6 +199,7 @@ const LinkedInCoverImageEditor = () => {
           className="w-full overflow-hidden ring-1 ring-black/10 ring-inset dark:ring-white/10"
           style={{
             aspectRatio: `${coverImageSize.width} / ${coverImageSize.height}`,
+            viewTransitionName: "linkedin-preview",
           }}
         >
           <svg
@@ -285,17 +237,11 @@ const LinkedInCoverImageEditor = () => {
                       coverHeadingGapClassName
                     )}
                   >
-                    <p
-                      className="max-w-full font-[Exposure,'Arial_Narrow',Arial,sans-serif] text-[70px] leading-[0.96] font-medium tracking-[-0.028em] text-balance whitespace-nowrap [font-optical-sizing:auto] [font-variation-settings:'EXPO'_-10]"
-                      data-cover-field="role"
-                    >
+                    <p className="max-w-full font-[Exposure,'Arial_Narrow',Arial,sans-serif] text-[70px] leading-[0.96] font-medium tracking-[-0.028em] text-balance whitespace-nowrap [font-optical-sizing:auto] [font-variation-settings:'EXPO'_-10]">
                       {copy.role}
                     </p>
 
-                    <p
-                      className="max-w-full font-[Exposure,'Arial_Narrow',Arial,sans-serif] text-[59px] leading-[0.98] font-medium tracking-[-0.026em] text-balance whitespace-nowrap [font-optical-sizing:auto] [font-variation-settings:'EXPO'_-10]"
-                      data-cover-field="specialty"
-                    >
+                    <p className="max-w-full font-[Exposure,'Arial_Narrow',Arial,sans-serif] text-[59px] leading-[0.98] font-medium tracking-[-0.026em] text-balance whitespace-nowrap [font-optical-sizing:auto] [font-variation-settings:'EXPO'_-10]">
                       {copy.specialty}
                     </p>
                   </div>
@@ -306,24 +252,15 @@ const LinkedInCoverImageEditor = () => {
                       coverDetailsGapClassName
                     )}
                   >
-                    <p
-                      className="max-w-full text-[24px] leading-[1.2] font-medium whitespace-nowrap"
-                      data-cover-field="expertise"
-                    >
+                    <p className="max-w-full text-[24px] leading-[1.2] font-medium whitespace-nowrap">
                       {copy.expertise}
                     </p>
-                    <p
-                      className="max-w-full text-[24px] leading-[1.2] font-medium whitespace-nowrap"
-                      data-cover-field="stack"
-                    >
+                    <p className="max-w-full text-[24px] leading-[1.2] font-medium whitespace-nowrap">
                       {copy.stack}
                     </p>
                   </div>
 
-                  <p
-                    className="max-w-full text-[24px] leading-[1.2] font-medium whitespace-nowrap text-[#fafaf8]"
-                    data-cover-field="website"
-                  >
+                  <p className="max-w-full text-[24px] leading-[1.2] font-medium whitespace-nowrap text-[#fafaf8]">
                     {copy.website}
                   </p>
                 </div>
@@ -332,22 +269,15 @@ const LinkedInCoverImageEditor = () => {
           </svg>
         </figure>
 
-        <div className="flex flex-col items-start gap-1 min-[24rem]:flex-row min-[24rem]:items-baseline min-[24rem]:gap-2">
-          <span className={monoMetaClassName}>{coverImageDimensions}</span>
-          <span
-            aria-hidden="true"
-            className={cn("hidden min-[24rem]:inline", monoMetaClassName)}
-          >
-            ·
-          </span>
-          <MetaLine
-            items={exportScales.map((scale) => ({
-              disabled: renderingScale !== null,
-              label: `download ${String(scale)}x`,
-              onClick: () => downloadPng(scale),
-            }))}
-          />
-        </div>
+        <ImageDownloadLinks
+          width={coverImageSize.width}
+          height={coverImageSize.height}
+          items={exportScales.map((scale) => ({
+            disabled: renderingScale !== null,
+            label: `download ${String(scale)}x`,
+            onClick: () => downloadPng(scale),
+          }))}
+        />
 
         <output
           aria-live="polite"
@@ -371,16 +301,8 @@ const LinkedInCoverImageEditor = () => {
                 {field.label}
               </label>
               <input
-                aria-describedby={
-                  overflowingFields.includes(field.key)
-                    ? `${field.key}-error`
-                    : undefined
-                }
-                aria-invalid={
-                  overflowingFields.includes(field.key) || undefined
-                }
                 autoComplete="off"
-                className="border-muted-foreground/80 bg-background text-foreground focus-visible:outline-ring dark:border-muted-foreground/60 h-9 w-full rounded-sm border px-2.5 text-base focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-wait disabled:opacity-50 sm:text-[15px]"
+                className={imageEditorInputClassName}
                 disabled={renderingScale !== null}
                 id={field.key}
                 inputMode={field.inputMode}
@@ -389,15 +311,6 @@ const LinkedInCoverImageEditor = () => {
                 type="text"
                 value={copy[field.key]}
               />
-              {overflowingFields.includes(field.key) ? (
-                <span
-                  className={cn(monoMetaClassName, "text-foreground")}
-                  id={`${field.key}-error`}
-                  role="alert"
-                >
-                  Shorten this text to fit the cover.
-                </span>
-              ) : null}
             </div>
           ))}
         </fieldset>

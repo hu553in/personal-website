@@ -1,8 +1,13 @@
 import type { NextConfig } from "next";
 
-import { codeRegistry, linkedInCoverImage } from "./app/site-data";
+import {
+  codeRegistry,
+  linkedInCoverImage,
+  openGraphImage,
+} from "./app/site-data";
 
 const markdownAlternates = [
+  { html: openGraphImage.href, markdown: `${openGraphImage.href}.md` },
   { html: "/", markdown: "/index.md" },
   { html: codeRegistry.href, markdown: `${codeRegistry.href}.md` },
   {

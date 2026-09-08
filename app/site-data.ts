@@ -5,6 +5,7 @@ const site = {
     "Product engineering, distributed systems, developer platforms, and product UI.",
   openGraphTitle:
     "Ruslan Khasanshin\nSenior Software Engineer — Product & Platform",
+  repository: "https://github.com/hu553in/personal-website",
   themeColor: {
     dark: "#0e0e11",
     light: "#fffdfa",
@@ -50,10 +51,18 @@ const registrySocialImage = {
   url: `${codeRegistry.href}/og.png`,
 } as const;
 
+const openGraphImage = {
+  description: "Use my template to make your own Open Graph image.",
+  href: "/open-graph-image",
+  role: "design tool",
+  title: "Open Graph image",
+} as const;
+
 export {
   codeRegistry,
   identity,
   linkedInCoverImage,
+  openGraphImage,
   registrySocialImage,
   site,
   socialImage,

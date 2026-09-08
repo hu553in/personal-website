@@ -1,9 +1,19 @@
 import type { MetadataRoute } from "next";
 
-import { codeRegistry, linkedInCoverImage, site } from "./site-data";
+import {
+  codeRegistry,
+  linkedInCoverImage,
+  openGraphImage,
+  site,
+} from "./site-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
+    {
+      changeFrequency: "monthly",
+      priority: 0.5,
+      url: `${site.url}${openGraphImage.href}`,
+    },
     {
       changeFrequency: "monthly",
       priority: 1,
