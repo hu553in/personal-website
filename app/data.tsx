@@ -314,6 +314,10 @@ const projects = [
     ],
     links: [
       {
+        href: "https://github.com/marketplace/actions/ascii-profile-card",
+        label: "page",
+      },
+      {
         href: "https://github.com/hu553in/ascii-profile-card",
         label: "github",
       },

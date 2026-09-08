@@ -159,6 +159,7 @@ A website for a pet grooming studio in Omsk, built with React and Vite.
 A GitHub Action that generates Neofetch-style SVG profile cards with daily ASCII art and live GitHub
 stats.
 
+[page](https://github.com/marketplace/actions/ascii-profile-card) ·
 [github](https://github.com/hu553in/ascii-profile-card)
 
 ### shadcn registry (code registry)
