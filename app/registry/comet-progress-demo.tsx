@@ -45,7 +45,6 @@ const cometProgressDocumentation = {
 
 const CometProgressDemo = () => (
   <Section
-    className="scroll-mt-16"
     id={cometProgressDocumentation.id}
     title={cometProgressDocumentation.title}
   >

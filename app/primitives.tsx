@@ -54,7 +54,10 @@ const HomeLink = () => (
     href="/"
     variant="quiet"
   >
-    ← home
+    <span aria-hidden="true" className="inline-block -rotate-90">
+      ↑
+    </span>{" "}
+    home
   </Link>
 );
 
@@ -145,7 +148,7 @@ const Section = ({
   <section
     {...props}
     className={cn(
-      "sidebar:scroll-mt-0 flex scroll-mt-13 flex-col gap-4 py-10",
+      "sidebar:scroll-mt-0 flex scroll-mt-14.25 flex-col gap-4 py-10",
       className
     )}
   >

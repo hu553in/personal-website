@@ -166,7 +166,7 @@ const projects = [
         label: "github",
       },
     ],
-    name: "Invites for your Keycloak",
+    name: "Invites for Keycloak",
     role: "web app",
   },
   {

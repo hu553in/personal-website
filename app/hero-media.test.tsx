@@ -70,6 +70,59 @@ describe(HeroMedia, () => {
     );
   });
 
+  test("resets video readiness and controls when reduced motion is toggled", () => {
+    const { container } = render(<HeroMedia />);
+    const poster = container.querySelector("img");
+    const video = container.querySelector("video") as HTMLVideoElement;
+    fireEvent.loadedData(video);
+    fireEvent.play(video);
+    expect(video.style.opacity).toBe("1");
+    expect(
+      screen.getByRole("button", { name: "Pause animation" })
+    ).toBeTruthy();
+
+    act(() => {
+      reducedMotion = true;
+      notifyMotionChange();
+    });
+    expect(container.querySelector("video")).toBeNull();
+    act(() => {
+      reducedMotion = false;
+      notifyMotionChange();
+    });
+    const replacement = container.querySelector("video") as HTMLVideoElement;
+    expect(replacement).not.toBe(video);
+    expect(replacement.style.opacity).toBe("0");
+    expect(screen.getByRole("button", { name: "Play animation" })).toBeTruthy();
+    expect(container.querySelector("img")).toBe(poster);
+    fireEvent.loadedData(replacement);
+    fireEvent.play(replacement);
+    expect(replacement.style.opacity).toBe("1");
+    expect(
+      screen.getByRole("button", { name: "Pause animation" })
+    ).toBeTruthy();
+  });
+
+  test("keeps the same poster while the first video frame loads", () => {
+    reducedMotion = true;
+    const { container } = render(<HeroMedia />);
+    const poster = container.querySelector("img");
+    act(() => {
+      reducedMotion = false;
+      notifyMotionChange();
+    });
+    const video = container.querySelector("video") as HTMLVideoElement;
+    expect(container.querySelector("img")).toBe(poster);
+    expect(video.style.opacity).toBe("0");
+    fireEvent.loadedData(video);
+    expect(video.style.opacity).toBe("1");
+    fireEvent.pause(video);
+    expect(video.style.opacity).toBe("1");
+    fireEvent.loadStart(video);
+    expect(video.style.opacity).toBe("0");
+    expect(container.querySelector("img")).toBe(poster);
+  });
+
   test("lets visitors pause and resume with the control reflecting playback", async () => {
     const { container } = render(<HeroMedia />);
     const video = container.querySelector("video") as HTMLVideoElement;
@@ -122,7 +175,7 @@ describe(HeroMedia, () => {
     const sources = container.querySelectorAll("source");
     fireEvent.error(sources.item(0));
     expect(container.querySelector("video")).not.toBeNull();
-    expect(container.querySelector("img")).toBeNull();
+    expect(container.querySelector("img")).not.toBeNull();
 
     fireEvent.error(sources.item(1));
     expect(container.querySelector("img")).not.toBeNull();

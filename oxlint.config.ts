@@ -8,6 +8,7 @@ export default defineConfig({
   extends: [core, react, next],
   overrides: (vitest.overrides ?? []).map((override) => ({
     ...override,
+    files: ["**/*.test.{ts,tsx}"],
     rules: {
       ...override.rules,
       "vitest/max-expects": "off",

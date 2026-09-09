@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { MetaLine, monoMetaClassName } from "./primitives";
 
 const imageEditorInputClassName =
-  "border-muted-foreground/80 bg-background text-foreground focus-visible:outline-ring dark:border-muted-foreground/60 h-9 w-full rounded-sm border px-2.5 text-base focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-wait disabled:opacity-50 sm:text-[15px]";
+  "border-muted-foreground/80 bg-background text-foreground focus-visible:outline-ring dark:border-muted-foreground/60 h-9 w-full rounded-sm border px-2.5 text-[14px] focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-wait disabled:opacity-50";
 
 const ImageDownloadLinks = ({
   height,

@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/knip/schema.json",
   "entry": ["registry/default/ui/comet-progress.tsx"],
+  "playwright": true,
   "ignoreBinaries": ["shfmt"],
   "ignoreDependencies": ["@commitlint/cli", "renovate"]
 }

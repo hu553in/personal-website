@@ -4,7 +4,6 @@ import {
   fireEvent,
   render,
   screen,
-  waitFor,
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 
@@ -116,9 +115,9 @@ describe("LinkedIn cover image editor", () => {
 
     fireEvent.click(screen.getByRole("button", { name: exportCase.button }));
 
-    await waitFor(() => expect(screenshotMock.domToPng).toHaveBeenCalledOnce());
+    await screen.findByText(exportCase.status);
 
-    expect(screenshotMock.domToPng).toHaveBeenCalledWith(
+    expect(screenshotMock.domToPng).toHaveBeenCalledExactlyOnceWith(
       expect.any(HTMLDivElement),
       expect.objectContaining({
         backgroundColor: "#080808",
@@ -134,7 +133,6 @@ describe("LinkedIn cover image editor", () => {
     expect(downloads).toHaveLength(1);
     expect(downloads[0]?.download).toBe(exportCase.filename);
     expect(downloads[0]?.href).toBe("data:image/png;base64,cG5n");
-    expect(screen.getByText(exportCase.status)).toBeDefined();
     expect(audio.play).toHaveBeenCalledExactlyOnceWith("success");
   });
 

@@ -1,14 +1,9 @@
 "use client";
 
 import type { ComponentProps } from "react";
-import {
-  useEffect,
-  useId,
-  useLayoutEffect,
-  useRef,
-  useSyncExternalStore,
-} from "react";
+import { useEffect, useId, useLayoutEffect, useRef } from "react";
 
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { cn } from "@/lib/utils";
 
 // Five compact rows fit the complete grid into a 20px-high track.
@@ -45,7 +40,6 @@ const progressTransitionMs = 200;
 const maxRowTipAdvancePerFrame = 1;
 // Limit jumps in shimmer and row-tip motion when animation resumes.
 const maxFrameElapsedSeconds = 1 / 15;
-const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
 const defaultMin = 0;
 const defaultMax = 100;
 
@@ -110,21 +104,6 @@ const resolveRange = (minProp: number, maxProp: number) => {
     ? ([min, fallbackMax] as const)
     : ([defaultMin, defaultMax] as const);
 };
-
-const subscribeToReducedMotion = (onChange: () => void) => {
-  const mediaQuery = window.matchMedia(reducedMotionQuery);
-
-  mediaQuery.addEventListener("change", onChange);
-
-  return () => {
-    mediaQuery.removeEventListener("change", onChange);
-  };
-};
-
-const getReducedMotionSnapshot = () =>
-  window.matchMedia(reducedMotionQuery).matches;
-
-const getServerReducedMotionSnapshot = () => false;
 
 // Registry consumers may server-render on React 18, where useLayoutEffect warns.
 const useClientLayoutEffect =
@@ -366,11 +345,7 @@ const CometProgress = ({
   value: valueProp,
   ...props
 }: CometProgressProps) => {
-  const shouldReduceMotion = useSyncExternalStore(
-    subscribeToReducedMotion,
-    getReducedMotionSnapshot,
-    getServerReducedMotionSnapshot
-  );
+  const shouldReduceMotion = useReducedMotion(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const patternId = useId().replaceAll(":", "");
   const redrawStaticProgressRef = useRef<((progress: number) => void) | null>(

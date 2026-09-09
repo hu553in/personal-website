@@ -90,7 +90,7 @@ A terminal interface for browsing and editing HashiCorp Vault KV v2 secrets.
 
 [github](https://github.com/hu553in/vlt)
 
-### Invites for your Keycloak (web app)
+### Invites for Keycloak (web app)
 
 A web app for Keycloak invitation links and user registration, with a Spring Boot backend.
 

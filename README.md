@@ -20,6 +20,10 @@ Live at [hu553in.dev](https://hu553in.dev).
 - Ships SEO and AEO surfaces: Open Graph banner, JSON-LD, `robots.txt`, `sitemap.xml`, `llms.txt`,
   an `llms-full.txt` redirect, and Markdown twins advertised through HTML and HTTP alternate links
 
+Page navigation highlights the current section and reveals Back to top after the header. Short
+trailing sections remain selectable in both scroll directions. URL fragments change only on explicit
+navigation; ordinary scrolling preserves the current address.
+
 ## Requirements
 
 - Bun
@@ -50,6 +54,14 @@ bun start           # Production server
 bun check           # Full local gate
 bun check:fix       # Full local gate with automatic fixes
 ```
+
+`bun check:e2e` installs Chromium, builds the production app, and runs navigation regressions on an
+isolated server at port 3028. It is included in the full gate. Failure screenshots and traces are
+saved in `test-results/` and uploaded by CI.
+
+To test an existing production build, run `bun playwright test --project chromium`. For all three
+browsers, run `bun playwright install firefox webkit` after `bun playwright:install`, then
+`bun playwright test`.
 
 ## Tech stack
 
