@@ -132,19 +132,6 @@ const projects = [
   },
   {
     description: [
-      "An Electron desktop app for live speech transcription and translated captions.",
-    ],
-    links: [
-      {
-        href: "https://github.com/hu553in/relay",
-        label: "github",
-      },
-    ],
-    name: "Relay",
-    role: "desktop app",
-  },
-  {
-    description: [
       "A terminal interface for browsing and editing HashiCorp Vault KV v2 secrets.",
     ],
     links: [

@@ -78,12 +78,6 @@ and user workflows are developed with my wife.
 
 [website](https://voomy.tv/product)
 
-### Relay (desktop app)
-
-An Electron desktop app for live speech transcription and translated captions.
-
-[github](https://github.com/hu553in/relay)
-
 ### vlt (TUI app)
 
 A terminal interface for browsing and editing HashiCorp Vault KV v2 secrets.
