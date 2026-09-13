@@ -21,6 +21,15 @@ const identity = {
   role: "senior software engineer — product & platform",
 };
 
+const resume = {
+  documentUrl:
+    "https://docs.google.com/document/d/1GAJ0YMIWsCaEFIfTp4sTN-smbZIR5uzieWYiGQdtq8g/edit",
+  filename: "Ruslan_Khasanshin_Senior_Software_Engineer.pdf",
+  href: "/resume.pdf",
+  label: "pdf",
+  title: "Resume",
+} as const;
+
 const socialImage = {
   alt: `${identity.name}, ${identity.role}`,
   height: 630,
@@ -64,6 +73,7 @@ export {
   linkedInCoverImage,
   openGraphImage,
   registrySocialImage,
+  resume,
   site,
   socialImage,
 };

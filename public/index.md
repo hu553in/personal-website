@@ -28,9 +28,9 @@ Joined while QIC’s new Go-based motor-insurance backend was still an incomplet
 rewrite. Helped take it through a phased production launch, built the observability foundation used
 across 25 services, and co-owned the backend launch of QIC Travel as part of a small backend team.
 
-### Noveo
+### Diabolocom
 
-senior java developer · 2021–2025 · [noveogroup.com](https://noveogroup.com)
+senior java developer · 2021–2025 · [diabolocom.com](https://diabolocom.com)
 
 Built and operated five Java/Kotlin microservices for a cloud contact-center CRM. Reduced response
 time for a frequently called API from approximately 800 ms to 150 ms, added approximately 800–1,000

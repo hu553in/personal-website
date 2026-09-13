@@ -9,12 +9,6 @@ const about = [
   "I tend to go deep on products I care about: tracing edge cases, tightening the model, reducing operational ambiguity, and polishing things long after the happy path works.",
 ] as const;
 
-const resume = {
-  href: "/resume.pdf",
-  label: "pdf",
-  title: "Resume",
-} as const;
-
 const work = [
   {
     description:
@@ -29,8 +23,8 @@ const work = [
       "Built and operated five Java/Kotlin microservices for a cloud contact-center CRM. Reduced response time for a frequently called API from approximately 800 ms to 150 ms, added approximately 800–1,000 automated tests, and acted as tech lead for five engineers during the final 18 months.",
     period: "2021–2025",
     role: "senior java developer",
-    site: { href: "https://noveogroup.com", label: "noveogroup.com" },
-    title: "Noveo",
+    site: { href: "https://diabolocom.com", label: "diabolocom.com" },
+    title: "Diabolocom",
   },
   {
     description:
@@ -405,7 +399,6 @@ export {
   connectLinks,
   interests,
   projects,
-  resume,
   skills,
   volunteer,
   work,

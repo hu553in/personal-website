@@ -5,7 +5,6 @@ import {
   connectLinks,
   interests,
   projects,
-  resume,
   skills,
   volunteer,
   work,
@@ -24,7 +23,12 @@ import {
   PageTitle,
   Section,
 } from "./primitives";
-import { identity, linkedInCoverImage, openGraphImage } from "./site-data";
+import {
+  identity,
+  linkedInCoverImage,
+  openGraphImage,
+  resume,
+} from "./site-data";
 
 const homeNavigationItems = [
   { id: "about", title: "About" },
