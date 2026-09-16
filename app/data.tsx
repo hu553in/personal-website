@@ -4,15 +4,14 @@ import { Link } from "./primitives";
 import { codeRegistry } from "./site-data";
 
 const about = [
-  "I build products end to end and the platform foundations behind them — distributed systems, developer tooling, observability, and product UI.",
-  "Over eight years, I’ve shipped software across insurance, travel, contact-center SaaS, creator tooling, and nonprofit infrastructure. I’m most useful when the requirements are incomplete, the system is unfinished, and someone has to turn that ambiguity into something reliable in production.",
-  "I tend to go deep on products I care about: tracing edge cases, tightening the model, reducing operational ambiguity, and polishing things long after the happy path works.",
+  "I’m a backend-heavy software engineer with 9+ years of experience, working with Go, Java/Kotlin, and TypeScript. I build services, product interfaces, and tools for other developers.",
+  "At work, that has meant launching insurance and travel backends, building shared observability tools, and synchronizing access rules across services. I like working through unclear requirements and staying with a product after it ships.",
 ] as const;
 
 const work = [
   {
     description:
-      "Joined while QIC’s new Go-based motor-insurance backend was still an incomplete pre-production rewrite. Helped take it through a phased production launch, built the observability foundation used across 25 services, and co-owned the backend launch of QIC Travel as part of a small backend team.",
+      "Helped take an incomplete Go rewrite of QIC’s motor-insurance backend through a phased production launch, then supported live policy purchases. Co-owned the backend launch of QIC Travel with a small team. Designed and implemented the observability layer of a shared Go library adopted across 25 services, including tracing, metrics, and 30+ operational alerts.",
     period: "since 2025",
     role: "senior backend engineer",
     site: { href: "https://qic.digital", label: "qic.digital" },
@@ -20,15 +19,25 @@ const work = [
   },
   {
     description:
-      "Built and operated five Java/Kotlin microservices for a cloud contact-center CRM. Reduced response time for a frequently called API from approximately 800 ms to 150 ms, added approximately 800–1,000 automated tests, and acted as tech lead for five engineers during the final 18 months.",
+      "Built and operated 5 Java/Kotlin microservices for a cloud contact-center CRM. Co-designed and implemented a Go worker that synchronized access rules across services using RabbitMQ, incremental updates, and batching. Reduced response time for a frequently called API from about 800 ms to 150 ms and added 800–1,000 automated tests. Acted as hands-on tech lead in a 5-engineer team for the final 18 months.",
     period: "2021–2025",
     role: "senior java developer",
     site: { href: "https://diabolocom.com", label: "diabolocom.com" },
     title: "Diabolocom",
   },
   {
-    description:
-      "Built external and internal products with Java/Kotlin/Spring and React/TypeScript across the full development cycle. Led one project and taught introductory programming courses.",
+    description: (
+      <>
+        Built Java/Kotlin/Spring backends and React/TypeScript interfaces across
+        the full development cycle. On a{" "}
+        <Link href="https://7bits.it/portfolio/saas-security-solution">
+          multi-tenant cybersecurity SaaS
+        </Link>
+        , developed content-filtering controls, analytics, and domain-list
+        synchronization, and improved the existing DNS-processing pipeline. Led
+        1 project and taught introductory programming courses.
+      </>
+    ),
     period: "2017–2021",
     role: "full-stack software engineer",
     site: { href: "https://7bits.it", label: "7bits.it" },
@@ -39,8 +48,8 @@ const work = [
 const volunteer = [
   {
     description: [
-      "I lead engineering for a production, location-aware nonprofit platform. I own the Django/DRF backend, deployment, and observability, contribute across the Next.js frontend, and work directly with users and a non-technical volunteer team to turn loosely defined needs into complete product changes.",
-      "The work includes a timezone-aware scheduling engine, PostGIS-backed search, hierarchy-aware delegated administration, multilingual search, and a multi-stage performance program that reduced a key p99 from about 15 seconds to 500 ms.",
+      "I lead engineering for a production nonprofit information platform, owning its Django/DRF backend, deployment, and observability. I work directly with users and a non-technical volunteer team, and deliver Next.js features including a calendar and location-based search.",
+      "I built timezone-aware scheduling, hierarchy-aware delegated access, and consistent multilingual search across TypeScript, Python, and PostgreSQL. Query optimization and profiling reduced p99 latency on a primary API path from about 15 seconds to 500 ms.",
     ],
     period: "since 2024",
     role: "volunteer lead software engineer",
@@ -62,8 +71,7 @@ const writing = [
         label: "habr ru",
       },
     ],
-    title:
-      "Technical debt isn’t just legacy: how we’re reducing divergence across Go services",
+    title: "How we’re reducing divergence across Go services",
   },
   {
     description:
@@ -80,15 +88,12 @@ const writing = [
 
 const skills = [
   {
-    items: ["TypeScript", "JavaScript", "React", "Next.js"],
-    label: "product",
-  },
-  {
     items: [
-      "Node.js",
-      "Bun",
       "Go",
       "Java/Kotlin",
+      "Spring",
+      "Node.js",
+      "Bun",
       "Python",
       "Django",
       "gRPC/Protobuf",
@@ -96,16 +101,30 @@ const skills = [
     label: "backend",
   },
   {
-    items: ["PostgreSQL", "PostGIS", "ClickHouse", "Redis", "Kafka"],
+    items: ["TypeScript", "JavaScript", "React", "Next.js"],
+    label: "frontend",
+  },
+  {
+    items: ["PostgreSQL", "PostGIS", "Redis", "ClickHouse"],
     label: "data",
   },
   {
-    items: ["OpenTelemetry", "Prometheus", "Grafana", "Docker", "Kubernetes"],
+    items: ["Kafka", "RabbitMQ"],
+    label: "messaging",
+  },
+  {
+    items: ["Docker", "Kubernetes", "OpenTelemetry", "Prometheus", "Grafana"],
     label: "platform",
   },
   {
-    items: ["GitLab CI", "GitHub Actions", "Ansible"],
-    label: "ops",
+    items: [
+      "GitLab CI",
+      "GitHub Actions",
+      "Testcontainers",
+      "Playwright",
+      "Ansible",
+    ],
+    label: "delivery",
   },
 ];
 
@@ -113,7 +132,7 @@ const projects = [
   {
     description: [
       "A pre-launch bilingual creator platform for video, subscriptions, paid access, discovery, community, and moderation.",
-      "I own the domain model, architecture, implementation, CI, and operations; product vision, design, and user workflows are developed with my wife.",
+      "I own the domain model, architecture, implementation, CI, and operations. My wife leads product vision, design, and user workflows; we make product decisions together.",
     ],
     links: [
       {
@@ -152,7 +171,7 @@ const projects = [
   },
   {
     description: [
-      "An exhibition website for the Omsk M. A. Vrubel Museum of Fine Arts, built with React and Vite.",
+      "An interactive exhibition website for the Omsk M. A. Vrubel Museum of Fine Arts. Co-developed as a graduation project using React and Vite.",
     ],
     links: [
       {
@@ -186,7 +205,7 @@ const projects = [
   },
   {
     description: [
-      "A minimal iPhone client for connecting to olcRTC through a single subscription URL.",
+      "An iPhone VPN client for olcRTC, configured through a single subscription URL.",
     ],
     links: [
       {
@@ -357,7 +376,7 @@ const interests = [
     id: "borya",
   },
   {
-    content: "A full-black Toyota Yaris and any excuse for a long drive.",
+    content: "An all-black Toyota Yaris and any excuse for a long drive.",
     id: "yaris",
   },
   {
@@ -365,8 +384,12 @@ const interests = [
     id: "fashion",
   },
   {
-    content:
-      "An unreasonable amount of movies, series, and no-name Twitch streamers — with my wife, always.",
+    content: (
+      <>
+        An unreasonable amount of time watching movies, series, and obscure
+        Twitch streams — <i>with my wife, always</i>.
+      </>
+    ),
     id: "screens",
   },
 ];

@@ -27,11 +27,10 @@ type ExportScale = (typeof exportScales)[number];
 const coverImageAriaDimensions = `${String(coverImageSize.width)} by ${String(coverImageSize.height)} pixels`;
 
 const initialCopy = {
-  expertise:
-    "Product Engineering // Distributed Systems // Developer Platforms",
+  expertise: "9+ years of experience",
   role: "Senior Software Engineer",
-  specialty: "Product & Platform",
-  stack: "TypeScript, Go, React, Next.js",
+  specialty: "Backend & Full-Stack",
+  stack: "Go, Java/Kotlin, TypeScript, React",
   website: "hu553in.dev",
 } as const;
 

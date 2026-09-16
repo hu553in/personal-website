@@ -9,7 +9,7 @@ export default defineConfig({
     { name: "firefox", use: { ...devices["Desktop Firefox"] } },
     { name: "webkit", use: { ...devices["Desktop Safari"] } },
   ],
-  reporter: "line",
+  reporter: "list",
   retries: 0,
   testDir: "./tests/e2e",
   timeout: 60_000,

@@ -1,18 +1,15 @@
 # Ruslan Khasanshin
 
-hu553in · senior software engineer — product & platform
+hu553in · senior software engineer — backend & full-stack
 
 ## About
 
-I build products end to end and the platform foundations behind them — distributed systems,
-developer tooling, observability, and product UI.
+I’m a backend-heavy software engineer with 9+ years of experience, working with Go, Java/Kotlin, and
+TypeScript. I build services, product interfaces, and tools for other developers.
 
-Over eight years, I’ve shipped software across insurance, travel, contact-center SaaS, creator
-tooling, and nonprofit infrastructure. I’m most useful when the requirements are incomplete, the
-system is unfinished, and someone has to turn that ambiguity into something reliable in production.
-
-I tend to go deep on products I care about: tracing edge cases, tightening the model, reducing
-operational ambiguity, and polishing things long after the happy path works.
+At work, that has meant launching insurance and travel backends, building shared observability
+tools, and synchronizing access rules across services. I like working through unclear requirements
+and staying with a product after it ships.
 
 ## Work
 
@@ -24,24 +21,29 @@ operational ambiguity, and polishing things long after the happy path works.
 
 senior backend engineer · since 2025 · [qic.digital](https://qic.digital)
 
-Joined while QIC’s new Go-based motor-insurance backend was still an incomplete pre-production
-rewrite. Helped take it through a phased production launch, built the observability foundation used
-across 25 services, and co-owned the backend launch of QIC Travel as part of a small backend team.
+Helped take an incomplete Go rewrite of QIC’s motor-insurance backend through a phased production
+launch, then supported live policy purchases. Co-owned the backend launch of QIC Travel with a small
+team. Designed and implemented the observability layer of a shared Go library adopted across 25
+services, including tracing, metrics, and 30+ operational alerts.
 
 ### Diabolocom
 
 senior java developer · 2021–2025 · [diabolocom.com](https://diabolocom.com)
 
-Built and operated five Java/Kotlin microservices for a cloud contact-center CRM. Reduced response
-time for a frequently called API from approximately 800 ms to 150 ms, added approximately 800–1,000
-automated tests, and acted as tech lead for five engineers during the final 18 months.
+Built and operated 5 Java/Kotlin microservices for a cloud contact-center CRM. Co-designed and
+implemented a Go worker that synchronized access rules across services using RabbitMQ, incremental
+updates, and batching. Reduced response time for a frequently called API from about 800 ms to 150 ms
+and added 800–1,000 automated tests. Acted as hands-on tech lead in a 5-engineer team for the final
+18 months.
 
 ### 7bits
 
 full-stack software engineer · 2017–2021 · [7bits.it](https://7bits.it)
 
-Built external and internal products with Java/Kotlin/Spring and React/TypeScript across the full
-development cycle. Led one project and taught introductory programming courses.
+Built Java/Kotlin/Spring backends and React/TypeScript interfaces across the full development cycle.
+On a [multi-tenant cybersecurity SaaS](https://7bits.it/portfolio/saas-security-solution), developed
+content-filtering controls, analytics, and domain-list synchronization, and improved the existing
+DNS-processing pipeline. Led 1 project and taught introductory programming courses.
 
 ## Volunteer
 
@@ -49,22 +51,22 @@ development cycle. Led one project and taught introductory programming courses.
 
 volunteer lead software engineer · since 2024
 
-I lead engineering for a production, location-aware nonprofit platform. I own the Django/DRF
-backend, deployment, and observability, contribute across the Next.js frontend, and work directly
-with users and a non-technical volunteer team to turn loosely defined needs into complete product
-changes.
+I lead engineering for a production nonprofit information platform, owning its Django/DRF backend,
+deployment, and observability. I work directly with users and a non-technical volunteer team, and
+deliver Next.js features including a calendar and location-based search.
 
-The work includes a timezone-aware scheduling engine, PostGIS-backed search, hierarchy-aware
-delegated administration, multilingual search, and a multi-stage performance program that reduced a
-key p99 from about 15 seconds to 500 ms.
+I built timezone-aware scheduling, hierarchy-aware delegated access, and consistent multilingual
+search across TypeScript, Python, and PostgreSQL. Query optimization and profiling reduced p99
+latency on a primary API path from about 15 seconds to 500 ms.
 
 ## Skills
 
-- **product**: TypeScript, JavaScript, React, Next.js
-- **backend**: Node.js, Bun, Go, Java/Kotlin, Python, Django, gRPC/Protobuf
-- **data**: PostgreSQL, PostGIS, ClickHouse, Redis, Kafka
-- **platform**: OpenTelemetry, Prometheus, Grafana, Docker, Kubernetes
-- **ops**: GitLab CI, GitHub Actions, Ansible
+- **backend**: Go, Java/Kotlin, Spring, Node.js, Bun, Python, Django, gRPC/Protobuf
+- **frontend**: TypeScript, JavaScript, React, Next.js
+- **data**: PostgreSQL, PostGIS, Redis, ClickHouse
+- **messaging**: Kafka, RabbitMQ
+- **platform**: Docker, Kubernetes, OpenTelemetry, Prometheus, Grafana
+- **delivery**: GitLab CI, GitHub Actions, Testcontainers, Playwright, Ansible
 
 ## Projects
 
@@ -73,8 +75,8 @@ key p99 from about 15 seconds to 500 ms.
 A pre-launch bilingual creator platform for video, subscriptions, paid access, discovery, community,
 and moderation.
 
-I own the domain model, architecture, implementation, CI, and operations; product vision, design,
-and user workflows are developed with my wife.
+I own the domain model, architecture, implementation, CI, and operations. My wife leads product
+vision, design, and user workflows; we make product decisions together.
 
 [website](https://voomy.tv/product)
 
@@ -92,7 +94,8 @@ A web app for Keycloak invitation links and user registration, with a Spring Boo
 
 ### Vrubel Museum exhibitions (interactive)
 
-An exhibition website for the Omsk M. A. Vrubel Museum of Fine Arts, built with React and Vite.
+An interactive exhibition website for the Omsk M. A. Vrubel Museum of Fine Arts. Co-developed as a
+graduation project using React and Vite.
 
 [website](https://vrubel-museum-exhibitions.vercel.app) ·
 [github](https://github.com/hu553in/vrubel-museum-exhibitions)
@@ -105,7 +108,7 @@ A Telegram bot for Dota 2 schedules, live matches, results, and favorites, hoste
 
 ### One Last Chance (iOS app)
 
-A minimal iPhone client for connecting to olcRTC through a single subscription URL.
+An iPhone VPN client for olcRTC, configured through a single subscription URL.
 
 [github](https://github.com/hu553in/one-last-chance)
 
@@ -165,7 +168,7 @@ A shadcn registry for sharing reusable code across projects.
 
 ## Writing & speaking
 
-### Technical debt isn’t just legacy: how we’re reducing divergence across Go services
+### How we’re reducing divergence across Go services
 
 How a shared Go platform library, a service template, and a dependency policy reduce cross-service
 divergence during a backend migration.
@@ -187,9 +190,10 @@ A conference talk on architecture, caching, horizontal scaling, observability, a
 4. Vibe coding sharp little utilities — most die young, and that’s fine.
 5. Product design, especially the tiny details nobody asked me to polish.
 6. [Borya the Welsh Corgi](/borya.jpg), voomy’s third founder.
-7. A full-black Toyota Yaris and any excuse for a long drive.
+7. An all-black Toyota Yaris and any excuse for a long drive.
 8. Fashion — deeply loved, lazily practiced.
-9. An unreasonable amount of movies, series, and no-name Twitch streamers — with my wife, always.
+9. An unreasonable amount of time watching movies, series, and obscure Twitch streams — with my
+   wife, always.
 
 ## Connect
 

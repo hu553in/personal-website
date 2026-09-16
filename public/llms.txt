@@ -1,7 +1,7 @@
 # Ruslan Khasanshin
 
-> Personal site of Ruslan Khasanshin (hu553in), a senior software engineer working across product
-> engineering, distributed systems, developer platforms, and product UI.
+> Personal site of Ruslan Khasanshin (hu553in), a senior software engineer with 9+ years of experience
+> in backend and full-stack development. Go, Java/Kotlin, TypeScript, and React.
 
 ## Content
 

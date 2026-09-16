@@ -3,5 +3,8 @@
   "reportDescriptionlessDisables": true,
   "reportInvalidScopeDisables": true,
   "reportNeedlessDisables": true,
-  "reportUnscopedDisables": true
+  "reportUnscopedDisables": true,
+  "rules": {
+    "at-rule-prelude-no-invalid": [true, { "ignoreAtRules": ["apply"] }]
+  }
 }

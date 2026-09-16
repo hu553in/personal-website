@@ -13,7 +13,7 @@ describe.each([
   [
     "profile",
     getProfileImage,
-    "79c138c70a6aeb0b4e30f6ddcd376ca03decc7f138c1849b306a10a7b099b9c2",
+    "210e61f5dbb71f0dc82716fed35d8fda656f513d2bf396491b5ec55b8f2e5d6a",
   ],
   [
     "registry",
