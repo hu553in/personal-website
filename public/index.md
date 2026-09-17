@@ -33,8 +33,7 @@ senior java developer · 2021–2025 · [diabolocom.com](https://diabolocom.com)
 Built and operated 5 Java/Kotlin microservices for a cloud contact-center CRM. Co-designed and
 implemented a Go worker that synchronized access rules across services using RabbitMQ, incremental
 updates, and batching. Reduced response time for a frequently called API from about 800 ms to 150 ms
-and added 800–1,000 automated tests. Acted as hands-on tech lead in a 5-engineer team for the final
-18 months.
+and added 800–1,000 automated tests. Acted as hands-on tech lead in a 5-engineer team for 18 months.
 
 ### 7bits
 
