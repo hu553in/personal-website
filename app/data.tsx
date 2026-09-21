@@ -284,7 +284,7 @@ const projects = [
   },
   {
     description: [
-      "A Python CLI for building and signing Tizen TV packages using Tizen Studio in Docker.",
+      "A Python CLI for building, signing, and installing Tizen TV packages through Dockerized Tizen Studio.",
     ],
     links: [
       {

@@ -156,7 +156,8 @@ My collection of reusable agent skills.
 
 ### Tizen tool (CLI tool)
 
-A Python CLI for building and signing Tizen TV packages using Tizen Studio in Docker.
+A Python CLI for building, signing, and installing Tizen TV packages through Dockerized Tizen
+Studio.
 
 [github](https://github.com/hu553in/tizen-tool)
 
