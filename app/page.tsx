@@ -87,6 +87,7 @@ const Home = () => (
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
           <span className="text-[15px] font-medium">{resume.title}</span>
           <Link
+            aria-label={`${resume.title} ${resume.label}`}
             className={monoMetaClassName}
             href={resume.href}
             target="_blank"
@@ -175,7 +176,15 @@ const Home = () => (
           <div key={project.name} className="flex flex-col gap-1.5">
             <div className="flex flex-col items-start gap-1 sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-2 sm:gap-y-1">
               <span className="text-[15px] font-medium">{project.name}</span>
-              <MetaLine items={[{ label: project.role }, ...project.links]} />
+              <MetaLine
+                items={[
+                  { label: project.role },
+                  ...project.links.map((link) => ({
+                    ariaLabel: `${project.name} ${link.label}`,
+                    ...link,
+                  })),
+                ]}
+              />
             </div>
             <div className="flex flex-col gap-1.5">
               {project.description.map((paragraph) => (
@@ -195,7 +204,12 @@ const Home = () => (
           <div key={entry.title} className="flex flex-col gap-1.5">
             <div className="flex flex-col items-start gap-1">
               <span className="text-[15px] font-medium">{entry.title}</span>
-              <MetaLine items={entry.details} />
+              <MetaLine
+                items={entry.details.map((detail) => ({
+                  ...detail,
+                  ariaLabel: `${entry.title} ${detail.label}`,
+                }))}
+              />
             </div>
             <BodyText>{entry.description}</BodyText>
           </div>

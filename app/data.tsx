@@ -5,13 +5,13 @@ import { codeRegistry } from "./site-data";
 
 const about = [
   "I’m a backend-heavy software engineer with 9+ years of experience, working with Go, Java/Kotlin, and TypeScript. I build services, product interfaces, and tools for other developers.",
-  "At work, that has meant launching insurance and travel backends, building shared observability tools, and synchronizing access rules across services. I like working through unclear requirements and staying with a product after it ships.",
+  "At work, that has meant launching insurance and travel backends and building shared observability tools. I like working through unclear requirements and staying with a product after it ships.",
 ] as const;
 
 const work = [
   {
     description:
-      "Helped take an incomplete Go rewrite of QIC’s motor-insurance backend through a phased production launch, then supported live policy purchases. Co-owned the backend launch of QIC Travel with a small team. Designed and implemented the observability layer of a shared Go library adopted across 25 services, including tracing, metrics, and 30+ operational alerts.",
+      "I helped take QIC’s Go motor-insurance backend through a phased production launch and co-owned the backend launch of QIC Travel. I developed observability tooling for 25 Go services and used it to diagnose failed document deliveries and external policy registrations after payment, helping the support team complete affected operations. I added outbox integration, retries, and alerts. Across 25 repositories, I introduced Renovate and vulnerability checks to replace months of dependency drift with regular updates and fixes.",
     period: "since 2025",
     role: "senior backend engineer",
     site: { href: "https://qic.digital", label: "qic.digital" },
@@ -19,7 +19,7 @@ const work = [
   },
   {
     description:
-      "Built and operated 5 Java/Kotlin microservices for a cloud contact-center CRM. Co-designed and implemented a Go worker that synchronized access rules across services using RabbitMQ, incremental updates, and batching. Reduced response time for a frequently called API from about 800 ms to 150 ms and added 800–1,000 automated tests. Acted as hands-on tech lead in a 5-engineer team for 18 months.",
+      "I built and operated 5 Java/Kotlin microservices for a cloud contact-center CRM, with on-call responsibility, and spent 18 months as a hands-on tech lead in a 5-engineer team. I co-designed and built a Go worker that synchronized access rules across service databases. I reduced a frequently called API’s response time from about 800 ms to 150 ms by removing N+1 queries, fetching less data from the database, and adding indexes. I also added 800–1,000 automated tests and independently migrated legacy services to Spring Boot 3.",
     period: "2021–2025",
     role: "senior java developer",
     site: { href: "https://diabolocom.com", label: "diabolocom.com" },
@@ -28,14 +28,17 @@ const work = [
   {
     description: (
       <>
-        Built Java/Kotlin/Spring backends and React/TypeScript interfaces across
-        the full development cycle. On a{" "}
+        I developed Java/Kotlin/Spring backends and React/TypeScript interfaces
+        for a{" "}
         <Link href="https://7bits.it/portfolio/saas-security-solution">
           multi-tenant cybersecurity SaaS
         </Link>
-        , developed content-filtering controls, analytics, and domain-list
-        synchronization, and improved the existing DNS-processing pipeline. Led
-        1 project and taught introductory programming courses.
+        , including content filtering, analytics, domain-list synchronization,
+        and improvements to its existing DNS-processing pipeline. For an
+        extended period I was the project’s sole developer, working directly
+        with the US client on requirements, priorities, and releases. I also
+        taught a two-semester Spring and React course to 20–30 students, with
+        lectures, workshops, code reviews, and a final full-stack project.
       </>
     ),
     period: "2017–2021",
@@ -48,8 +51,9 @@ const work = [
 const volunteer = [
   {
     description: [
-      "I lead engineering for a production nonprofit information platform, owning its Django/DRF backend, deployment, and observability. I work directly with users and a non-technical volunteer team, and deliver Next.js features including a calendar and location-based search.",
-      "I built timezone-aware scheduling, hierarchy-aware delegated access, and consistent multilingual search across TypeScript, Python, and PostgreSQL. Query optimization and profiling reduced p99 latency on a primary API path from about 15 seconds to 500 ms.",
+      "I lead engineering for a nonprofit platform with about 117K monthly unique users, helping people facing serious health challenges find support. I own its Django/DRF backend, deployment, and observability, and work directly with users and a non-technical volunteer team.",
+      "I built Next.js calendar and location-search features, timezone-aware scheduling, hierarchy-aware delegated access, and multilingual search across TypeScript, Python, and PostgreSQL. Removing N+1 queries and optimizing SQL and geospatial lookups reduced a key API’s p99 latency from about 15 seconds to 500 ms.",
+      "I also replaced an old regional website by migrating its data into the platform and preserving old links through redirects. I help new volunteers learn the architecture, review their code, and work through their first tasks.",
     ],
     period: "since 2024",
     role: "volunteer lead software engineer",
@@ -75,7 +79,7 @@ const writing = [
   },
   {
     description:
-      "A conference talk on architecture, caching, horizontal scaling, observability, and failure handling.",
+      "A talk about the cybersecurity system I worked on at 7bits, covering architecture, scaling, and failure handling.",
     details: [
       {
         href: "https://www.youtube.com/watch?v=Xkidzosg02E",
@@ -132,7 +136,7 @@ const projects = [
   {
     description: [
       "A pre-launch bilingual creator platform for video, subscriptions, paid access, discovery, community, and moderation.",
-      "I own the domain model, architecture, implementation, CI, and operations. My wife leads product vision, design, and user workflows; we make product decisions together.",
+      "I'm the sole engineer, responsible for the domain model, architecture, frontend, backend, testing, CI, and operations. My wife leads product vision, design, and user workflows; we make product decisions together.",
     ],
     links: [
       {
@@ -145,7 +149,7 @@ const projects = [
   },
   {
     description: [
-      "A terminal interface for browsing and editing HashiCorp Vault KV v2 secrets.",
+      "A terminal interface for browsing and editing HashiCorp Vault KV v2 secrets. Version checks prevent edits from overwriting concurrent changes.",
     ],
     links: [
       {
@@ -158,7 +162,7 @@ const projects = [
   },
   {
     description: [
-      "A web app for Keycloak invitation links and user registration, with a Spring Boot backend.",
+      "A web app for managing Keycloak invitations with expiry dates, usage limits, and predefined roles. It handles invitations for a production admin panel with dozens of users.",
     ],
     links: [
       {
@@ -171,7 +175,7 @@ const projects = [
   },
   {
     description: [
-      "An interactive exhibition website for the Omsk M. A. Vrubel Museum of Fine Arts. Co-developed as a graduation project using React and Vite.",
+      "An interactive exhibition website for the Omsk M. A. Vrubel Museum of Fine Arts. Co-developed as a graduation project in React and later migrated to Vite.",
     ],
     links: [
       {
@@ -205,7 +209,7 @@ const projects = [
   },
   {
     description: [
-      "An iPhone VPN client for olcRTC, configured through a single subscription URL.",
+      "An iPhone VPN client with a Swift tunnel extension integrating olcRTC’s Go runtime. A single subscription URL configures the connection. My family uses it to stay connected on restricted networks.",
     ],
     links: [
       {
@@ -218,7 +222,7 @@ const projects = [
   },
   {
     description: [
-      "A Telegram bot written in Go for RSS, Atom, and JSON feed digests and channel summaries.",
+      "A Telegram bot written in Go that I use daily for RSS, Atom, and JSON feed digests and channel summaries.",
     ],
     links: [
       {
@@ -248,7 +252,7 @@ const projects = [
   },
   {
     description: [
-      "A browser-only GitHub Actions workflow dashboard for multiple repositories.",
+      "A browser-only dashboard I use to monitor GitHub Actions workflows across my repositories.",
     ],
     links: [
       {
@@ -310,7 +314,7 @@ const projects = [
   },
   {
     description: [
-      "A GitHub Action that generates Neofetch-style SVG profile cards with daily ASCII art and live GitHub stats.",
+      "A GitHub Action that generates Neofetch-style SVG profile cards with daily ASCII art and GitHub stats.",
     ],
     links: [
       {
