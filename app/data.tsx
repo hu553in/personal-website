@@ -57,7 +57,7 @@ const volunteer = [
     ],
     period: "since 2024",
     role: "volunteer lead software engineer",
-    title: "Nonprofit information platform",
+    title: "nonprofit information platform",
   },
 ] as const;
 
@@ -136,7 +136,7 @@ const projects = [
   {
     description: [
       "A pre-launch bilingual creator platform for video, subscriptions, paid access, discovery, community, and moderation.",
-      "I'm the sole engineer, responsible for the domain model, architecture, frontend, backend, testing, CI, and operations. My wife leads product vision, design, and user workflows; we make product decisions together.",
+      "I’m the sole engineer, responsible for the domain model, architecture, frontend, backend, testing, CI, and operations. My wife leads product vision, design, and user workflows; we make product decisions together.",
     ],
     links: [
       {

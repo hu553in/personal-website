@@ -6,7 +6,7 @@ import {
   screen,
 } from "@testing-library/react";
 import { renderToString } from "react-dom/server";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, vi, it } from "vitest";
 
 import { HeroMedia } from "./hero-media";
 
@@ -35,7 +35,7 @@ describe(HeroMedia, () => {
     vi.restoreAllMocks();
   });
 
-  test("server-renders a static poster without video", () => {
+  it("server-renders a static poster without video", () => {
     const html = renderToString(<HeroMedia />);
     const document = new DOMParser().parseFromString(html, "text/html");
     const poster = document.querySelector("img");
@@ -43,7 +43,7 @@ describe(HeroMedia, () => {
     expect(document.querySelector("video")).toBeNull();
   });
 
-  test("does not mount video for reduced motion and follows preference changes", () => {
+  it("does not mount video for reduced motion and follows preference changes", () => {
     reducedMotion = true;
     const { container, unmount } = render(<HeroMedia />);
     expect(container.querySelector("img")).not.toBeNull();
@@ -70,7 +70,7 @@ describe(HeroMedia, () => {
     );
   });
 
-  test("resets video readiness and controls when reduced motion is toggled", () => {
+  it("resets video readiness and controls when reduced motion is toggled", () => {
     const { container } = render(<HeroMedia />);
     const poster = container.querySelector("img");
     const video = container.querySelector("video") as HTMLVideoElement;
@@ -78,7 +78,7 @@ describe(HeroMedia, () => {
     fireEvent.play(video);
     expect(video.style.opacity).toBe("1");
     expect(
-      screen.getByRole("button", { name: "Pause animation" })
+      screen.getByRole("button", { name: "pause animation" })
     ).toBeTruthy();
 
     act(() => {
@@ -93,17 +93,17 @@ describe(HeroMedia, () => {
     const replacement = container.querySelector("video") as HTMLVideoElement;
     expect(replacement).not.toBe(video);
     expect(replacement.style.opacity).toBe("0");
-    expect(screen.getByRole("button", { name: "Play animation" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "play animation" })).toBeTruthy();
     expect(container.querySelector("img")).toBe(poster);
     fireEvent.loadedData(replacement);
     fireEvent.play(replacement);
     expect(replacement.style.opacity).toBe("1");
     expect(
-      screen.getByRole("button", { name: "Pause animation" })
+      screen.getByRole("button", { name: "pause animation" })
     ).toBeTruthy();
   });
 
-  test("keeps the same poster while the first video frame loads", () => {
+  it("keeps the same poster while the first video frame loads", () => {
     reducedMotion = true;
     const { container } = render(<HeroMedia />);
     const poster = container.querySelector("img");
@@ -123,7 +123,7 @@ describe(HeroMedia, () => {
     expect(container.querySelector("img")).toBe(poster);
   });
 
-  test("lets visitors pause and resume with the control reflecting playback", async () => {
+  it("lets visitors pause and resume with the control reflecting playback", async () => {
     const { container } = render(<HeroMedia />);
     const video = container.querySelector("video") as HTMLVideoElement;
     let paused = false;
@@ -138,39 +138,39 @@ describe(HeroMedia, () => {
       return Promise.resolve();
     });
     fireEvent.play(video);
-    fireEvent.click(screen.getByRole("button", { name: "Pause animation" }));
+    fireEvent.click(screen.getByRole("button", { name: "pause animation" }));
     expect(pause).toHaveBeenCalledOnce();
     await act(async () => {
-      fireEvent.click(screen.getByRole("button", { name: "Play animation" }));
+      fireEvent.click(screen.getByRole("button", { name: "play animation" }));
       await Promise.resolve();
     });
     expect(play).toHaveBeenCalledOnce();
     expect(
-      screen.getByRole("button", { name: "Pause animation" })
+      screen.getByRole("button", { name: "pause animation" })
     ).toBeTruthy();
 
     fireEvent.click(video);
     expect(pause).toHaveBeenCalledTimes(2);
-    expect(screen.getByRole("button", { name: "Play animation" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "play animation" })).toBeTruthy();
     await act(async () => {
       fireEvent.click(video);
       await Promise.resolve();
     });
     expect(play).toHaveBeenCalledTimes(2);
     expect(
-      screen.getByRole("button", { name: "Pause animation" })
+      screen.getByRole("button", { name: "pause animation" })
     ).toBeTruthy();
 
-    fireEvent.click(screen.getByRole("button", { name: "Pause animation" }));
+    fireEvent.click(screen.getByRole("button", { name: "pause animation" }));
     play.mockRejectedValueOnce(new Error("Playback blocked"));
     await act(async () => {
-      fireEvent.click(screen.getByRole("button", { name: "Play animation" }));
+      fireEvent.click(screen.getByRole("button", { name: "play animation" }));
       await Promise.resolve();
     });
-    expect(screen.getByRole("button", { name: "Play animation" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "play animation" })).toBeTruthy();
   });
 
-  test("keeps the MP4 fallback available when WebM fails", () => {
+  it("keeps the MP4 fallback available when WebM fails", () => {
     const { container } = render(<HeroMedia />);
     const sources = container.querySelectorAll("source");
     fireEvent.error(sources.item(0));
@@ -182,7 +182,7 @@ describe(HeroMedia, () => {
     expect(screen.queryByRole("button")).toBeNull();
   });
 
-  test("falls back to the poster when video playback fails", () => {
+  it("falls back to the poster when video playback fails", () => {
     const { container } = render(<HeroMedia />);
     fireEvent.error(container.querySelector("video") as HTMLVideoElement);
     expect(container.querySelector("img")).not.toBeNull();

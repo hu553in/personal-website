@@ -31,15 +31,15 @@ import {
 } from "./site-data";
 
 const homeNavigationItems = [
-  { id: "about", title: "About" },
-  { id: "work", title: "Work" },
-  { id: "volunteer", title: "Volunteer" },
-  { id: "skills", title: "Skills" },
-  { id: "projects", title: "Projects" },
-  { id: "writing-and-speaking", title: "Writing & speaking" },
-  { id: "interests", title: "Interests" },
-  { id: "connect", title: "Connect" },
-  { id: "miscellany", title: "Miscellany" },
+  { id: "about", title: "about" },
+  { id: "work", title: "work" },
+  { id: "volunteer", title: "volunteer" },
+  { id: "skills", title: "skills" },
+  { id: "projects", title: "projects" },
+  { id: "writing-and-speaking", title: "writing & speaking" },
+  { id: "interests", title: "interests" },
+  { id: "connect", title: "connect" },
+  { id: "miscellany", title: "miscellany" },
 ] as const;
 
 const [

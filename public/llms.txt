@@ -13,3 +13,5 @@
   own LinkedIn cover image
 - [Open Graph image](https://hu553in.dev/open-graph-image.md): Use my template to make your own Open
   Graph image
+- [Design rules](https://hu553in.dev/DESIGN.md): Casing, typography, color, layout, motion, and sound
+  rules behind this site

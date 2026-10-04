@@ -5,8 +5,8 @@ import {
   describe,
   expect,
   expectTypeOf,
-  test,
   vi,
+  it,
 } from "vitest";
 
 import { CometProgress } from "./comet-progress";
@@ -35,7 +35,7 @@ describe(CometProgress, () => {
     vi.restoreAllMocks();
   });
 
-  test("requires and exposes an accessible name", () => {
+  it("requires and exposes an accessible name", () => {
     expectTypeOf<{ value: number }>().not.toMatchTypeOf<CometProgressProps>();
     expectTypeOf<{
       "aria-labelledby": string;
@@ -57,7 +57,7 @@ describe(CometProgress, () => {
     ).toBeDefined();
   });
 
-  test("exposes clamped progress and paints through the advancing front", () => {
+  it("exposes clamped progress and paints through the advancing front", () => {
     const canvasWidth = 384;
     mockCanvasWidth(canvasWidth);
     const runAnimationFrame = mockAnimationFrame();
@@ -96,7 +96,7 @@ describe(CometProgress, () => {
     expect(completeProgress.getAttribute("aria-valuetext")).toBe("100%");
   });
 
-  test("supports a custom range and accessible value formatter", () => {
+  it("supports a custom range and accessible value formatter", () => {
     mockCanvasWidth(40);
     mockAnimationFrame();
     mockCanvas2DContext(() => ({ roundRect: vi.fn() }));
@@ -138,7 +138,7 @@ describe(CometProgress, () => {
     expect(getValueText).toHaveBeenLastCalledWith(10, 10, 20);
   });
 
-  test.each([
+  it.each([
     {
       expectedMax: 100,
       expectedMin: 0,
@@ -224,7 +224,7 @@ describe(CometProgress, () => {
     }
   );
 
-  test("preserves one static texture when reduced motion is enabled", () => {
+  it("preserves one static texture when reduced motion is enabled", () => {
     mockCanvasWidth(384);
     mediaQueries.setReducedMotion(true);
     const random = vi.spyOn(Math, "random").mockReturnValue(0);
@@ -276,7 +276,7 @@ describe(CometProgress, () => {
     expect(requestAnimationFrameMock).not.toHaveBeenCalled();
   });
 
-  test("reports completion without animation under reduced motion", () => {
+  it("reports completion without animation under reduced motion", () => {
     mockCanvasWidth(40);
     mediaQueries.setReducedMotion(true);
     mockCanvas2DContext(() => ({ roundRect: vi.fn() }));
@@ -319,7 +319,7 @@ describe(CometProgress, () => {
     expect(onAnimationComplete).toHaveBeenCalledTimes(2);
   });
 
-  test("preserves existing shimmer cells when ResizeObserver adds columns", () => {
+  it("preserves existing shimmer cells when ResizeObserver adds columns", () => {
     mediaQueries.setReducedMotion(true);
     let canvasWidth = 8;
     mockCanvasWidth(() => canvasWidth);
@@ -358,7 +358,7 @@ describe(CometProgress, () => {
     expect(addedCells.every((cell) => cell.opacity === 1)).toBeTruthy();
   });
 
-  test("redraws a reduced-motion frame when inherited styles change", () => {
+  it("redraws a reduced-motion frame when inherited styles change", () => {
     mediaQueries.setReducedMotion(true);
     vi.spyOn(Math, "random").mockReturnValue(0);
     mockCanvasWidth(40);
@@ -418,7 +418,7 @@ describe(CometProgress, () => {
     expect(roundRect).toHaveBeenCalledTimes(10 * 5);
   });
 
-  test("does not recompute inherited color for value-only updates", async () => {
+  it("does not recompute inherited color for value-only updates", async () => {
     mediaQueries.setReducedMotion(true);
     mockCanvasWidth(40);
     mockCanvas2DContext(() => ({ roundRect: vi.fn() }));
@@ -441,7 +441,7 @@ describe(CometProgress, () => {
     expect(getComputedStyleMock).toHaveBeenCalledTimes(callsAfterMount);
   });
 
-  test("updates the backing store when the device pixel ratio changes", () => {
+  it("updates the backing store when the device pixel ratio changes", () => {
     mediaQueries.setReducedMotion(true);
     mockCanvasWidth(40);
     const devicePixelRatio = vi
@@ -464,7 +464,7 @@ describe(CometProgress, () => {
     expect(canvas?.width).toBe(80);
   });
 
-  test("waits for a measurable width instead of inventing columns", () => {
+  it("waits for a measurable width instead of inventing columns", () => {
     mediaQueries.setReducedMotion(true);
     vi.spyOn(Math, "random").mockReturnValue(0);
     let canvasWidth = 0;
@@ -488,7 +488,7 @@ describe(CometProgress, () => {
     expect(canvas?.width).toBe(40);
   });
 
-  test("preserves an advancing front through a collapsed resize", () => {
+  it("preserves an advancing front through a collapsed resize", () => {
     const drawing = createDrawing(384);
     const { rerender, unmount } = render(
       <CometProgress aria-label="Progress" value={20} />
@@ -512,7 +512,7 @@ describe(CometProgress, () => {
     expect(drawing.cells).toStrictEqual(resumed);
   });
 
-  test.each([false, true])(
+  it.each([false, true])(
     "redraws completed pixels immediately after resize (collapsed: %s)",
     (collapsed) => {
       const drawing = createDrawing(200);
@@ -530,7 +530,7 @@ describe(CometProgress, () => {
     }
   );
 
-  test("uses the fractional layout width when a parent is scaled", () => {
+  it("uses the fractional layout width when a parent is scaled", () => {
     const drawing = createDrawing(200.5);
     vi.spyOn(
       window.HTMLCanvasElement.prototype,
@@ -543,7 +543,7 @@ describe(CometProgress, () => {
     expect(drawing.cells.size).toBe(Math.ceil(200.5 / 4) * 5);
   });
 
-  test("draws a negative custom range without animation under reduced motion", () => {
+  it("draws a negative custom range without animation under reduced motion", () => {
     mediaQueries.setReducedMotion(true);
     const drawing = createDrawing();
     const { rerender } = render(

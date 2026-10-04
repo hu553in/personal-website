@@ -75,7 +75,7 @@ const BackToTop = ({ onClick }: { onClick: () => void }) => (
     type="button"
   >
     <span aria-hidden="true">↑</span>
-    <span>Back to top</span>
+    <span>back to top</span>
   </button>
 );
 
@@ -242,7 +242,7 @@ const PageNavigation = ({
     <>
       <nav
         ref={desktopNavigation}
-        aria-label="Page sections"
+        aria-label="page sections"
         className="sidebar:block absolute inset-y-0 right-[calc(100%+2rem)] hidden w-44"
       >
         <PageNavigationPanel
@@ -258,7 +258,7 @@ const PageNavigation = ({
       </nav>
 
       <nav
-        aria-label="Page sections"
+        aria-label="page sections"
         ref={setReference}
         className="bg-background sidebar:hidden sticky top-0 z-20 border-t border-black/10 py-2 dark:border-white/10"
       >
@@ -273,7 +273,7 @@ const PageNavigation = ({
             ref={mobileToggle}
             type="button"
           >
-            <span className="text-muted-foreground shrink-0">On this page</span>
+            <span className="text-muted-foreground shrink-0">on this page</span>
             <span className="min-w-0 flex-1 truncate text-right font-medium">
               {items.find((item) => item.id === activeId)?.title}
             </span>

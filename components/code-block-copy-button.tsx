@@ -17,9 +17,9 @@ interface CodeBlockCopyButtonProperties {
 type CopyState = "copied" | "error" | "idle";
 
 const copyFeedback = {
-  copied: { announcement: "Code copied", label: "Copied" },
-  error: { announcement: "Copy failed", label: "Copy failed, retry" },
-  idle: { announcement: "", label: "Copy code" },
+  copied: { announcement: "code copied", label: "copied" },
+  error: { announcement: "copy failed", label: "copy failed, retry" },
+  idle: { announcement: "", label: "copy code" },
 } as const satisfies Record<CopyState, { announcement: string; label: string }>;
 
 const CodeBlockCopyButton = ({

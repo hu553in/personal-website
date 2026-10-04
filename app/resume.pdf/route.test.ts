@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, vi, it } from "vitest";
 
 import { GET } from "./route";
 
@@ -13,7 +13,7 @@ describe("Resume PDF", () => {
     vi.restoreAllMocks();
   });
 
-  test("exports the fixed document as an inline PDF with CDN caching", async () => {
+  it("exports the fixed document as an inline PDF with CDN caching", async () => {
     const pdf = new Uint8Array([
       37, 80, 68, 70, 45, 49, 46, 55, 10, 0, 128, 255,
     ]);
@@ -52,7 +52,7 @@ describe("Resume PDF", () => {
     expect(response.headers.has("Set-Cookie")).toBeFalsy();
   });
 
-  test.each([
+  it.each([
     { contentType: "application/pdf", status: 403 },
     { contentType: "application/pdf", status: 500 },
     { contentType: "text/html", status: 200 },
@@ -91,7 +91,7 @@ describe("Resume PDF", () => {
     }
   );
 
-  test("does not cache an empty export", async () => {
+  it("does not cache an empty export", async () => {
     vi.stubGlobal(
       "fetch",
       vi
@@ -107,7 +107,7 @@ describe("Resume PDF", () => {
     expect(response.headers.get("Cache-Control")).toBe("no-store");
   });
 
-  test("reports an upstream request failure without exposing its details", async () => {
+  it("reports an upstream request failure without exposing its details", async () => {
     const cause = new Error("Connection failed");
     vi.stubGlobal("fetch", vi.fn<typeof fetch>().mockRejectedValue(cause));
 
@@ -121,7 +121,7 @@ describe("Resume PDF", () => {
     expect(console.error).toHaveBeenCalledWith("Unable to load resume:", cause);
   });
 
-  test("does not send a successful response when the download is interrupted", async () => {
+  it("does not send a successful response when the download is interrupted", async () => {
     const body = new ReadableStream({
       start(controller) {
         controller.error(new Error("Download interrupted"));

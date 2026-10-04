@@ -84,8 +84,8 @@ const RootLayout = ({
           <SoundToggle />
           <ThemeToggle />
           <Link
-            aria-label="Website source code on GitHub"
-            title="Website source code on GitHub"
+            aria-label="website source code on GitHub"
+            title="website source code on GitHub"
             href={site.repository}
             className={iconButtonClassName}
             variant="quiet"

@@ -1,10 +1,10 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { GET as profileImage } from "../../og.png/route";
 import { GET } from "./route";
 
 describe("Open Graph editor export", () => {
-  test("exports the exact site OG by default", async () => {
+  it("exports the exact site OG by default", async () => {
     const response = GET(
       new Request("https://example.com/open-graph-image/image.png?download=1")
     );
@@ -14,7 +14,7 @@ describe("Open Graph editor export", () => {
     );
   });
 
-  test("renders custom text at OG resolution", async () => {
+  it("renders custom text at OG resolution", async () => {
     const response = GET(
       new Request(
         "https://example.com/open-graph-image/image.png?title=Test&description=Custom"
@@ -30,7 +30,7 @@ describe("Open Graph editor export", () => {
     expect(response.headers.get("content-type")).toBe("image/png");
   });
 
-  test("rejects unbounded text", () => {
+  it("rejects unbounded text", () => {
     for (const query of [
       `title=${"a".repeat(121)}`,
       `description=${"a".repeat(241)}`,

@@ -32,11 +32,11 @@ const SoundToggle = () => {
 
   return (
     <button
-      aria-label="Interface sounds"
+      aria-label="interface sounds"
       aria-pressed={enabled}
       className={iconButtonClassName}
       onClick={toggle}
-      title={enabled ? "Mute sounds" : "Enable sounds"}
+      title={enabled ? "mute sounds" : "enable sounds"}
       type="button"
     >
       <Icon aria-hidden="true" className="size-4 shrink-0" />

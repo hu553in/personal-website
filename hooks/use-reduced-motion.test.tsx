@@ -1,6 +1,6 @@
 import { act, cleanup, renderHook } from "@testing-library/react";
 import { renderToString } from "react-dom/server";
-import { afterEach, describe, expect, test, vi } from "vitest";
+import { afterEach, describe, expect, vi, it } from "vitest";
 
 import { useReducedMotion } from "./use-reduced-motion";
 
@@ -14,7 +14,7 @@ describe(useReducedMotion, () => {
     vi.restoreAllMocks();
   });
 
-  test("uses the requested server snapshot without reading browser preferences", () => {
+  it("uses the requested server snapshot without reading browser preferences", () => {
     const matchMedia = vi.spyOn(window, "matchMedia").mockImplementation(() => {
       throw new Error("Browser preference accessed during SSR");
     });
@@ -25,7 +25,7 @@ describe(useReducedMotion, () => {
     expect(matchMedia).not.toHaveBeenCalled();
   });
 
-  test("reads live preferences and removes its subscription on unmount", () => {
+  it("reads live preferences and removes its subscription on unmount", () => {
     let matches = false;
     const query = new EventTarget();
     const remove = vi.spyOn(query, "removeEventListener");

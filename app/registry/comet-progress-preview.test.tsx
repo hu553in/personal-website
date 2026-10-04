@@ -1,6 +1,6 @@
 import { act, cleanup, render, screen } from "@testing-library/react";
 import { StrictMode } from "react";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, vi, it } from "vitest";
 
 import {
   createDrawing,
@@ -26,7 +26,7 @@ describe(CometProgressPreview, () => {
     vi.restoreAllMocks();
   });
 
-  test("paints intermediate progress, completes and starts another cycle", () => {
+  it("paints intermediate progress, completes and starts another cycle", () => {
     const drawing = createDrawing(400);
     render(<CometProgressPreview />);
     const progress = screen.getByRole("progressbar", {
@@ -66,7 +66,7 @@ describe(CometProgressPreview, () => {
     expect(progress.getAttribute("aria-valuenow")).toBe("5");
   });
 
-  test("keeps a static completed frame under reduced motion", () => {
+  it("keeps a static completed frame under reduced motion", () => {
     mediaQueries.setReducedMotion(true);
     const drawing = createDrawing();
     render(<CometProgressPreview />);
@@ -78,7 +78,7 @@ describe(CometProgressPreview, () => {
     expect(vi.getTimerCount()).toBe(0);
   });
 
-  test("reacts to reduced-motion changes and cleans up in Strict Mode", () => {
+  it("reacts to reduced-motion changes and cleans up in Strict Mode", () => {
     const drawing = createDrawing();
     const { unmount } = render(
       <StrictMode>

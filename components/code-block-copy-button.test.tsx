@@ -5,7 +5,7 @@ import {
   render,
   screen,
 } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, vi, it } from "vitest";
 
 import { CodeBlockCopyButton } from "./code-block-copy-button";
 
@@ -33,68 +33,68 @@ describe(CodeBlockCopyButton, () => {
     vi.useRealTimers();
   });
 
-  test("copies the source and temporarily reports success", async () => {
+  it("copies the source and temporarily reports success", async () => {
     render(
       <CodeBlockCopyButton className="absolute" code="const value = 42;" />
     );
 
     expect(
       screen
-        .getByRole("button", { name: "Copy code" })
+        .getByRole("button", { name: "copy code" })
         .classList.contains("absolute")
     ).toBeTruthy();
 
     await act(async () => {
-      fireEvent.click(screen.getByRole("button", { name: "Copy code" }));
+      fireEvent.click(screen.getByRole("button", { name: "copy code" }));
       await Promise.resolve();
     });
 
     expect(writeText).toHaveBeenCalledWith("const value = 42;");
     expect(audio.play).toHaveBeenCalledExactlyOnceWith("success");
 
-    screen.getByRole("button", { name: "Copied" });
-    expect(screen.getByText("Code copied")).toBeDefined();
+    screen.getByRole("button", { name: "copied" });
+    expect(screen.getByText("code copied")).toBeDefined();
 
     act(() => {
       vi.runAllTimers();
     });
 
-    expect(screen.getByRole("button", { name: "Copy code" })).toBeDefined();
+    expect(screen.getByRole("button", { name: "copy code" })).toBeDefined();
   });
 
-  test("reports clipboard failures and allows a successful retry", async () => {
+  it("reports clipboard failures and allows a successful retry", async () => {
     writeText.mockRejectedValueOnce(new Error("Clipboard unavailable"));
     render(<CodeBlockCopyButton code="const value = 42;" />);
 
     await act(async () => {
-      fireEvent.click(screen.getByRole("button", { name: "Copy code" }));
+      fireEvent.click(screen.getByRole("button", { name: "copy code" }));
       await Promise.resolve();
     });
 
     expect(
-      screen.getByRole("button", { name: "Copy failed, retry" })
+      screen.getByRole("button", { name: "copy failed, retry" })
     ).toBeDefined();
-    expect(screen.getByText("Copy failed")).toBeDefined();
-    expect(screen.queryByText("Code copied")).toBeNull();
+    expect(screen.getByText("copy failed")).toBeDefined();
+    expect(screen.queryByText("code copied")).toBeNull();
     expect(audio.play).not.toHaveBeenCalled();
 
     await act(async () => {
       fireEvent.click(
-        screen.getByRole("button", { name: "Copy failed, retry" })
+        screen.getByRole("button", { name: "copy failed, retry" })
       );
       await Promise.resolve();
     });
 
-    expect(screen.getByRole("button", { name: "Copied" })).toBeDefined();
-    expect(screen.getByText("Code copied")).toBeDefined();
+    expect(screen.getByRole("button", { name: "copied" })).toBeDefined();
+    expect(screen.getByText("code copied")).toBeDefined();
     expect(audio.play).toHaveBeenCalledExactlyOnceWith("success");
   });
 
-  test("restarts the copied-state timeout after another successful copy", async () => {
+  it("restarts the copied-state timeout after another successful copy", async () => {
     render(<CodeBlockCopyButton code="const value = 42;" />);
 
     await act(async () => {
-      fireEvent.click(screen.getByRole("button", { name: "Copy code" }));
+      fireEvent.click(screen.getByRole("button", { name: "copy code" }));
       await Promise.resolve();
     });
 
@@ -103,7 +103,7 @@ describe(CodeBlockCopyButton, () => {
     });
 
     await act(async () => {
-      fireEvent.click(screen.getByRole("button", { name: "Copied" }));
+      fireEvent.click(screen.getByRole("button", { name: "copied" }));
       await Promise.resolve();
     });
 
@@ -111,16 +111,16 @@ describe(CodeBlockCopyButton, () => {
       vi.advanceTimersByTime(1000);
     });
 
-    expect(screen.getByRole("button", { name: "Copied" })).toBeDefined();
+    expect(screen.getByRole("button", { name: "copied" })).toBeDefined();
 
     act(() => {
       vi.advanceTimersByTime(1000);
     });
 
-    expect(screen.getByRole("button", { name: "Copy code" })).toBeDefined();
+    expect(screen.getByRole("button", { name: "copy code" })).toBeDefined();
   });
 
-  test("ignores an older clipboard result that settles last", async () => {
+  it("ignores an older clipboard result that settles last", async () => {
     const firstWrite = Promise.withResolvers<null>();
     const secondWrite = Promise.withResolvers<null>();
 
@@ -129,26 +129,26 @@ describe(CodeBlockCopyButton, () => {
       .mockReturnValueOnce(secondWrite.promise);
     render(<CodeBlockCopyButton code="const value = 42;" />);
 
-    fireEvent.click(screen.getByRole("button", { name: "Copy code" }));
-    fireEvent.click(screen.getByRole("button", { name: "Copy code" }));
+    fireEvent.click(screen.getByRole("button", { name: "copy code" }));
+    fireEvent.click(screen.getByRole("button", { name: "copy code" }));
 
     await act(async () => {
       secondWrite.resolve(null);
       await secondWrite.promise;
     });
 
-    expect(screen.getByRole("button", { name: "Copied" })).toBeDefined();
+    expect(screen.getByRole("button", { name: "copied" })).toBeDefined();
 
     await act(async () => {
       firstWrite.reject(new Error("Stale clipboard failure"));
       await firstWrite.promise.catch(() => null);
     });
 
-    expect(screen.getByRole("button", { name: "Copied" })).toBeDefined();
-    expect(screen.queryByText("Copy failed")).toBeNull();
+    expect(screen.getByRole("button", { name: "copied" })).toBeDefined();
+    expect(screen.queryByText("copy failed")).toBeNull();
   });
 
-  test("ignores a pending clipboard result after unmount", async () => {
+  it("ignores a pending clipboard result after unmount", async () => {
     const pendingWrite = Promise.withResolvers<null>();
 
     writeText.mockReturnValueOnce(pendingWrite.promise);
@@ -156,7 +156,7 @@ describe(CodeBlockCopyButton, () => {
       <CodeBlockCopyButton code="const value = 42;" />
     );
 
-    fireEvent.click(screen.getByRole("button", { name: "Copy code" }));
+    fireEvent.click(screen.getByRole("button", { name: "copy code" }));
     unmount();
 
     await act(async () => {

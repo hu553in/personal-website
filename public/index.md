@@ -2,7 +2,7 @@
 
 hu553in · senior software engineer — backend & full-stack
 
-## About
+## about
 
 I’m a backend-heavy software engineer with 9+ years of experience, working with Go, Java/Kotlin, and
 TypeScript. I build services, product interfaces, and tools for other developers.
@@ -10,9 +10,9 @@ TypeScript. I build services, product interfaces, and tools for other developers
 At work, that has meant launching insurance and travel backends and building shared observability
 tools. I like working through unclear requirements and staying with a product after it ships.
 
-## Work
+## work
 
-### Resume
+### resume
 
 [pdf](/resume.pdf)
 
@@ -50,9 +50,9 @@ with the US client on requirements, priorities, and releases. I also taught a tw
 and React course to 20–30 students, with lectures, workshops, code reviews, and a final full-stack
 project.
 
-## Volunteer
+## volunteer
 
-### Nonprofit information platform
+### nonprofit information platform
 
 volunteer lead software engineer · since 2024
 
@@ -69,7 +69,7 @@ I also replaced an old regional website by migrating its data into the platform 
 links through redirects. I help new volunteers learn the architecture, review their code, and work
 through their first tasks.
 
-## Skills
+## skills
 
 - **backend**: Go, Java/Kotlin, Spring, Node.js, Bun, Python, Django, gRPC/Protobuf
 - **frontend**: TypeScript, JavaScript, React, Next.js
@@ -78,14 +78,14 @@ through their first tasks.
 - **platform**: Docker, Kubernetes, OpenTelemetry, Prometheus, Grafana
 - **delivery**: GitLab CI, GitHub Actions, Testcontainers, Playwright, Ansible
 
-## Projects
+## projects
 
 ### voomy (independent product)
 
 A pre-launch bilingual creator platform for video, subscriptions, paid access, discovery, community,
 and moderation.
 
-I'm the sole engineer, responsible for the domain model, architecture, frontend, backend, testing,
+I’m the sole engineer, responsible for the domain model, architecture, frontend, backend, testing,
 CI, and operations. My wife leads product vision, design, and user workflows; we make product
 decisions together.
 
@@ -183,7 +183,7 @@ A shadcn registry for sharing reusable code across projects.
 [page](https://hu553in.dev/registry) ·
 [github](https://github.com/hu553in/personal-website/tree/main/registry)
 
-## Writing & speaking
+## writing & speaking
 
 ### How we’re reducing divergence across Go services
 
@@ -200,7 +200,7 @@ failure handling.
 
 [youtube ru](https://www.youtube.com/watch?v=Xkidzosg02E)
 
-## Interests
+## interests
 
 1. AI launches watched live, like season finales.
 2. Open source that changes how I work.
@@ -213,14 +213,14 @@ failure handling.
 9. An unreasonable amount of time watching movies, series, and obscure Twitch streams — with my
    wife, always.
 
-## Connect
+## connect
 
 - GitHub: [hu553in](https://github.com/hu553in)
 - LinkedIn: [ruslan-khasanshin](https://www.linkedin.com/in/ruslan-khasanshin)
 - Telegram: [rkhasanshin](https://t.me/rkhasanshin)
-- Email: [r.m.khasanshin@gmail.com](mailto:r.m.khasanshin@gmail.com)
+- email: [r.m.khasanshin@gmail.com](mailto:r.m.khasanshin@gmail.com)
 
-## Miscellany
+## miscellany
 
 ### LinkedIn cover image (design tool)
 

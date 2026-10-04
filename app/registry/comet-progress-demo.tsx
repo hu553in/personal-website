@@ -72,14 +72,14 @@ const CometProgressDemo = () => (
 
       <CometProgressPreview />
 
-      <Subsection title="Install">
+      <Subsection title="install">
         <CodeBlock
           code={cometProgressDocumentation.installCommand}
           language="bash"
         />
       </Subsection>
 
-      <Subsection title="Use">
+      <Subsection title="use">
         <CodeBlock code={cometProgressDocumentation.usage} language="tsx" />
       </Subsection>
     </div>

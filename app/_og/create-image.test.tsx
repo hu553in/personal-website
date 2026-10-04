@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { GET as getProfileImage } from "../og.png/route";
 import { GET as getRegistryImage } from "../registry/og.png/route";
@@ -21,7 +21,7 @@ describe.each([
     "f2f6a899dcb1bb6759a6229413f1fdd2be432224c3396ce199eed8df9ee5f8a1",
   ],
 ])("%s Open Graph image", (_name, getImage, expectedHash) => {
-  test("renders the public PNG contract", async () => {
+  it("renders the public PNG contract", async () => {
     const response = getImage();
     const image = new Uint8Array(await response.arrayBuffer());
     const dimensions = new DataView(image.buffer);

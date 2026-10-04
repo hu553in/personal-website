@@ -12,13 +12,13 @@ An accessible grid progress bar with a fading, randomized comet tail.
 Override `--comet-progress-active` and `--comet-progress-empty` from CSS. The defaults derive from
 `--primary`, `--muted`, and `--muted-foreground`.
 
-### Install
+### install
 
 ```bash
 npx shadcn@latest add https://hu553in.dev/r/comet-progress.json
 ```
 
-### Use
+### use
 
 ```tsx
 import { CometProgress } from '@/components/ui/comet-progress';

@@ -1,6 +1,6 @@
 import { within } from "@testing-library/react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import Home from "./page";
 
@@ -11,9 +11,9 @@ const renderHome = () => {
 };
 
 describe("home page links", () => {
-  test("short links identify their destination without changing visible labels", () => {
+  it("short links identify their destination without changing visible labels", () => {
     const page = renderHome();
-    const resume = page.getByRole("link", { name: "Resume pdf" });
+    const resume = page.getByRole("link", { name: "resume pdf" });
     expect(resume.textContent).toBe("pdf");
     expect(resume.getAttribute("href")).toBe("/resume.pdf");
 
@@ -28,7 +28,7 @@ describe("home page links", () => {
     expect(website.getAttribute("href")).toBe("https://voomy.tv/product");
   });
 
-  test("publication links identify the work and preserve the language label", () => {
+  it("publication links identify the work and preserve the language label", () => {
     const page = renderHome();
     const article = page.getByRole("link", {
       name: "How we’re reducing divergence across Go services medium en",

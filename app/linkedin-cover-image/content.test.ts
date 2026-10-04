@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { linkedInCoverImage, site } from "../site-data";
 
@@ -19,7 +19,7 @@ const llmsIndex = readFileSync(
 );
 
 describe("LinkedIn cover image content", () => {
-  test("keeps the Markdown page aligned with the rendered page", () => {
+  it("keeps the Markdown page aligned with the rendered page", () => {
     expect(coverImageMarkdown).toContain(`# ${linkedInCoverImage.title}`);
     expect(coverImageMarkdown).toContain(linkedInCoverImage.description);
     expect(coverImageMarkdown).toContain(
@@ -27,7 +27,7 @@ describe("LinkedIn cover image content", () => {
     );
   });
 
-  test("keeps the editor discoverable from the public text surfaces", () => {
+  it("keeps the editor discoverable from the public text surfaces", () => {
     expect(profileMarkdown).toContain(
       `### ${linkedInCoverImage.title} (${linkedInCoverImage.role})`
     );

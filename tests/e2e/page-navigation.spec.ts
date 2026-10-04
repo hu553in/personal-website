@@ -3,10 +3,10 @@ import { expect, test } from "playwright/test";
 
 const mobilePanel = (page: Page) => page.locator("#mobile-page-navigation");
 const toggle = (page: Page) =>
-  page.getByRole("button", { name: /On this page/u });
+  page.getByRole("button", { name: /on this page/u });
 const visibleNavigation = (page: Page) =>
   page
-    .getByRole("navigation", { name: "Page sections" })
+    .getByRole("navigation", { name: "page sections" })
     .filter({ visible: true });
 const openPage = async (page: Page, path = "/") => {
   await page.goto(path);
@@ -70,17 +70,17 @@ test("the upward disclosure centers its trigger between the separators", async (
 });
 
 for (const path of ["/", "/registry"]) {
-  test(`the downward disclosure centers Back to top on ${path}`, async ({
+  test(`the downward disclosure centers back to top on ${path}`, async ({
     page,
   }) => {
     await openPage(page, path);
     await page.evaluate(() => scrollTo({ behavior: "instant", top: 1600 }));
-    await expect(toggle(page)).not.toHaveText("On this page");
+    await expect(toggle(page)).not.toHaveText("on this page");
     const height = await page.evaluate(
       () => document.documentElement.scrollHeight
     );
     await toggle(page).click();
-    const back = mobilePanel(page).getByRole("button", { name: "Back to top" });
+    const back = mobilePanel(page).getByRole("button", { name: "back to top" });
     await expect(back).toBeVisible();
     await expect
       .poll(async () => {
@@ -96,7 +96,7 @@ for (const path of ["/", "/registry"]) {
       const footer = button.parentElement;
       const panel = footer?.parentElement;
       if (!footer || !panel) {
-        throw new Error("Back to top has no panel");
+        throw new Error("back to top has no panel");
       }
       return {
         above: row.top - footer.getBoundingClientRect().top - footer.clientTop,
@@ -129,7 +129,7 @@ for (const path of ["/", "/registry"]) {
     const active = navigation.locator('[aria-current="location"]');
     await expect(active).toHaveCount(1);
     await expectInsideViewport(active);
-    const back = navigation.getByRole("button", { name: "Back to top" });
+    const back = navigation.getByRole("button", { name: "back to top" });
     await expectInsideViewport(back);
     await active.click();
     await expectInsideViewport(active);
@@ -139,13 +139,13 @@ for (const path of ["/", "/registry"]) {
 }
 
 for (const height of [660, 500]) {
-  test(`mobile navigation reaches its last item and Back to top at 390×${height}`, async ({
+  test(`mobile navigation reaches its last item and back to top at 390×${height}`, async ({
     page,
   }) => {
     await openPage(page);
     await page.setViewportSize({ height, width: 390 });
     await toggle(page).click();
-    const last = mobilePanel(page).getByRole("link", { name: "Miscellany" });
+    const last = mobilePanel(page).getByRole("link", { name: "miscellany" });
     await expectInsideViewport(mobilePanel(page));
     await mobilePanel(page)
       .locator("ul")
@@ -156,9 +156,9 @@ for (const height of [660, 500]) {
     await expectInsideViewport(mobilePanel(page));
     await last.click();
     await expect(toggle(page)).toHaveAttribute("aria-expanded", "false");
-    await expect(toggle(page)).toContainText("Miscellany");
+    await expect(toggle(page)).toContainText("miscellany");
     await toggle(page).click();
-    const back = mobilePanel(page).getByRole("button", { name: "Back to top" });
+    const back = mobilePanel(page).getByRole("button", { name: "back to top" });
     await expectInsideViewport(back);
     await back.click();
     await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
@@ -251,13 +251,13 @@ for (const withoutNavigationAPI of [false, true]) {
     await expect(
       visibleNavigation(page).getByRole("link", {
         exact: true,
-        name: "Connect",
+        name: "connect",
       })
     ).toHaveAttribute("aria-current", "location");
     await page.evaluate(() => scrollTo({ behavior: "instant", top: 1600 }));
     await expect.poll(() => page.evaluate(() => scrollY)).toBe(1600);
     await visibleNavigation(page)
-      .getByRole("link", { exact: true, name: "Work" })
+      .getByRole("link", { exact: true, name: "work" })
       .click();
     await expect(page).toHaveURL(/#work$/u);
     const workPosition = await page.evaluate(() => scrollY);
@@ -280,16 +280,16 @@ for (const withoutNavigationAPI of [false, true]) {
   });
 }
 
-test("an initial deep link selects its section and Back to top preserves the query", async ({
+test("an initial deep link selects its section and back to top preserves the query", async ({
   page,
 }) => {
   await page.setViewportSize({ height: 1000, width: 1440 });
   await page.goto("/?source=navigation-test#connect");
   await expect(
-    visibleNavigation(page).getByRole("link", { exact: true, name: "Connect" })
+    visibleNavigation(page).getByRole("link", { exact: true, name: "connect" })
   ).toHaveAttribute("aria-current", "location");
   await visibleNavigation(page)
-    .getByRole("button", { name: "Back to top" })
+    .getByRole("button", { name: "back to top" })
     .click();
   await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
   await expect(page).toHaveURL("/?source=navigation-test");
@@ -308,7 +308,7 @@ test.describe("animated navigation", () => {
     await page.setViewportSize({ height: 1000, width: 1440 });
     const work = visibleNavigation(page).getByRole("link", {
       exact: true,
-      name: "Work",
+      name: "work",
     });
     const workPosition = await page
       .locator("section#work")
@@ -331,7 +331,7 @@ test.describe("animated navigation", () => {
       );
     });
     await visibleNavigation(page)
-      .getByRole("link", { exact: true, name: "Miscellany" })
+      .getByRole("link", { exact: true, name: "miscellany" })
       .click();
     await expect
       .poll(() => page.evaluate(() => scrollY), { intervals: [16] })
@@ -367,7 +367,7 @@ test.describe("animated navigation", () => {
       .poll(() => page.evaluate(() => Math.round(scrollY)))
       .toBe(workPosition);
     await visibleNavigation(page)
-      .getByRole("button", { name: "Back to top" })
+      .getByRole("button", { name: "back to top" })
       .click();
     await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
     await expect(page).toHaveURL("/");

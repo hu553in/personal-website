@@ -61,7 +61,8 @@ const ThemeToggle = () => {
   return (
     <button
       aria-keyshortcuts="d"
-      aria-label="Toggle theme"
+      aria-label="toggle theme"
+      title="toggle theme"
       data-cuelume-toggle="toggle"
       type="button"
       onClick={toggle}

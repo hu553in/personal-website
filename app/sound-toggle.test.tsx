@@ -5,7 +5,7 @@ import {
   render,
   screen,
 } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, vi, it } from "vitest";
 
 import { setSoundsEnabled } from "@/lib/sounds";
 
@@ -37,9 +37,9 @@ describe("interface sounds", () => {
     vi.unstubAllGlobals();
   });
 
-  test("starts silent, saves the choice and mutes without a cue", () => {
+  it("starts silent, saves the choice and mutes without a cue", () => {
     render(<SoundToggle />);
-    const toggle = screen.getByRole("button", { name: "Interface sounds" });
+    const toggle = screen.getByRole("button", { name: "interface sounds" });
     expect(toggle.getAttribute("aria-pressed")).toBe("false");
     expect(audio.setEnabled).toHaveBeenLastCalledWith(false);
     expect(audio.play).not.toHaveBeenCalled();
@@ -57,7 +57,7 @@ describe("interface sounds", () => {
     expect(audio.play).toHaveBeenCalledOnce();
   });
 
-  test("restores a saved choice without playing a sound", () => {
+  it("restores a saved choice without playing a sound", () => {
     window.localStorage.setItem("interface-sounds", "true");
     render(<SoundToggle />);
     expect(screen.getByRole("button").getAttribute("aria-pressed")).toBe(
@@ -67,7 +67,7 @@ describe("interface sounds", () => {
     expect(audio.play).not.toHaveBeenCalled();
   });
 
-  test("follows preference changes from another tab", () => {
+  it("follows preference changes from another tab", () => {
     render(<SoundToggle />);
     act(() => {
       window.localStorage.setItem("interface-sounds", "true");
@@ -90,7 +90,7 @@ describe("interface sounds", () => {
     expect(audio.setEnabled).toHaveBeenLastCalledWith(false);
   });
 
-  test("remains usable when storage is blocked", () => {
+  it("remains usable when storage is blocked", () => {
     vi.mocked(window.localStorage.getItem).mockImplementation(() => {
       throw new Error("Storage blocked");
     });

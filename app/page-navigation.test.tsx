@@ -6,13 +6,13 @@ import {
   screen,
   within,
 } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, vi, it } from "vitest";
 
 import { PageNavigation } from "./page-navigation";
 
 const items = [
-  { id: "about", title: "About" },
-  { id: "connect", title: "Connect" },
+  { id: "about", title: "about" },
+  { id: "connect", title: "connect" },
 ] as const;
 let frames: Map<number, FrameRequestCallback>;
 let nextFrame: number;
@@ -88,33 +88,33 @@ describe(PageNavigation, () => {
     vi.unstubAllGlobals();
   });
 
-  test("activates the first section and back to top together, in both directions", () => {
+  it("activates the first section and back to top together, in both directions", () => {
     mount();
     expect(document.querySelector("[aria-current]")).toBeNull();
-    expect(screen.queryByRole("button", { name: "Back to top" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "back to top" })).toBeNull();
     scroll(349);
     expect(document.querySelector("[aria-current]")).toBeNull();
     scroll(350);
     expect(document.querySelector("[aria-current]")?.textContent).toContain(
-      "About"
+      "about"
     );
-    expect(screen.getByRole("button", { name: "Back to top" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "back to top" })).toBeTruthy();
     scroll(349);
     expect(document.querySelector("[aria-current]")).toBeNull();
-    expect(screen.queryByRole("button", { name: "Back to top" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "back to top" })).toBeNull();
   });
 
-  test("keeps URL changes explicit and preserves search parameters", () => {
+  it("keeps URL changes explicit and preserves search parameters", () => {
     mount();
     scroll(1800);
     expect(window.location.hash).toBe("");
-    fireEvent.click(screen.getByRole("link", { name: "Connect" }));
+    fireEvent.click(screen.getByRole("link", { name: "connect" }));
     expect(window.location.hash).toBe("#connect");
     expect(window.scrollTo).toHaveBeenCalledWith({
       behavior: "smooth",
       top: expect.any(Number),
     });
-    fireEvent.click(screen.getByRole("button", { name: "Back to top" }));
+    fireEvent.click(screen.getByRole("button", { name: "back to top" }));
     expect(window.location.href).toContain("/?demo=1");
     expect(window.location.hash).toBe("");
     expect(window.scrollTo).toHaveBeenLastCalledWith({
@@ -123,15 +123,15 @@ describe(PageNavigation, () => {
     });
   });
 
-  test("closes the disclosure and restores focus on navigation and Escape", () => {
+  it("closes the disclosure and restores focus on navigation and Escape", () => {
     mount();
     scroll(500);
-    const toggle = screen.getByRole("button", { name: /On this page/u });
+    const toggle = screen.getByRole("button", { name: /on this page/u });
     fireEvent.click(toggle);
     const panel = document.querySelector(
       "#mobile-page-navigation"
     ) as HTMLElement;
-    fireEvent.click(within(panel).getByRole("button", { name: "Back to top" }));
+    fireEvent.click(within(panel).getByRole("button", { name: "back to top" }));
     expect(toggle.getAttribute("aria-expanded")).toBe("false");
     expect(document.activeElement).toBe(toggle);
     fireEvent.click(toggle);
@@ -142,22 +142,22 @@ describe(PageNavigation, () => {
     expect(toggle.getAttribute("aria-expanded")).toBe("false");
   });
 
-  test("keeps the disclosure for one section and respects reduced motion", () => {
+  it("keeps the disclosure for one section and respects reduced motion", () => {
     vi.mocked(window.matchMedia).mockReturnValue({
       matches: true,
     } as MediaQueryList);
     mount([items[0]]);
-    const toggle = screen.getByRole("button", { name: /On this page/u });
+    const toggle = screen.getByRole("button", { name: /on this page/u });
     fireEvent.click(toggle);
     const panel = document.querySelector(
       "#mobile-page-navigation"
     ) as HTMLElement;
-    expect(within(panel).getByRole("link", { name: "About" })).toBeTruthy();
+    expect(within(panel).getByRole("link", { name: "about" })).toBeTruthy();
     expect(
-      within(panel).queryByRole("button", { name: "Back to top" })
+      within(panel).queryByRole("button", { name: "back to top" })
     ).toBeNull();
     scroll(500);
-    fireEvent.click(within(panel).getByRole("button", { name: "Back to top" }));
+    fireEvent.click(within(panel).getByRole("button", { name: "back to top" }));
     expect(window.scrollTo).toHaveBeenLastCalledWith({
       behavior: "instant",
       top: 0,
@@ -166,7 +166,7 @@ describe(PageNavigation, () => {
     expect(toggle.getAttribute("aria-expanded")).toBe("false");
   });
 
-  test("aligns an initial fragment and does not override history scroll restoration", () => {
+  it("aligns an initial fragment and does not override history scroll restoration", () => {
     window.history.replaceState(null, "", "/?demo=1#connect");
     mount();
     expect(window.scrollTo).toHaveBeenCalledWith({
@@ -188,11 +188,11 @@ describe(PageNavigation, () => {
       top: 500,
     });
     expect(document.querySelector("[aria-current]")?.textContent).toContain(
-      "About"
+      "about"
     );
   });
 
-  test.each([
+  it.each([
     null,
     { pageNavigationScrollY: "500" },
     { pageNavigationScrollY: Number.NaN },
@@ -208,7 +208,7 @@ describe(PageNavigation, () => {
     });
   });
 
-  test("preserves native traversal without saved state and aligns the next fresh fragment", () => {
+  it("preserves native traversal without saved state and aligns the next fresh fragment", () => {
     const navigation = new EventTarget();
     const remove = vi.spyOn(navigation, "removeEventListener");
     vi.stubGlobal("navigation", navigation);
@@ -243,7 +243,7 @@ describe(PageNavigation, () => {
     expect(remove).toHaveBeenCalledWith("navigate", expect.any(Function));
   });
 
-  test.each(["wheel", "touchstart", "pointerdown", "keydown"])(
+  it.each(["wheel", "touchstart", "pointerdown", "keydown"])(
     "late load preserves reading after %s",
     (event) => {
       window.history.replaceState(
@@ -261,16 +261,16 @@ describe(PageNavigation, () => {
     }
   );
 
-  test("late load does not repeat explicit navigation", () => {
+  it("late load does not repeat explicit navigation", () => {
     mount();
-    fireEvent.click(screen.getByRole("link", { name: "Connect" }));
+    fireEvent.click(screen.getByRole("link", { name: "connect" }));
     vi.mocked(window.scrollTo).mockClear();
     fireEvent.load(window);
     flush();
     expect(window.scrollTo).not.toHaveBeenCalled();
   });
 
-  test("unmount cancels pending initialization and geometry frames", () => {
+  it("unmount cancels pending initialization and geometry frames", () => {
     window.history.replaceState({ pageNavigationScrollY: 500 }, "", "/");
     const view = render(<PageNavigation items={items} />);
     fireEvent.scroll(window);
@@ -281,7 +281,7 @@ describe(PageNavigation, () => {
     expect(frames.size).toBe(0);
   });
 
-  test("reveals the active link on list resize and closes a hidden disclosure", () => {
+  it("reveals the active link on list resize and closes a hidden disclosure", () => {
     const callbacks = new Set<ResizeObserverCallback>();
     vi.stubGlobal(
       "ResizeObserver",
@@ -300,7 +300,7 @@ describe(PageNavigation, () => {
     );
     mount();
     scroll(500);
-    const link = screen.getByRole("link", { name: "About" });
+    const link = screen.getByRole("link", { name: "about" });
     const list = link.closest("ul") as HTMLElement;
     Object.defineProperty(link, "offsetParent", {
       configurable: true,
@@ -332,7 +332,7 @@ describe(PageNavigation, () => {
     expect(link.getAttribute("aria-current")).toBe("location");
     resize();
     expect(list.scrollTop).toBe(70);
-    const toggle = screen.getByRole("button", { name: /On this page/u });
+    const toggle = screen.getByRole("button", { name: /on this page/u });
     fireEvent.click(toggle);
     expect(toggle.getAttribute("aria-expanded")).toBe("true");
     Object.defineProperty(toggle, "offsetParent", {
@@ -346,7 +346,7 @@ describe(PageNavigation, () => {
     expect(callbacks.size).toBe(0);
   });
 
-  test("restores reading position on reload ahead of an older URL anchor", () => {
+  it("restores reading position on reload ahead of an older URL anchor", () => {
     window.history.replaceState(
       { pageNavigationScrollY: 800 },
       "",
@@ -359,7 +359,7 @@ describe(PageNavigation, () => {
     });
   });
 
-  test("does not save transient native scroll while restoring a history entry", () => {
+  it("does not save transient native scroll while restoring a history entry", () => {
     mount();
     window.history.replaceState(
       { pageNavigationScrollY: 800 },
@@ -385,7 +385,7 @@ describe(PageNavigation, () => {
     });
   });
 
-  test("explicit navigation cancels a pending history restoration", () => {
+  it("explicit navigation cancels a pending history restoration", () => {
     mount();
     window.history.replaceState(
       { pageNavigationScrollY: 800 },
@@ -393,13 +393,13 @@ describe(PageNavigation, () => {
       "/#connect"
     );
     fireEvent.popState(window);
-    fireEvent.click(screen.getByRole("link", { name: "About" }));
+    fireEvent.click(screen.getByRole("link", { name: "about" }));
     vi.mocked(window.scrollTo).mockClear();
     flush();
     expect(window.scrollTo).not.toHaveBeenCalled();
   });
 
-  test("preserves router state and restores saved reading after an entry update", () => {
+  it("preserves router state and restores saved reading after an entry update", () => {
     window.history.replaceState(
       { framework: "kept", pageNavigationScrollY: 800 },
       "",
@@ -438,7 +438,7 @@ describe(PageNavigation, () => {
     });
   });
 
-  test("restores native fragment reading positions without Navigation API while preserving router state", () => {
+  it("restores native fragment reading positions without Navigation API while preserving router state", () => {
     const routerState = { framework: { page: "home" } };
     window.history.replaceState(routerState, "", "/?demo=1");
     mount();
@@ -453,7 +453,7 @@ describe(PageNavigation, () => {
       ...routerState,
       pageNavigationScrollY: 800,
     });
-    fireEvent.click(screen.getByRole("link", { name: "About" }));
+    fireEvent.click(screen.getByRole("link", { name: "about" }));
     window.history.replaceState(readingState, "", "/?demo=1#connect");
     vi.mocked(window.scrollTo).mockClear();
     fireEvent.popState(window);
@@ -469,7 +469,7 @@ describe(PageNavigation, () => {
     ).toStrictEqual({ position: 800, url: window.location.href });
   });
 
-  test.each(["reload", "navigate"])(
+  it.each(["reload", "navigate"])(
     "uses the tab snapshot only on %s",
     (type) => {
       window.history.replaceState(null, "", "/#connect");
@@ -488,7 +488,7 @@ describe(PageNavigation, () => {
     }
   );
 
-  test("keeps navigation working when session storage is unavailable", () => {
+  it("keeps navigation working when session storage is unavailable", () => {
     vi.spyOn(sessionStorage, "getItem").mockImplementation(() => {
       throw new Error("Storage blocked");
     });
@@ -499,11 +499,11 @@ describe(PageNavigation, () => {
     scroll(800);
     expect(() => fireEvent(window, new Event("pagehide"))).not.toThrow();
     expect(document.querySelector("[aria-current]")?.textContent).toContain(
-      "About"
+      "about"
     );
   });
 
-  test("restores the saved reading position without losing framework history state", () => {
+  it("restores the saved reading position without losing framework history state", () => {
     mount();
     window.history.replaceState(
       { framework: "kept", pageNavigationScrollY: 500 },
@@ -524,10 +524,10 @@ describe(PageNavigation, () => {
     });
   });
 
-  test("does not intercept modified links or create duplicate history entries", () => {
+  it("does not intercept modified links or create duplicate history entries", () => {
     mount();
     const push = vi.spyOn(window.history, "pushState");
-    const link = screen.getByRole("link", { name: "Connect" });
+    const link = screen.getByRole("link", { name: "connect" });
     fireEvent.click(link, { ctrlKey: true });
     expect(push).not.toHaveBeenCalled();
     window.history.replaceState(null, "", "/?demo=1");
@@ -536,17 +536,17 @@ describe(PageNavigation, () => {
     expect(push).toHaveBeenCalledOnce();
   });
 
-  test("recomputes restored positions and resize without interaction flags", () => {
+  it("recomputes restored positions and resize without interaction flags", () => {
     mount();
     scroll(1800);
     expect(document.querySelector("[aria-current]")?.textContent).toContain(
-      "Connect"
+      "connect"
     );
     scroll(500);
     fireEvent.popState(window);
     flush();
     expect(document.querySelector("[aria-current]")?.textContent).toContain(
-      "About"
+      "about"
     );
     scroll(200);
     Object.defineProperty(window, "innerHeight", {
@@ -556,7 +556,7 @@ describe(PageNavigation, () => {
     fireEvent.resize(window);
     flush();
     expect(document.querySelector("[aria-current]")?.textContent).toContain(
-      "About"
+      "about"
     );
   });
 });

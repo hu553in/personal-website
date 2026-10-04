@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { codeRegistry, site } from "../site-data";
 import { cometProgressDocumentation } from "./comet-progress-demo";
@@ -30,7 +30,7 @@ const registryManifest = JSON.parse(
 };
 
 describe("registry content", () => {
-  test("keeps the public Markdown page aligned with the rendered documentation", () => {
+  it("keeps the public Markdown page aligned with the rendered documentation", () => {
     expect(registryMarkdown).toContain(`# ${codeRegistry.title}`);
     expect(registryMarkdown).toContain(codeRegistry.description);
     expect(registryMarkdown).toContain(codeRegistry.githubHref);
@@ -54,7 +54,7 @@ describe("registry content", () => {
     );
   });
 
-  test("keeps the registry manifest aligned with the component documentation", () => {
+  it("keeps the registry manifest aligned with the component documentation", () => {
     const manifestItem = registryManifest.items.find(
       (item) => item.name === cometProgressDocumentation.id
     );
@@ -68,7 +68,7 @@ describe("registry content", () => {
     );
   });
 
-  test("keeps the registry discoverable from the public text surfaces", () => {
+  it("keeps the registry discoverable from the public text surfaces", () => {
     expect(profileMarkdown).toContain(
       `### ${codeRegistry.title} (${codeRegistry.role})`
     );

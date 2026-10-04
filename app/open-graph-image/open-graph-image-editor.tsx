@@ -29,7 +29,7 @@ const OpenGraphImageEditor = () => {
 
   return (
     <>
-      <Section title="Preview">
+      <Section title="preview">
         <figure
           aria-label="Open Graph image preview at 1200 by 630 pixels"
           style={{ viewTransitionName: "og-preview" }}
@@ -67,7 +67,7 @@ const OpenGraphImageEditor = () => {
         ) : null}
       </Section>
       <Divider />
-      <Section title="Text">
+      <Section title="text">
         <fieldset className="flex min-w-0 flex-col gap-4">
           <legend className="sr-only">Open Graph image text</legend>
           {fields.map((field) => (

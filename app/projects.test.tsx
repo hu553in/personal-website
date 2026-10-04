@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 
 import { renderToStaticMarkup } from "react-dom/server";
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { projects } from "./data";
 import Home from "./page";
@@ -14,7 +14,7 @@ const profileMarkdown = readFileSync(
 );
 
 describe("project portfolio", () => {
-  test("renders every project and keeps descriptions and links in the Markdown profile", () => {
+  it("renders every project and keeps descriptions and links in the Markdown profile", () => {
     const document = new DOMParser().parseFromString(
       renderToStaticMarkup(<Home />),
       "text/html"
@@ -22,7 +22,7 @@ describe("project portfolio", () => {
     const section = document.querySelector("#projects");
     expect(section).not.toBeNull();
     const markdownProjects =
-      profileMarkdown.split("## Projects\n")[1]?.split("\n## ")[0] ?? "";
+      profileMarkdown.split("## projects\n")[1]?.split("\n## ")[0] ?? "";
     expect(
       [...markdownProjects.matchAll(/^### (?<heading>.+)$/gmu)].map(
         (match) => match.groups?.["heading"]

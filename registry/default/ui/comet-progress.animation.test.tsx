@@ -1,6 +1,6 @@
 import { act, cleanup, render, screen } from "@testing-library/react";
 import { StrictMode } from "react";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, vi, it } from "vitest";
 
 import { CometProgress } from "./comet-progress";
 import {
@@ -28,7 +28,7 @@ describe("CometProgress animation", () => {
     vi.restoreAllMocks();
   });
 
-  test.each([4, 200, 1024])(
+  it.each([4, 200, 1024])(
     "settles initial and updated 100% on the first frame at width %i",
     (width) => {
       const drawing = createDrawing(width);
@@ -61,7 +61,7 @@ describe("CometProgress animation", () => {
     }
   );
 
-  test("reports completion with the latest callback and rearms below 100% while offscreen", () => {
+  it("reports completion with the latest callback and rearms below 100% while offscreen", () => {
     const drawing = createDrawing(8);
     vi.mocked(Math.random).mockReturnValue(0);
     const previousOnAnimationComplete = vi.fn();
@@ -117,7 +117,7 @@ describe("CometProgress animation", () => {
     expect(onAnimationComplete).toHaveBeenCalledTimes(2);
   });
 
-  test("anchors shimmer deadlines to the current animation clock", () => {
+  it("anchors shimmer deadlines to the current animation clock", () => {
     vi.mocked(performance.now).mockReturnValue(10_000);
     mockCanvasWidth(40);
     const random = vi.spyOn(Math, "random").mockReturnValue(0.5);
@@ -165,7 +165,7 @@ describe("CometProgress animation", () => {
     expect(opacityAfterDeadline).toBeGreaterThan(opacityBeforeDeadline ?? 1);
   });
 
-  test("pauses outside the viewport and resumes without a time jump", () => {
+  it("pauses outside the viewport and resumes without a time jump", () => {
     const drawing = createDrawing(40);
     render(<CometProgress aria-label="Comet progress" value={50} />);
     drawing.frame(0);
@@ -190,7 +190,7 @@ describe("CometProgress animation", () => {
     expect(drawing.frames.size).toBe(1);
   });
 
-  test("sleeps while empty and resumes when progress advances", () => {
+  it("sleeps while empty and resumes when progress advances", () => {
     mockCanvasWidth(40);
     vi.spyOn(Math, "random").mockReturnValue(1);
     const runAnimationFrame = mockAnimationFrame();
@@ -216,7 +216,7 @@ describe("CometProgress animation", () => {
     expect(roundRect.mock.calls.length).toBeGreaterThan(0);
   });
 
-  test("sleeps at zero width and resumes after progress advances and the canvas expands", () => {
+  it("sleeps at zero width and resumes after progress advances and the canvas expands", () => {
     let currentCanvasWidth = 0;
     mockCanvasWidth(() => currentCanvasWidth);
     const notifyResize = mockResizeObserver();
@@ -258,7 +258,7 @@ describe("CometProgress animation", () => {
     expect(roundRect.mock.calls.length).toBeGreaterThan(0);
   });
 
-  test("switches animation when reduced-motion preference changes", () => {
+  it("switches animation when reduced-motion preference changes", () => {
     mockCanvasWidth(40);
     mockAnimationFrame();
     mockCanvas2DContext(() => ({ roundRect: vi.fn() }));
@@ -280,7 +280,7 @@ describe("CometProgress animation", () => {
     expect(requestAnimationFrame).toHaveBeenCalledTimes(2);
   });
 
-  test("cleans up animation and browser observers", () => {
+  it("cleans up animation and browser observers", () => {
     mockCanvasWidth(40);
     const resizeObserver = mockResizeObserver();
     mockAnimationFrame();
@@ -322,7 +322,7 @@ describe("CometProgress animation", () => {
     );
   });
 
-  test("fades the front gradually and keeps its diffuse tip away from the outer rows", () => {
+  it("fades the front gradually and keeps its diffuse tip away from the outer rows", () => {
     mockCanvasWidth(384);
     vi.spyOn(Math, "random").mockReturnValue(1);
     const runAnimationFrame = mockAnimationFrame();
@@ -382,7 +382,7 @@ describe("CometProgress animation", () => {
     expect(bottomTipGap).toBe(topTipGap);
   });
 
-  test("retargets row tips independently", () => {
+  it("retargets row tips independently", () => {
     mockCanvasWidth(160);
     const rowTipRandomValues = [
       0, 0, 1, 1, 0, 0, 0.25, 0, 0.75, 0.75, 0, 0.25, 0.5, 0, 0.5,
@@ -436,7 +436,7 @@ describe("CometProgress animation", () => {
     expect(new Set(movements).size).toBeGreaterThan(1);
   });
 
-  test("advances decorative row tips no more than one column after a slow animation frame", () => {
+  it("advances decorative row tips no more than one column after a slow animation frame", () => {
     mockCanvasWidth(384);
     const rowTipRandomValues = Array.from({ length: 5 }, () => [
       0, 0, 1,
@@ -481,7 +481,7 @@ describe("CometProgress animation", () => {
     expect(Math.max(...columnJumps)).toBeLessThanOrEqual(1);
   });
 
-  test.each([30, 60, 144])(
+  it.each([30, 60, 144])(
     "settles a large intermediate jump in 200ms at %i fps",
     (fps) => {
       const drawing = createDrawing(1024);
@@ -503,7 +503,7 @@ describe("CometProgress animation", () => {
     }
   );
 
-  test("keeps moving when progress changes before every frame", () => {
+  it("keeps moving when progress changes before every frame", () => {
     const drawing = createDrawing(1024);
     const { rerender, unmount } = render(
       <CometProgress aria-label="Comet progress" value={0} />
@@ -525,7 +525,7 @@ describe("CometProgress animation", () => {
     expect(settled).toStrictEqual(drawing.cells);
   });
 
-  test("restarts from zero when reset during an intermediate transition", () => {
+  it("restarts from zero when reset during an intermediate transition", () => {
     const drawing = createDrawing(1024);
     const { rerender } = render(
       <CometProgress aria-label="Comet progress" value={80} />
@@ -543,7 +543,7 @@ describe("CometProgress animation", () => {
     expect(drawing.cells.size).toBeLessThan(256);
   });
 
-  test("does not schedule frames after synchronous unmount in the completion callback", () => {
+  it("does not schedule frames after synchronous unmount in the completion callback", () => {
     const drawing = createDrawing();
     const complete = vi.fn();
     const { unmount } = render(
@@ -562,7 +562,7 @@ describe("CometProgress animation", () => {
     expect(drawing.frames.size).toBe(0);
   });
 
-  test("pauses offscreen and cleans up in Strict Mode", () => {
+  it("pauses offscreen and cleans up in Strict Mode", () => {
     const drawing = createDrawing();
     const { unmount } = render(
       <StrictMode>

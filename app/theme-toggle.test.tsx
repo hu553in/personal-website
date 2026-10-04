@@ -5,7 +5,7 @@ import {
   render,
   screen,
 } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, vi, it } from "vitest";
 
 import { ThemeToggle } from "./theme-toggle";
 
@@ -60,7 +60,7 @@ describe("theme toggle", () => {
     vi.restoreAllMocks();
   });
 
-  test.each([
+  it.each([
     {
       currentTheme: "light",
       expectedTheme: "system",
@@ -93,13 +93,13 @@ describe("theme toggle", () => {
       themeMock.state.systemTheme = systemTheme;
       render(<ThemeToggle />);
 
-      fireEvent.click(screen.getByRole("button", { name: "Toggle theme" }));
+      fireEvent.click(screen.getByRole("button", { name: "toggle theme" }));
 
       expect(themeMock.state.theme).toBe(expectedTheme);
     }
   );
 
-  test.each([
+  it.each([
     { currentTheme: "light", expectedTheme: "dark" },
     { currentTheme: "dark", expectedTheme: "light" },
     {
@@ -129,7 +129,7 @@ describe("theme toggle", () => {
   );
 
   /* oxlint-disable node/callback-return, promise/prefer-await-to-callbacks -- The View Transitions API owns these deferred callbacks. */
-  test("shares pending theme state between clicks and the keyboard shortcut", () => {
+  it("shares pending theme state between clicks and the keyboard shortcut", () => {
     const transitionCallbacks: (() => void)[] = [];
     const startViewTransition = vi.fn((callback: () => void) => {
       transitionCallbacks.push(callback);
@@ -147,7 +147,7 @@ describe("theme toggle", () => {
     themeMock.state.systemTheme = "dark";
     render(<ThemeToggle />);
 
-    fireEvent.click(screen.getByRole("button", { name: "Toggle theme" }));
+    fireEvent.click(screen.getByRole("button", { name: "toggle theme" }));
     pressD(document.body);
 
     act(() => {
@@ -162,7 +162,7 @@ describe("theme toggle", () => {
   });
   /* oxlint-enable node/callback-return, promise/prefer-await-to-callbacks */
 
-  test("does not intercept typing in editable controls", () => {
+  it("does not intercept typing in editable controls", () => {
     const { getByLabelText } = render(
       <>
         <ThemeToggle />
@@ -180,7 +180,7 @@ describe("theme toggle", () => {
     expect(themeMock.setTheme).not.toHaveBeenCalled();
   });
 
-  test("ignores modified, repeated, composing, prevented, and unrelated events", () => {
+  it("ignores modified, repeated, composing, prevented, and unrelated events", () => {
     render(<ThemeToggle />);
 
     pressD(document.body, { altKey: true });

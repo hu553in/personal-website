@@ -12,7 +12,7 @@ const HeroVideo = ({ onError }: { onError: () => void }) => {
   const [playing, setPlaying] = useState(false);
   const [frameReady, setFrameReady] = useState(false);
   const Icon = playing ? FaPause : FaPlay;
-  const label = playing ? "Pause animation" : "Play animation";
+  const label = playing ? "pause animation" : "play animation";
 
   const togglePlayback = async () => {
     const video = videoRef.current;

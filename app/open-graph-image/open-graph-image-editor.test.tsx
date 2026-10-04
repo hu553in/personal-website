@@ -5,7 +5,7 @@ import {
   render,
   screen,
 } from "@testing-library/react";
-import { afterEach, describe, expect, test, vi } from "vitest";
+import { afterEach, describe, expect, vi, it } from "vitest";
 
 import { OpenGraphImageEditor } from "./open-graph-image-editor";
 
@@ -15,13 +15,13 @@ describe("Open Graph editor", () => {
     vi.useRealTimers();
   });
 
-  test("downloads current text while debouncing the preview and clears obsolete errors", async () => {
+  it("downloads current text while debouncing the preview and clears obsolete errors", async () => {
     vi.useFakeTimers();
     render(<OpenGraphImageEditor />);
     const oldImage = screen.getByRole("img");
     fireEvent.error(oldImage);
     expect(screen.getByRole("alert")).toBeTruthy();
-    fireEvent.change(screen.getByLabelText("Title"), {
+    fireEvent.change(screen.getByLabelText("title"), {
       target: { value: "R&D + tools" },
     });
     const download = screen.getByRole("link", { name: "download PNG" });

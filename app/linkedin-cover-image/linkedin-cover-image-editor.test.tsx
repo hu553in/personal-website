@@ -5,7 +5,7 @@ import {
   render,
   screen,
 } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, vi, it } from "vitest";
 
 import { LinkedInCoverImageEditor } from "./linkedin-cover-image-editor";
 
@@ -66,15 +66,15 @@ describe("LinkedIn cover image editor", () => {
     vi.unstubAllGlobals();
   });
 
-  test("updates every line of the cover as it is typed", () => {
+  it("updates every line of the cover as it is typed", () => {
     render(<LinkedInCoverImageEditor />);
 
     const edits = [
-      ["Role", "Staff Engineer"],
-      ["Specialty", "Infrastructure & Product"],
-      ["Expertise", "Systems // Platforms"],
-      ["Stack", "TypeScript, Go"],
-      ["Website", "example.com"],
+      ["role", "Staff Engineer"],
+      ["specialty", "Infrastructure & Product"],
+      ["expertise", "Systems // Platforms"],
+      ["stack", "TypeScript, Go"],
+      ["website", "example.com"],
     ] as const;
 
     for (const [label, value] of edits) {
@@ -83,7 +83,7 @@ describe("LinkedIn cover image editor", () => {
     }
   });
 
-  test("fits the 1584 by 396 cover image with a responsive SVG viewport", () => {
+  it("fits the 1584 by 396 cover image with a responsive SVG viewport", () => {
     render(<LinkedInCoverImageEditor />);
     const preview = screen.getByRole("figure", {
       name: "LinkedIn cover image preview at 1584 by 396 pixels",
@@ -97,7 +97,7 @@ describe("LinkedIn cover image editor", () => {
     expect(preview.style.aspectRatio).toBe("1584 / 396");
   });
 
-  test.each([
+  it.each([
     {
       button: "download 1x",
       filename: "ruslan-khasanshin-linkedin-cover-image.png",
@@ -136,7 +136,7 @@ describe("LinkedIn cover image editor", () => {
     expect(audio.play).toHaveBeenCalledExactlyOnceWith("success");
   });
 
-  test("disables both downloads while the PNG renders", async () => {
+  it("disables both downloads while the PNG renders", async () => {
     const pendingExport = createDeferred<string>();
 
     screenshotMock.domToPng.mockReturnValueOnce(pendingExport.promise);
@@ -152,7 +152,7 @@ describe("LinkedIn cover image editor", () => {
     expect((download1x as HTMLButtonElement).disabled).toBeTruthy();
     expect((download2x as HTMLButtonElement).disabled).toBeTruthy();
     expect(
-      (screen.getByLabelText("Role") as HTMLInputElement).disabled
+      (screen.getByLabelText("role") as HTMLInputElement).disabled
     ).toBeTruthy();
 
     await act(async () => {
@@ -165,11 +165,11 @@ describe("LinkedIn cover image editor", () => {
     expect((download1x as HTMLButtonElement).disabled).toBeFalsy();
     expect((download2x as HTMLButtonElement).disabled).toBeFalsy();
     expect(
-      (screen.getByLabelText("Role") as HTMLInputElement).disabled
+      (screen.getByLabelText("role") as HTMLInputElement).disabled
     ).toBeFalsy();
   });
 
-  test("waits for fonts before rendering the PNG", async () => {
+  it("waits for fonts before rendering the PNG", async () => {
     const fontsReady = createDeferred<null>();
     Object.defineProperty(document, "fonts", {
       configurable: true,
@@ -187,7 +187,7 @@ describe("LinkedIn cover image editor", () => {
     expect(screenshotMock.domToPng).toHaveBeenCalledOnce();
   });
 
-  test("reports an export failure and lets the user retry", async () => {
+  it("reports an export failure and lets the user retry", async () => {
     screenshotMock.domToPng.mockRejectedValueOnce(new Error("Render failed"));
     render(<LinkedInCoverImageEditor />);
 

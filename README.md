@@ -15,12 +15,13 @@ Live at [hu553in.dev](https://hu553in.dev).
 - Includes an Open Graph image editor using the site's OG template, with 1200 × 630 PNG downloads
 - Offers optional interaction sounds, off by default, with a saved preference
 - Keeps rendered content in shared data and mirrors public pages in Markdown
+- Serves the design rules as-is at `/DESIGN.md`
 - Supports light and dark themes with a system default, a manual toggle, a `d` shortcut, and a
   GIF-masked View Transitions animation on switch
 - Ships SEO and AEO surfaces: Open Graph banner, JSON-LD, `robots.txt`, `sitemap.xml`, `llms.txt`,
   an `llms-full.txt` redirect, and Markdown twins advertised through HTML and HTTP alternate links
 
-Page navigation highlights the current section and reveals Back to top after the header. Short
+Page navigation highlights the current section and reveals "back to top" after the header. Short
 trailing sections remain selectable in both scroll directions. URL fragments change only on explicit
 navigation; ordinary scrolling preserves the current address.
 
@@ -83,3 +84,4 @@ browsers, run `bun playwright install firefox webkit` after `bun playwright:inst
 - [LinkedIn cover image Markdown version](https://hu553in.dev/linkedin-cover-image.md)
 - [Open Graph image](https://hu553in.dev/open-graph-image)
 - [Open Graph image Markdown version](https://hu553in.dev/open-graph-image.md)
+- [Design rules](https://hu553in.dev/DESIGN.md)

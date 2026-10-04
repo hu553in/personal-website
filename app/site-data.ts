@@ -27,7 +27,7 @@ const resume = {
   filename: "Ruslan_Khasanshin_Senior_Software_Engineer.pdf",
   href: "/resume.pdf",
   label: "pdf",
-  title: "Resume",
+  title: "resume",
 } as const;
 
 const socialImage = {
@@ -56,7 +56,7 @@ const linkedInCoverImage = {
 
 const registrySocialImage = {
   ...socialImage,
-  alt: `${codeRegistry.title}, ${codeRegistry.description}`,
+  alt: codeRegistry.description,
   url: `${codeRegistry.href}/og.png`,
 } as const;
 

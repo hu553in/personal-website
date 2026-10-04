@@ -41,11 +41,11 @@ const fields: readonly {
   key: keyof CoverImageCopy;
   label: string;
 }[] = [
-  { key: "role", label: "Role" },
-  { key: "specialty", label: "Specialty" },
-  { key: "expertise", label: "Expertise" },
-  { key: "stack", label: "Stack" },
-  { inputMode: "url", key: "website", label: "Website" },
+  { key: "role", label: "role" },
+  { key: "specialty", label: "specialty" },
+  { key: "expertise", label: "expertise" },
+  { key: "stack", label: "stack" },
+  { inputMode: "url", key: "website", label: "website" },
 ];
 
 const fonts = [
@@ -192,7 +192,7 @@ const LinkedInCoverImageEditor = () => {
 
   return (
     <>
-      <Section title="Preview">
+      <Section title="preview">
         <figure
           aria-label={`LinkedIn cover image preview at ${coverImageAriaDimensions}`}
           className="w-full overflow-hidden ring-1 ring-black/10 ring-inset dark:ring-white/10"
@@ -291,7 +291,7 @@ const LinkedInCoverImageEditor = () => {
 
       <Divider />
 
-      <Section title="Text">
+      <Section title="text">
         <fieldset className="flex min-w-0 flex-col gap-4">
           <legend className="sr-only">LinkedIn cover image text</legend>
           {fields.map((field) => (
