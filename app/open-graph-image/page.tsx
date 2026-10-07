@@ -12,7 +12,7 @@ import {
 import { identity, openGraphImage, socialImage } from "../site-data";
 import { OpenGraphImageEditor } from "./open-graph-image-editor";
 
-const title = `${openGraphImage.title} — ${identity.name}`;
+const title = `${openGraphImage.title} · ${identity.name}`;
 
 export const metadata: Metadata = {
   alternates: {

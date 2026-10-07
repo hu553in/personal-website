@@ -12,7 +12,7 @@ import {
 import { identity, linkedInCoverImage, socialImage } from "../site-data";
 import { LinkedInCoverImageEditor } from "./linkedin-cover-image-editor";
 
-const metadataTitle = `${linkedInCoverImage.title} — ${identity.name}`;
+const metadataTitle = `${linkedInCoverImage.title} · ${identity.name}`;
 
 export const metadata: Metadata = {
   alternates: {

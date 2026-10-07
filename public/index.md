@@ -1,6 +1,6 @@
 # Ruslan Khasanshin
 
-hu553in · senior software engineer — backend & full-stack
+hu553in · senior software engineer · backend & full-stack
 
 ## about
 
@@ -75,7 +75,7 @@ through their first tasks.
 - **frontend**: TypeScript, JavaScript, React, Next.js
 - **data**: PostgreSQL, PostGIS, Redis, ClickHouse
 - **messaging**: Kafka, RabbitMQ
-- **platform**: Docker, Kubernetes, OpenTelemetry, Prometheus, Grafana
+- **platform**: AWS, GCP, Azure, Docker, Kubernetes, OpenTelemetry, Prometheus, Grafana
 - **delivery**: GitLab CI, GitHub Actions, Testcontainers, Playwright, Ansible
 
 ## projects

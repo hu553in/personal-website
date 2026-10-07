@@ -4,13 +4,13 @@ const site = {
   openGraphDescription:
     "Backend and full-stack development with Go, Java/Kotlin, TypeScript, and React.",
   openGraphTitle:
-    "Ruslan Khasanshin\nSenior Software Engineer — Backend & Full-Stack",
+    "Ruslan Khasanshin\nSenior Software Engineer · Backend & Full-Stack",
   repository: "https://github.com/hu553in/personal-website",
   themeColor: {
     dark: "#0e0e11",
     light: "#fffdfa",
   },
-  title: "Ruslan Khasanshin — Senior Software Engineer, Backend & Full-Stack",
+  title: "Ruslan Khasanshin · Senior Software Engineer, Backend & Full-Stack",
   url: "https://hu553in.dev",
 } as const;
 
@@ -18,7 +18,7 @@ const identity = {
   handle: "hu553in",
   name: "Ruslan Khasanshin",
   photo: "https://github.com/hu553in.png",
-  role: "senior software engineer — backend & full-stack",
+  role: "senior software engineer · backend & full-stack",
 };
 
 const resume = {

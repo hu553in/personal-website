@@ -28,7 +28,7 @@ const registryLinks = [
     label: "github",
   },
 ] as const;
-const metadataTitle = `${codeRegistry.title} — ${identity.name}`;
+const metadataTitle = `${codeRegistry.title} · ${identity.name}`;
 
 const registryItems = [
   {

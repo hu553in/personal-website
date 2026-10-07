@@ -117,7 +117,16 @@ const skills = [
     label: "messaging",
   },
   {
-    items: ["Docker", "Kubernetes", "OpenTelemetry", "Prometheus", "Grafana"],
+    items: [
+      "AWS",
+      "GCP",
+      "Azure",
+      "Docker",
+      "Kubernetes",
+      "OpenTelemetry",
+      "Prometheus",
+      "Grafana",
+    ],
     label: "platform",
   },
   {
