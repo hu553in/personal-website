@@ -277,6 +277,19 @@ const projects = [
     role: "web dashboard",
   },
   {
+    description: [
+      "A desktop display for Codex and Claude usage limits on M5StickC Plus2. Shows used quota and reset times for up to three accounts over Wi-Fi through a local Mac bridge.",
+    ],
+    links: [
+      {
+        href: "https://github.com/hu553in/m5stick-ai-usage",
+        label: "github",
+      },
+    ],
+    name: "M5Stick AI usage",
+    role: "embedded project",
+  },
+  {
     description: ["My collection of reusable agent skills."],
     links: [
       {
