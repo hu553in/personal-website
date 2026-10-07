@@ -65,6 +65,10 @@ const Home = () => (
           ·
         </span>
         {identity.role}
+        <span aria-hidden="true" className="mx-2">
+          ·
+        </span>
+        {identity.specialization}
       </p>
     </PageHeader>
 

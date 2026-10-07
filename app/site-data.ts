@@ -18,8 +18,11 @@ const identity = {
   handle: "hu553in",
   name: "Ruslan Khasanshin",
   photo: "https://github.com/hu553in.png",
-  role: "senior software engineer · backend & full-stack",
+  role: "senior software engineer",
+  specialization: "backend & full-stack",
 };
+
+const roleDescription = `${identity.role} · ${identity.specialization}`;
 
 const resume = {
   documentUrl:
@@ -31,7 +34,7 @@ const resume = {
 } as const;
 
 const socialImage = {
-  alt: `${identity.name}, ${identity.role}`,
+  alt: `${identity.name}, ${roleDescription}`,
   height: 630,
   url: "/og.png",
   width: 1200,
@@ -74,6 +77,7 @@ export {
   openGraphImage,
   registrySocialImage,
   resume,
+  roleDescription,
   site,
   socialImage,
 };

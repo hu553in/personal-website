@@ -8,12 +8,17 @@ import {
   imageEditorInputClassName,
 } from "../image-editor-primitives";
 import { Divider, Link, monoMetaClassName, Section } from "../primitives";
-import { identity, openGraphImage, socialImage } from "../site-data";
+import {
+  identity,
+  openGraphImage,
+  roleDescription,
+  socialImage,
+} from "../site-data";
 import { fields } from "./fields";
 
 const OpenGraphImageEditor = () => {
   const [copy, setCopy] = useState({
-    description: identity.role,
+    description: roleDescription,
     title: identity.name,
   });
   const [previewCopy, setPreviewCopy] = useState(copy);

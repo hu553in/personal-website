@@ -1,12 +1,12 @@
 import { createOgImage } from "@/app/_og/create-image";
-import { identity } from "@/app/site-data";
+import { identity, roleDescription } from "@/app/site-data";
 
 import { fields } from "../fields";
 
 export const GET = (request: Request) => {
   const params = new URL(request.url).searchParams;
   const title = params.get("title") ?? identity.name;
-  const description = params.get("description") ?? identity.role;
+  const description = params.get("description") ?? roleDescription;
 
   const copy = { description, title };
   if (fields.some((field) => copy[field.key].length > field.maxLength)) {
