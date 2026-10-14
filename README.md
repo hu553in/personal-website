@@ -34,7 +34,7 @@ navigation; ordinary scrolling preserves the current address.
 ## Setup
 
 ```bash
-bun i
+bun ci
 bun dev
 ```
 
