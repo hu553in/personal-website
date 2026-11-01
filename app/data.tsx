@@ -323,7 +323,7 @@ const projects = [
     ],
     links: [
       {
-        href: "https://xn-----flcj2bnpjd0gcb.xn--p1ai",
+        href: "https://grooming-studio-hu553in.vercel.app",
         label: "website",
       },
       {

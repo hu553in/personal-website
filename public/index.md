@@ -172,7 +172,7 @@ Studio.
 
 A website for a pet grooming studio in Omsk, built with React and Vite.
 
-[website](https://xn-----flcj2bnpjd0gcb.xn--p1ai) ·
+[website](https://grooming-studio-hu553in.vercel.app) ·
 [github](https://github.com/hu553in/grooming-studio)
 
 ### ASCII profile card (github action)
