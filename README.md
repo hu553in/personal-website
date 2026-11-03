@@ -52,7 +52,7 @@ bun run build       # Production build
 bun build:og-fonts  # Rebuild Open Graph fonts
 bun build:registry  # shadcn registry build
 bun start           # Production server
-bun check           # Full local gate
+bun check:all       # Full local gate
 bun check:fix       # Full local gate with automatic fixes
 ```
 
