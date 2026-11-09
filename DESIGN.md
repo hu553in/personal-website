@@ -17,7 +17,12 @@ Proper nouns keep their own casing everywhere, inside labels too. This covers pe
 products, languages, tools, acronyms (`PNG`, `MIT`, `CLI`, `iOS`), lowercase brands (`voomy`, `vlt`,
 `shadcn`, `hu553in`), company names as the company styles them (`QIC digital hub`), published titles
 of articles and talks as published, and project names as the project's own README spells them.
-Registry component names follow the same rule (`Comet progress`).
+Registry component names follow the same rule (`Comet progress`), and so do roles and kinds in the
+title row (`senior Java developer`, `Telegram bot`, `GitHub action`).
+
+Link labels are the one exception: they stay lowercase even when they name a brand or a format
+(`github`, `telegram`, `pdf`, `medium en`), because they read as destination tags, not names. See
+Punctuation.
 
 Source strings hold the lowercase form; CSS may transform them for display. Section headings use
 `uppercase` in `app/primitives.tsx`, and the same strings feed the sidebar, the mobile section

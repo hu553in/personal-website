@@ -29,7 +29,7 @@ drift with regular updates and fixes.
 
 ### Diabolocom
 
-senior java developer · 2021–2025 · [diabolocom.com](https://diabolocom.com)
+senior Java developer · 2021–2025 · [diabolocom.com](https://diabolocom.com)
 
 I built and operated 5 Java/Kotlin microservices for a cloud contact-center CRM, with on-call
 responsibility, and spent 18 months as a hands-on tech lead in a 5-engineer team. I co-designed and
@@ -113,21 +113,13 @@ graduation project in React and later migrated to Vite.
 [website](https://vrubel-museum-exhibitions.vercel.app) ·
 [github](https://github.com/hu553in/vrubel-museum-exhibitions)
 
-### Dota 2 schedule bot (telegram bot)
+### Dota 2 schedule bot (Telegram bot)
 
 A Telegram bot for Dota 2 schedules, live matches, results, and favorites, hosted on Cloudflare.
 
 [telegram](https://t.me/d2_schedule_bot) · [github](https://github.com/hu553in/dota2-schedule-bot)
 
-### One Last Chance (iOS app)
-
-An iPhone VPN client with a Swift tunnel extension integrating olcRTC’s Go runtime. A single
-subscription URL configures the connection. My family uses it to stay connected on restricted
-networks.
-
-[github](https://github.com/hu553in/one-last-chance)
-
-### Telekilogram (telegram bot)
+### Telekilogram (Telegram bot)
 
 A Telegram bot written in Go that I use daily for RSS, Atom, and JSON feed digests and channel
 summaries.
@@ -175,7 +167,7 @@ A website for a pet grooming studio in Omsk, built with React and Vite.
 [website](https://grooming-studio-hu553in.vercel.app) ·
 [github](https://github.com/hu553in/grooming-studio)
 
-### ASCII profile card (github action)
+### ASCII profile card (GitHub action)
 
 A GitHub Action that generates Neofetch-style SVG profile cards with daily ASCII art and GitHub
 stats.

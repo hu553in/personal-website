@@ -21,7 +21,7 @@ const work = [
     description:
       "I built and operated 5 Java/Kotlin microservices for a cloud contact-center CRM, with on-call responsibility, and spent 18 months as a hands-on tech lead in a 5-engineer team. I co-designed and built a Go worker that synchronized access rules across service databases. I reduced a frequently called API’s response time from about 800 ms to 150 ms by removing N+1 queries, fetching less data from the database, and adding indexes. I also added 800–1,000 automated tests and independently migrated legacy services to Spring Boot 3.",
     period: "2021–2025",
-    role: "senior java developer",
+    role: "senior Java developer",
     site: { href: "https://diabolocom.com", label: "diabolocom.com" },
     title: "Diabolocom",
   },
@@ -214,20 +214,7 @@ const projects = [
       },
     ],
     name: "Dota 2 schedule bot",
-    role: "telegram bot",
-  },
-  {
-    description: [
-      "An iPhone VPN client with a Swift tunnel extension integrating olcRTC’s Go runtime. A single subscription URL configures the connection. My family uses it to stay connected on restricted networks.",
-    ],
-    links: [
-      {
-        href: "https://github.com/hu553in/one-last-chance",
-        label: "github",
-      },
-    ],
-    name: "One Last Chance",
-    role: "iOS app",
+    role: "Telegram bot",
   },
   {
     description: [
@@ -244,7 +231,7 @@ const projects = [
       },
     ],
     name: "Telekilogram",
-    role: "telegram bot",
+    role: "Telegram bot",
   },
   {
     description: [
@@ -349,7 +336,7 @@ const projects = [
       },
     ],
     name: "ASCII profile card",
-    role: "github action",
+    role: "GitHub action",
   },
   {
     description: [codeRegistry.description],
