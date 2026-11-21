@@ -218,6 +218,19 @@ const projects = [
   },
   {
     description: [
+      "An iPhone VPN client with a Swift tunnel extension integrating olcRTC’s Go runtime. A single subscription URL configures the connection. My family uses it to stay connected on restricted networks.",
+    ],
+    links: [
+      {
+        href: "https://github.com/hu553in/one-last-chance",
+        label: "github",
+      },
+    ],
+    name: "One Last Chance",
+    role: "iOS app",
+  },
+  {
+    description: [
       "A Telegram bot written in Go that I use daily for RSS, Atom, and JSON feed digests and channel summaries.",
     ],
     links: [

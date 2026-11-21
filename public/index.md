@@ -119,6 +119,14 @@ A Telegram bot for Dota 2 schedules, live matches, results, and favorites, hoste
 
 [telegram](https://t.me/d2_schedule_bot) · [github](https://github.com/hu553in/dota2-schedule-bot)
 
+### One Last Chance (iOS app)
+
+An iPhone VPN client with a Swift tunnel extension integrating olcRTC’s Go runtime. A single
+subscription URL configures the connection. My family uses it to stay connected on restricted
+networks.
+
+[github](https://github.com/hu553in/one-last-chance)
+
 ### Telekilogram (Telegram bot)
 
 A Telegram bot written in Go that I use daily for RSS, Atom, and JSON feed digests and channel
