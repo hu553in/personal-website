@@ -91,13 +91,6 @@ decisions together.
 
 [website](https://voomy.tv/product)
 
-### vlt (TUI app)
-
-A terminal interface for browsing and editing HashiCorp Vault KV v2 secrets. Version checks prevent
-edits from overwriting concurrent changes.
-
-[github](https://github.com/hu553in/vlt)
-
 ### Invites for Keycloak (web app)
 
 A web app for managing Keycloak invitations with expiry dates, usage limits, and predefined roles.
@@ -119,14 +112,6 @@ A Telegram bot for Dota 2 schedules, live matches, results, and favorites, hoste
 
 [telegram](https://t.me/d2_schedule_bot) · [github](https://github.com/hu553in/dota2-schedule-bot)
 
-### One Last Chance (iOS app)
-
-An iPhone VPN client with a Swift tunnel extension integrating olcRTC’s Go runtime. A single
-subscription URL configures the connection. My family uses it to stay connected on restricted
-networks.
-
-[github](https://github.com/hu553in/one-last-chance)
-
 ### Telekilogram (Telegram bot)
 
 A Telegram bot written in Go that I use daily for RSS, Atom, and JSON feed digests and channel
@@ -147,13 +132,6 @@ A browser-only dashboard I use to monitor GitHub Actions workflows across my rep
 
 [website](https://gh-workflow-dashboard.vercel.app) ·
 [github](https://github.com/hu553in/gh-workflow-dashboard)
-
-### M5Stick AI usage (embedded project)
-
-A desktop display for Codex and Claude usage limits on M5StickC Plus2. Shows used quota and reset
-times for up to three accounts over Wi-Fi through a local Mac bridge.
-
-[github](https://github.com/hu553in/m5stick-ai-usage)
 
 ### Skills (agent workflows)
 

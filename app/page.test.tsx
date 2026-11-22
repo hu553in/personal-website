@@ -17,10 +17,10 @@ describe("home page links", () => {
     expect(resume.textContent).toBe("pdf");
     expect(resume.getAttribute("href")).toBe("/resume.pdf");
 
-    const repository = page.getByRole("link", { name: "vlt github" });
+    const repository = page.getByRole("link", { name: "Skills github" });
     expect(repository.textContent).toBe("github");
     expect(repository.getAttribute("href")).toBe(
-      "https://github.com/hu553in/vlt"
+      "https://github.com/hu553in/skills"
     );
 
     const website = page.getByRole("link", { name: "voomy website" });
