@@ -28,6 +28,7 @@ navigation; ordinary scrolling preserves the current address.
 ## Requirements
 
 - Bun
+- Node.js in the range declared in `package.json`
 - shfmt, for local checks
 - uv, only when rebuilding Open Graph fonts
 
@@ -40,9 +41,8 @@ bun dev
 
 ## Configuration
 
-There is no runtime configuration. Shared site identity and metadata live in `app/site-data.ts`;
-page content lives in `app/data.tsx`; component docs live with their demos. Styles and CSS theme
-tokens live in `app/globals.css`.
+Shared site identity and metadata live in `app/site-data.ts`; page content lives in `app/data.tsx`;
+component docs live with their demos. Styles and CSS theme tokens live in `app/globals.css`.
 
 ## Development
 
@@ -51,7 +51,7 @@ bun dev             # Development server
 bun run build       # Production build
 bun build:og-fonts  # Rebuild Open Graph fonts
 bun build:registry  # shadcn registry build
-bun start           # Production server
+bun start           # Preview the built Worker locally
 bun check:all       # Full local gate
 bun check:fix       # Full local gate with automatic fixes
 ```
@@ -66,7 +66,7 @@ browsers, run `bun playwright install firefox webkit` after `bun playwright:inst
 
 ## Tech stack
 
-- Next.js with React and the React Compiler
+- vinext on Cloudflare Workers with React and the React Compiler
 - Tailwind CSS
 - shadcn and Shiki for the component registry
 - next-themes and react-hotkeys-hook for theme switching

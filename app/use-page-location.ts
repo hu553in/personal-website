@@ -41,7 +41,7 @@ const getReloadPosition = (): unknown => {
   }
 };
 
-// Next.js recreates entry state during boot, so reload needs a tab-local snapshot.
+// Keep the reload position outside history state so it survives router initialization.
 const saveReloadPosition = (position: number) => {
   try {
     sessionStorage.setItem(
@@ -100,6 +100,7 @@ const usePageLocation = (items: readonly PageSection[]) => {
   useEffect(() => {
     pageHistoryState.current = window.history.state;
     let frame = 0;
+    let hashFrame = 0;
     let restoredUrl: string | null = null;
     const sync = () => {
       frame = 0;
@@ -124,6 +125,11 @@ const usePageLocation = (items: readonly PageSection[]) => {
         scrollTo(id, "instant");
       }
       schedule();
+    };
+    const onHashChange = () => {
+      // vinext queues native anchor alignment from popstate. Apply our offset after it.
+      cancelAnimationFrame(hashFrame);
+      hashFrame = requestAnimationFrame(followHash);
     };
     const onNavigate = (event: NavigateEvent) => {
       // popstate also fires for new fragment navigations, not just Back/Forward.
@@ -213,10 +219,11 @@ const usePageLocation = (items: readonly PageSection[]) => {
     window.addEventListener("pagehide", saveOnPageHide);
     window.addEventListener("resize", schedule);
     window.addEventListener("pageshow", schedule);
-    window.addEventListener("hashchange", followHash);
+    window.addEventListener("hashchange", onHashChange);
     window.addEventListener("popstate", restorePosition);
     return () => {
       cancelAnimationFrame(frame);
+      cancelAnimationFrame(hashFrame);
       cancelRestoration();
       stopInitialization();
       for (const event of intentEvents) {
@@ -229,7 +236,7 @@ const usePageLocation = (items: readonly PageSection[]) => {
       window.removeEventListener("pagehide", saveOnPageHide);
       window.removeEventListener("resize", schedule);
       window.removeEventListener("pageshow", schedule);
-      window.removeEventListener("hashchange", followHash);
+      window.removeEventListener("hashchange", onHashChange);
       window.removeEventListener("popstate", restorePosition);
     };
   }, [items, scrollTo, saveReadingPosition, cancelRestoration]);
@@ -250,12 +257,14 @@ const usePageLocation = (items: readonly PageSection[]) => {
       );
     }
     cancelRestoration();
-    scrollTo(
-      id,
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        ? "instant"
-        : "smooth"
-    );
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    scrollTo(id, reducedMotion ? "instant" : "smooth");
+    // Back can occur before scrollend fires for an instant jump.
+    if (reducedMotion) {
+      saveReadingPosition();
+    }
   };
   return { activeId, navigate };
 };

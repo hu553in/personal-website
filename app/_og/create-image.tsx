@@ -1,21 +1,25 @@
-import { readFileSync } from "node:fs";
-import path from "node:path";
+import { Buffer } from "node:buffer";
 
 import { ImageResponse } from "next/og";
 
 import { socialImage } from "@/app/site-data";
 
-const fontsPath = path.join(process.cwd(), "app/_og/fonts");
+import exposure from "./fonts/exposure.woff?inline";
+import openRunde from "./fonts/open-runde.woff?inline";
+
+const decodeFont = (dataUrl: string) =>
+  Buffer.from(dataUrl.slice(dataUrl.indexOf(",") + 1), "base64");
+
 const imageOptions = {
   fonts: [
     {
-      data: readFileSync(path.join(fontsPath, "exposure.woff")),
+      data: decodeFont(exposure),
       name: "Exposure",
       style: "normal" as const,
       weight: 500 as const,
     },
     {
-      data: readFileSync(path.join(fontsPath, "open-runde.woff")),
+      data: decodeFont(openRunde),
       name: "OpenRunde",
       style: "normal" as const,
       weight: 500 as const,

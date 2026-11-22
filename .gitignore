@@ -2,8 +2,6 @@
 Thumbs.db
 node_modules/
 .next/
-out/
-build/
 coverage/
 .vscode/
 .idea/
@@ -17,3 +15,6 @@ public/r/
 *.tsbuildinfo
 next-env.d.ts
 test-results/
+/dist/
+.vinext/
+.cloudflare/

@@ -24,7 +24,7 @@
     "exactOptionalPropertyTypes": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "types": ["node", "bun"],
+    "types": ["node", "bun", "vite/client"],
     "module": "ESNext",
     "moduleDetection": "force",
     "moduleResolution": "Bundler",
@@ -51,9 +51,7 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.mts",
-    "**/*.cts",
-    ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
+    "**/*.cts"
   ],
   "exclude": ["node_modules"]
 }

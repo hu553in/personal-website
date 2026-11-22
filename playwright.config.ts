@@ -14,7 +14,7 @@ export default defineConfig({
   testDir: "./tests/e2e",
   timeout: 60_000,
   use: {
-    baseURL: "http://localhost:3028",
+    baseURL: "http://127.0.0.1:3028",
     reducedMotion: "reduce",
     screenshot: "only-on-failure",
     trace: "retain-on-failure",
@@ -22,7 +22,7 @@ export default defineConfig({
   webServer: {
     command: "bun start --port 3028",
     reuseExistingServer: false,
-    url: "http://localhost:3028",
+    url: "http://127.0.0.1:3028",
   },
   workers: 4,
 });

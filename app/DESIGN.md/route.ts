@@ -1,9 +1,6 @@
-import { readFileSync } from "node:fs";
-import path from "node:path";
+import design from "../../DESIGN.md?raw";
 
 export const dynamic = "force-static";
-
-const design = readFileSync(path.join(process.cwd(), "DESIGN.md"));
 
 export const GET = () =>
   new Response(design, {

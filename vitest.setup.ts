@@ -1,6 +1,6 @@
 import { vi } from "vitest";
 
-// Vitest does not run Next.js static image metadata generation.
+// Vitest imports the poster without the app's build-time image metadata.
 vi.mock(import("@/public/hero.webp"), () => ({
   default: {
     blurDataURL: "data:image/webp;base64,UklGRg==",

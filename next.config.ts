@@ -59,8 +59,6 @@ const nextConfig: NextConfig = {
       ]),
     ]);
   },
-  poweredByHeader: false,
-  reactCompiler: true,
   redirects() {
     return Promise.resolve([
       {
