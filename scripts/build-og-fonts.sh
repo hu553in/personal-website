@@ -15,7 +15,7 @@ trap cleanup EXIT
 mkdir -p "$fonts_dir"
 
 run_fonttools() {
-  uvx --from "fonttools[woff]" "$@"
+  uvx --exclude-newer 3d --from "fonttools[woff]" "$@"
 }
 
 run_fonttools fonttools ttLib.woff2 decompress \

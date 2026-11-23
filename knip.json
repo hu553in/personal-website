@@ -3,5 +3,5 @@
   "entry": ["cloudflare.config.ts", "registry/default/ui/comet-progress.tsx"],
   "playwright": true,
   "ignoreBinaries": ["shfmt"],
-  "ignoreDependencies": ["@commitlint/cli", "renovate"]
+  "ignoreDependencies": ["@commitlint/cli"]
 }
