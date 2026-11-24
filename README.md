@@ -56,13 +56,22 @@ bun check:all       # Full local gate
 bun check:fix       # Full local gate with automatic fixes
 ```
 
-`bun check:e2e` installs Chromium, builds the production app, and runs navigation regressions on an
-isolated server at port 3028. It is included in the full gate. Failure screenshots and traces are
-saved in `test-results/` and uploaded by CI.
+`bun check:e2e` installs Chromium, builds the production app, and checks navigation and the registry
+on an isolated server at port 3028. It is included in the full gate. Failure screenshots and traces
+are saved in `test-results/` and uploaded by CI.
 
 To test an existing production build, run `bun playwright test --project chromium`. For all three
 browsers, run `bun playwright install firefox webkit` after `bun playwright:install`, then
 `bun playwright test`.
+
+## Deployment
+
+The `personal-website` Worker uses Cloudflare Workers Builds with the GitHub `main` branch.
+
+- Build command `bun run build`. This generates the shadcn registry before `cf build`.
+- Deploy command `npx cf deploy --prebuilt`.
+
+For a manual deployment from an authenticated checkout, run `bun ci` and then `bun run deploy`.
 
 ## Tech stack
 
@@ -71,7 +80,7 @@ browsers, run `bun playwright install firefox webkit` after `bun playwright:inst
 - shadcn and Shiki for the component registry
 - next-themes and react-hotkeys-hook for theme switching
 - react-icons for brand icons
-- Bun, Ultracite (Oxlint + Oxfmt), Knip, Lefthook, and commitlint for tooling
+- Bun fmt, Oxlint with Ultracite rules, Knip, Lefthook, and commitlint for tooling
 
 ## Resources
 

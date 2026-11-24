@@ -11,11 +11,17 @@ const visibleNavigation = (page: Page) =>
 const openPage = async (page: Page, path = "/") => {
   await page.goto(path);
   await page.evaluate(() => document.fonts.ready);
-  // A working disclosure proves hydration finished before history/scroll actions.
   await page.setViewportSize({ height: 660, width: 390 });
-  await toggle(page).click();
-  await expect(toggle(page)).toHaveAttribute("aria-expanded", "true");
-  await toggle(page).click();
+  // Wait for the scrollspy to respond before interacting with the page.
+  await page.evaluate(() =>
+    scrollTo({
+      behavior: "instant",
+      top: document.documentElement.scrollHeight,
+    })
+  );
+  await expect(toggle(page)).not.toHaveText("on this page");
+  await page.evaluate(() => scrollTo({ behavior: "instant", top: 0 }));
+  await expect(toggle(page)).toHaveText("on this page");
 };
 const expectInsideViewport = async (locator: Locator) => {
   await expect(locator).toBeInViewport({ ratio: 1 });

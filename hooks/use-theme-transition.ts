@@ -39,7 +39,6 @@ const useThemeTransition = () => {
       });
 
       // A newer transition skips the old animation, but its theme update still runs.
-      /* oxlint-disable-next-line promise/prefer-await-to-callbacks, promise/prefer-await-to-then -- ViewTransition.ready is the API's failure signal. */
       void transition.ready.catch(() => null);
     },
     [setTheme]
